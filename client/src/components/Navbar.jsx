@@ -18,9 +18,9 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6 ">
           <Link to={"/"}  className="hover:underline">Home</Link>
           <Link to={"/about-us"}  className="hover:underline">About</Link>
+          <SignedIn>
           <Link to={"/services"}  className="hover:underline">Services</Link>
           <Link to={"/contact-us"}  className="hover:underline">Contact</Link>
-          <SignedIn>
             <UserButton className="hover:underline"/>
           </SignedIn>
 
@@ -43,9 +43,9 @@ const Navbar = () => {
       {/* Mobile Menu Links */}
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col items-center space-y-4 active:underline">
-           <SignedIn>
           <Link to={"/"}  className="hover:underline">Home</Link>
           <Link to={"/about-us"}  className="hover:underline">About</Link>
+           <SignedIn>
           <Link to={"/services"}  className="hover:underline">Services</Link>
           <Link to={"/contact-us"}  className="hover:underline">Contact</Link>
           <UserButton/>
