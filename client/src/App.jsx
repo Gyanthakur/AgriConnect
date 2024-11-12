@@ -1,24 +1,37 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import { Route, Router, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import Services from './components/Services'
-import Contact from './components/Contact'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import InformationResources from './components/InformationRresources'
+import CommunitySupport from './components/CommunitySupport'
+import ErrorPage from './pages/ErrorPage'
+import Contact from './pages/Contact'
+import Footer from './components/Footer'
 const App = () => {
   return (
     <div className='min-h-screen bg-green-100'>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/about' element={<About/>} />
+        <Route path='/about-us' element={<About/>} />
         <Route path='/services' element={<Services/>} />
-        <Route path='/contact' element={<Contact/>} />
+        <Route path='/contact-us' element={<Contact/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/sign-up' element={<Signup/>} />
+        <Route path='/information-resources' element={<InformationResources/>} />
+        <Route path='/community-support' element={<CommunitySupport/>} />
+        
+        
+
+        {/* Catch-all route for undefined paths */}
+        <Route path="*" element={<ErrorPage />} />
+
       </Routes>
+      <Footer/>
     </div>
   )
 }

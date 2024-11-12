@@ -11,17 +11,17 @@ const Navbar = () => {
         {/* Logo */}
 
 
-        <div className="text-2xl font-bold">Agriconnect</div>
+        <Link to={'/'} className="text-2xl font-bold">Agriconnect</Link>
 
 
         {/* Links */}
         <div className="hidden md:flex space-x-6 ">
-        <SignedIn>
           <Link to={"/"}  className="hover:underline">Home</Link>
-          <Link to={"/about"}  className="hover:underline">About</Link>
+          <Link to={"/about-us"}  className="hover:underline">About</Link>
           <Link to={"/services"}  className="hover:underline">Services</Link>
-          <Link to={"/contact"}  className="hover:underline">Contact</Link>
-          <UserButton/>
+          <Link to={"/contact-us"}  className="hover:underline">Contact</Link>
+          <SignedIn>
+            <UserButton className="hover:underline"/>
           </SignedIn>
 
           <SignedOut>
@@ -45,9 +45,9 @@ const Navbar = () => {
         <div className="md:hidden mt-4 flex flex-col items-center space-y-4 active:underline">
            <SignedIn>
           <Link to={"/"}  className="hover:underline">Home</Link>
-          <Link to={"/about"}  className="hover:underline">About</Link>
+          <Link to={"/about-us"}  className="hover:underline">About</Link>
           <Link to={"/services"}  className="hover:underline">Services</Link>
-          <Link to={"/contact"}  className="hover:underline">Contact</Link>
+          <Link to={"/contact-us"}  className="hover:underline">Contact</Link>
           <UserButton/>
           </SignedIn>
 
