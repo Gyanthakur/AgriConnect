@@ -11,6 +11,7 @@ import CommunitySupport from './components/CommunitySupport'
 import ErrorPage from './pages/ErrorPage'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
+import SustainableFarming from './components/SustainableFarming'
 const App = () => {
   return (
     <div className='min-h-screen bg-green-100'>
@@ -24,10 +25,12 @@ const App = () => {
         <Route path='/sign-up' element={<Signup/>} />
         <Route path='/information-resources' element={<InformationResources/>} />
         <Route path='/community-support' element={<CommunitySupport/>} />
+        <Route path='/sustainable-farming' element={<SustainableFarming/>} />
         
         
 
-        {/* Catch-all route for undefined paths */}
+        
+
         <Route path="*" element={<ErrorPage />} />
 
       </Routes>

@@ -78,7 +78,7 @@ const About = () => {
                 Discover sustainable farming methods that enhance productivity while protecting natural resources. Learn how to adopt eco-friendly practices and contribute to a healthier planet.
               </p>
               <a
-                href="/sustainability"
+                href="/sustainable-farming"
                 
                 rel="noopener noreferrer"
                 className="text-green-500 hover:text-green-700 underline"
