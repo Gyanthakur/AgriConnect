@@ -12,6 +12,7 @@ import ErrorPage from './pages/ErrorPage'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import SustainableFarming from './components/SustainableFarming'
+import LiveAgriNews from './components/LiveAgriNews'
 const App = () => {
   return (
     <div className='min-h-screen bg-green-100'>
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/information-resources' element={<InformationResources/>} />
         <Route path='/community-support' element={<CommunitySupport/>} />
         <Route path='/sustainable-farming' element={<SustainableFarming/>} />
+        <Route path='/news' element={<LiveAgriNews/>} />
         
         
 
