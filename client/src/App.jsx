@@ -13,6 +13,7 @@ import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import SustainableFarming from './components/SustainableFarming'
 import LiveAgriNews from './components/LiveAgriNews'
+import MarketPrice from './components/MarketPrice'
 const App = () => {
   return (
     <div className='min-h-screen bg-green-100'>
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/community-support' element={<CommunitySupport/>} />
         <Route path='/sustainable-farming' element={<SustainableFarming/>} />
         <Route path='/news' element={<LiveAgriNews/>} />
+        <Route path='/market-price' element={<MarketPrice/>} />
         
         
 

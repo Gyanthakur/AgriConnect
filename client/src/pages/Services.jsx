@@ -29,7 +29,7 @@ const Services = () => {
             Stay informed on the latest market prices for your crops, livestock, and other agricultural products.
           </p>
           <a 
-            href="/market-prices"
+            href="/market-price"
             className="inline-block mt-4 text-green-600 hover:underline"
           >
             Check prices
@@ -71,7 +71,7 @@ const Services = () => {
             Stay updated on the latest technological advancements, industry trends, and innovations in agriculture.
           </p>
           <a 
-            href="/agritech-news"
+            href="/news"
             className="inline-block mt-4 text-green-600 hover:underline"
           >
             Read more
