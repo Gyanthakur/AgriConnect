@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { assets } from '../assets/assets';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,8 +11,11 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
 
+        <div className='flex justify-center items-center'>
 
-        <Link to={'/'} className="text-2xl font-bold">Agriconnect</Link>
+        <img className='w-10 h-10 text-red-500' src={assets.logo} alt="" />
+        <Link to={'/'}  className="text-2xl font-bold">Agriconnect</Link>
+        </div>
 
 
         {/* Links */}
