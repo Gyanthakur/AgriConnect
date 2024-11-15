@@ -1,12 +1,12 @@
 import React from 'react';
 
-const About = () => {
+const About = ({isDarkMode}) => {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className={`min-h-screen  ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-800'}`}>
       <div className="container mx-auto py-16 px-6">
         {/* Main Heading */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-400">
+          <h1 className="text-4xl font-extrabold leading-normal text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-400">
             About Agriconnect
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg">
@@ -44,8 +44,8 @@ const About = () => {
             Agriconnect is designed to help you maximize productivity, enhance sustainability, and stay connected with the agriculture community. Here are some of the top benefits of using Agriconnect:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-            <div className="p-6 bg-green-50 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2">Easy Access to Information</h3>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Easy Access to Information</h3>
               <p>
                 Stay updated with the latest market prices, tips on crop health, and daily weather updates, all available in one place.
               </p>
@@ -53,13 +53,13 @@ const About = () => {
                 href="/information-resources"
                 
                 rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-700 underline"
+                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
               >
                 Explore Information Resources
               </a>
             </div>
-            <div className="p-6 bg-green-50 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2">Community Support</h3>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Community Support</h3>
               <p>
                 Join a community of farmers, agronomists, and agriculture enthusiasts where you can share knowledge, get advice, and find inspiration.
               </p>
@@ -67,13 +67,13 @@ const About = () => {
                 href="/community-support"
                 
                 rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-700 underline"
+                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
               >
                 Join the Community
               </a>
             </div>
-            <div className="p-6 bg-green-50 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2">Sustainable Farming</h3>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Sustainable Farming</h3>
               <p>
                 Discover sustainable farming methods that enhance productivity while protecting natural resources. Learn how to adopt eco-friendly practices and contribute to a healthier planet.
               </p>
@@ -81,20 +81,20 @@ const About = () => {
                 href="/sustainable-farming"
                 
                 rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-700 underline"
+                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
               >
                 Learn About Sustainability
               </a>
             </div>
-            <div className="p-6 bg-green-50 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2">Latest News & Trends</h3>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Latest News & Trends</h3>
               <p>
                 Stay informed on the latest agricultural trends, technologies, and policies affecting the industry. Gain insights to stay ahead in your field.
               </p>
               <a
                 href="/news"
                 rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-700 underline"
+                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
               >
                 Read Latest News
               </a>

@@ -1,4 +1,5 @@
 import React from 'react'
+import  { useState, useEffect } from 'react';
 import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -15,12 +16,24 @@ import SustainableFarming from './components/SustainableFarming'
 import LiveAgriNews from './components/LiveAgriNews'
 import MarketPrice from './components/MarketPrice'
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Toggle dark mode
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+  };
+
+  // Ensure theme is in light mode on first load
+  useEffect(() => {
+    document.documentElement.classList.remove('dark');
+  }, []);
   return (
-    <div className='min-h-screen bg-green-100'>
-      <Navbar/>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
+      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}/>
       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/about-us' element={<About/>} />
+        <Route path='/' element={<Home isDarkMode={isDarkMode}/>} />
+        <Route path='/about-us' element={<About isDarkMode = {isDarkMode}/>} />
         <Route path='/services' element={<Services/>} />
         <Route path='/contact-us' element={<Contact/>} />
         <Route path='/login' element={<Login/>} />
@@ -28,7 +41,7 @@ const App = () => {
         <Route path='/information-resources' element={<InformationResources/>} />
         <Route path='/community-support' element={<CommunitySupport/>} />
         <Route path='/sustainable-farming' element={<SustainableFarming/>} />
-        <Route path='/news' element={<LiveAgriNews/>} />
+        <Route path='/news' element={<LiveAgriNews isDarkMode = {isDarkMode} />} />
         <Route path='/market-price' element={<MarketPrice/>} />
         
         
@@ -38,7 +51,7 @@ const App = () => {
         <Route path="*" element={<ErrorPage />} />
 
       </Routes>
-      <Footer/>
+      <Footer isDarkMode = {isDarkMode} />
     </div>
   )
 }

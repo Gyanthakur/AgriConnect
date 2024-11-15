@@ -3,9 +3,10 @@
 import React from 'react';
 import { FacebookLogo, TwitterLogo, InstagramLogo, LinkedinLogo } from 'phosphor-react'; // Importing Phosphor icons
 
-const Footer = () => {
+const Footer = ({isDarkMode}) => {
   return (
-    <footer className="bg-green-600 text-white py-8 mt-12">
+    <footer className={`bg-green-600 text-white py-8 mt-12 ${isDarkMode ? 'bg-gray-800 text-white ' : 'bg-gray-50 text-gray-800'}`}>
+      
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -51,7 +52,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-green-700 text-center py-4 mt-8">
+      <div className={` text-center py-4 mt-8 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-green-700' }`}>
         <p className="text-sm">&copy; {new Date().getFullYear()} Agri Connect. All rights reserved.</p>
       </div>
     </footer>
