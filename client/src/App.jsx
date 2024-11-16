@@ -34,15 +34,15 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home isDarkMode={isDarkMode}/>} />
         <Route path='/about-us' element={<About isDarkMode = {isDarkMode}/>} />
-        <Route path='/services' element={<Services/>} />
-        <Route path='/contact-us' element={<Contact/>} />
+        <Route path='/services' element={<Services isDarkMode={isDarkMode} />} />
+        <Route path='/contact-us' element={<Contact isDarkMode={isDarkMode}/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/sign-up' element={<Signup/>} />
-        <Route path='/information-resources' element={<InformationResources/>} />
-        <Route path='/community-support' element={<CommunitySupport/>} />
-        <Route path='/sustainable-farming' element={<SustainableFarming/>} />
+        <Route path='/information-resources' element={<InformationResources isDarkMode={isDarkMode}/>} />
+        <Route path='/community-support' element={<CommunitySupport isDarkMode={isDarkMode}/>} />
+        <Route path='/sustainable-farming' element={<SustainableFarming isDarkMode={isDarkMode}/>} />
         <Route path='/news' element={<LiveAgriNews isDarkMode = {isDarkMode} />} />
-        <Route path='/market-price' element={<MarketPrice/>} />
+        <Route path='/market-price' element={<MarketPrice isDarkMode={isDarkMode}/>} />
         
         
 
