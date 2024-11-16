@@ -43,12 +43,12 @@ const Services = ({isDarkMode}) => {
           <p className={`${isDarkMode ? 'text-white': 'text-gray-700'}`}>
             Access real-time weather forecasts and updates tailored to your region, helping you plan farming activities.
           </p>
-          <a 
-            href="/weather"
+          <Link 
+            to="/weather"
             className="inline-block mt-4 text-green-600 hover:underline"
           >
             View weather updates
-          </a>
+          </Link>
         </div>
 
         {/* Farm Equipment Rentals */}
@@ -57,12 +57,12 @@ const Services = ({isDarkMode}) => {
           <p className={`${isDarkMode ? 'text-white': 'text-gray-700'}`}>
             Easily rent the latest farming equipment without the cost of ownership, available near your area.
           </p>
-          <a 
-            href="/equipment-rentals"
+          <Link 
+            to="/equipment-rentals"
             className="inline-block mt-4 text-green-600 hover:underline"
           >
             Browse equipment
-          </a>
+          </Link>
         </div>
 
         {/* Agritech News */}
@@ -85,12 +85,12 @@ const Services = ({isDarkMode}) => {
           <p className={`${isDarkMode ? 'text-white': 'text-gray-700'}`}>
             Access resources for loans, subsidies, and insurance options to support and secure your farming operations.
           </p>
-          <a 
-            href="/financial-guidance"
+          <Link 
+            to="/financial-guidance"
             className="inline-block mt-4 text-green-600 hover:underline"
           >
             Get financial advice
-          </a>
+          </Link>
         </div>
       </div>
     </div>
