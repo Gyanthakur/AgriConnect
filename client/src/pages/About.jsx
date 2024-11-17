@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = ({isDarkMode}) => {
   return (
-    <div className={`min-h-screen  ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-800'}`}>
+    <div className={`min-h-screen  ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}>
+      <hr />
       <div className="container mx-auto py-16 px-6">
         {/* Main Heading */}
         <header className="text-center mb-12">
@@ -44,60 +46,60 @@ const About = ({isDarkMode}) => {
             Agriconnect is designed to help you maximize productivity, enhance sustainability, and stay connected with the agriculture community. Here are some of the top benefits of using Agriconnect:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} `}>
               <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Easy Access to Information</h3>
               <p>
                 Stay updated with the latest market prices, tips on crop health, and daily weather updates, all available in one place.
               </p>
-              <a
-                href="/information-resources"
+              <Link
+                to="/information-resources"
                 
                 rel="noopener noreferrer"
-                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
+                className={`  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'text-green-500 hover:text-green-700'}`}
               >
                 Explore Information Resources
-              </a>
+              </Link>
             </div>
-            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} `}>
               <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Community Support</h3>
               <p>
                 Join a community of farmers, agronomists, and agriculture enthusiasts where you can share knowledge, get advice, and find inspiration.
               </p>
-              <a
-                href="/community-support"
+              <Link
+                to="/community-support"
                 
                 rel="noopener noreferrer"
-                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
+                className={`  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'text-green-500 hover:text-green-700'}`}
               >
                 Join the Community
-              </a>
+              </Link>
             </div>
-            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} `}>
               <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Sustainable Farming</h3>
               <p>
                 Discover sustainable farming methods that enhance productivity while protecting natural resources. Learn how to adopt eco-friendly practices and contribute to a healthier planet.
               </p>
-              <a
-                href="/sustainable-farming"
+              <Link
+                to="/sustainable-farming"
                 
                 rel="noopener noreferrer"
-                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
+                className={`  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'text-green-500 hover:text-green-700'}`}
               >
                 Learn About Sustainability
-              </a>
+              </Link>
             </div>
-            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-600' : 'bg-green-50'} `}>
+            <div className={`p-6  rounded-lg shadow-md ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} `}>
               <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-black' : ''}`}>Latest News & Trends</h3>
               <p>
                 Stay informed on the latest agricultural trends, technologies, and policies affecting the industry. Gain insights to stay ahead in your field.
               </p>
-              <a
-                href="/news"
+              <Link
+                to="/news"
                 rel="noopener noreferrer"
-                className={`text-green-500  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'hover:text-green-700'}`}
+                className={`  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'text-green-500 hover:text-green-700'}`}
               >
                 Read Latest News
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -108,14 +110,14 @@ const About = ({isDarkMode}) => {
           <p className="text-lg max-w-2xl mx-auto mb-6">
             Have questions or want to learn more about Agriconnect? We're here to help. Reach out to us through our contact page, and let us know how we can assist you.
           </p>
-          <a
-            href="/contact-us"
+          <Link
+            to="/contact-us"
             
             rel="noopener noreferrer"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg"
+            className={`  underline ${isDarkMode? 'hover:text-green-500 text-green-300' : 'text-green-500 hover:text-green-700'}`}
           >
             Contact Us
-          </a>
+          </Link>
         </section>
       </div>
     </div>

@@ -64,9 +64,9 @@ const MarketPrice = ({isDarkMode}) => {
   }, []);
 
   return (
-    <div className={`p-8 bg-gray-100 ${isDarkMode ? 'bg-gray-700' :'bg-gray-100'} min-h-screen`}>
+    <div className={`p-8 bg-gray-100 ${isDarkMode ? 'bg-gray-900' :'bg-gray-100'} min-h-screen`}>
       <h1 className={`text-4xl font-bold ${isDarkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-400' : 'text-green-700'} text-center mb-6`}>Live Market Prices</h1>
-      <p className="text-center text-gray-700 mb-6">Stay updated with the latest agricultural market prices in your region.</p>
+      <p className={`text-center ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}  mb-6`}>Stay updated with the latest agricultural market prices in your region.</p>
 
       {/* Flex container for search input and state dropdown */}
       <div className="flex justify-between mb-6">
@@ -108,7 +108,7 @@ const MarketPrice = ({isDarkMode}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPrices.length > 0 ? (
             filteredPrices.map((price, index) => (
-              <div key={index} className={`border rounded-lg overflow-hidden shadow-lg ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`}>
+              <div key={index} className={`border rounded-lg overflow-hidden shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
                 <div className="p-4">
                   <h2 className={`text-xl font-bold ${isDarkMode ? 'text-green-500' : 'text-green-700'}`}>{price.name}</h2>
                   <p className={`${isDarkMode ? 'text-gray-100' : 'text-gray-700'} mt-2`}>Price: {price.price}</p>

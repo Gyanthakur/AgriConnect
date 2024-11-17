@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const InformationResources = ({isDarkMode}) => {
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-700 text-gray-50' : 'bg-gray-50 text-gray-800'} `}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-gray-50' : 'bg-gray-50 text-gray-800'} `}>
+      <hr />
       <div className="container mx-auto py-16 px-6">
         
         {/* Main Heading */}
@@ -37,15 +38,15 @@ const InformationResources = ({isDarkMode}) => {
             Connect with experienced farmers across various regions. Learn about their farming methods, success stories, and shared insights.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Farmer A</h3>
               <p>Specializes in organic farming methods and sustainable agriculture practices.</p>
             </div>
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Farmer B</h3>
               <p>Expert in crop rotation and water management for drought-prone areas.</p>
             </div>
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Farmer C</h3>
               <p>Pioneer in integrating technology for precision farming and yield optimization.</p>
             </div>
@@ -72,15 +73,15 @@ const InformationResources = ({isDarkMode}) => {
             Find local and national merchants who supply agricultural products, machinery, and resources.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Merchant X</h3>
               <p>Specializes in farm machinery and irrigation systems.</p>
             </div>
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Merchant Y</h3>
               <p>Offers a wide range of seeds and organic fertilizers.</p>
             </div>
-            <div className={`p-6  ${isDarkMode ? 'bg-gray-500' : 'bg-green-50'} rounded-lg shadow-md`}>
+            <div className={`p-6  ${isDarkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg shadow-md`}>
               <h3 className="text-xl font-bold">Merchant Z</h3>
               <p>Provides greenhouses, tools, and accessories for modern farming.</p>
             </div>

@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Services = ({isDarkMode}) => {
   return (
-    <div className={`min-h-screen  p-6 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-      <h1 className="text-4xl font-bold text-green-600 text-center mb-10">Our Services</h1>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+      <hr />
+      <h1 className="text-4xl mt-5 font-bold text-green-600 text-center mb-10">Our Services</h1>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Crop Advisory Service */}

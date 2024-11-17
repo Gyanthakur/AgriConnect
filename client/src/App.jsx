@@ -29,7 +29,7 @@ const App = () => {
     document.documentElement.classList.remove('dark');
   }, []);
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}/>
       <Routes>
         <Route path='/' element={<Home isDarkMode={isDarkMode}/>} />
