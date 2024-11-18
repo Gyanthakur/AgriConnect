@@ -44,7 +44,7 @@ const Contact = ({isDarkMode}) => {
             id="message"
             rows="5"
             placeholder="Your Message"
-            className={`w-full p-3 border ${isDarkMode ? 'border-gray-900 bg-gray-500 text-black' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-400`}
+            className={`w-full p-3 border ${isDarkMode ? 'border-gray-900 bg-gray-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-400`}
           ></textarea>
         </div>
 
