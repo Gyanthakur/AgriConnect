@@ -26,7 +26,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             <UserButton className="hover:underline"/>
           </SignedIn>
           <SignedOut>
-            <SignInButton/>
+            <div className="flex space-x-4">
+              <Link to="/former-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Former Login
+              </Link>
+              <Link to="/merchant-login" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                Merchant Login
+              </Link>
+            </div>
           </SignedOut>
 
           {/* Theme Toggle Button */}
@@ -54,10 +61,17 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           <SignedIn>
             <Link to="/services" className="hover:underline">Services</Link>
             <Link to="/contact-us" className="hover:underline">Contact</Link>
-            <UserButton/>
+            <UserButton />
           </SignedIn>
           <SignedOut>
-            <SignInButton/>
+            <div className="flex flex-col space-y-2">
+              <Link to="/former-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Former Login
+              </Link>
+              <Link to="/merchant-login" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                Merchant Login
+              </Link>
+            </div>
           </SignedOut>
 
           {/* Theme Toggle Button */}
