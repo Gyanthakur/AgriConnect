@@ -2,14 +2,14 @@
 
 import React from "react";
 
-const SustainableFarming = () => {
+const SustainableFarming = ({isDarkMode}) => {
 	return (
-		<div className="min-h-screen bg-gray-100 p-6">
-			<h1 className="text-4xl font-bold text-green-700 text-center mb-8">
+		<div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-gray-50' : 'bg-gray-100'}  p-6`}>
+			<h1 className={`text-4xl font-bold ${isDarkMode ? 'text-green-500' : 'text-green-700'} text-center mb-8`}>
 				Sustainable Farming
 			</h1>
 
-			<section className="max-w-5xl mx-auto text-gray-800">
+			<section className={`max-w-5xl mx-auto ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
 				<p className="mb-6">
 					Sustainable farming is an approach to agriculture that focuses on
 					producing food, fiber, and other plant and animal products in ways
@@ -22,7 +22,7 @@ const SustainableFarming = () => {
 					needs.
 				</p>
 
-				<h2 className="text-2xl font-semibold text-green-600 mb-4">
+				<h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mb-4`}>
 					Key Features of Sustainable Farming
 				</h2>
 
@@ -66,13 +66,13 @@ const SustainableFarming = () => {
 					</li>
 				</ul>
 
-				<h2 className="text-2xl font-semibold text-green-600 mt-8 mb-4">
+				<h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mb-4 mt-8`}>
 					Sustainable Farming Methods
 				</h2>
 
 				<div className="space-y-6">
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							1. Crop Rotation and Diversification
 						</h3>
 						<p>
@@ -82,8 +82,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							2. Cover Cropping
 						</h3>
 						<p>
@@ -93,8 +93,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							3. Integrated Pest Management (IPM)
 						</h3>
 						<p>
@@ -104,8 +104,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							4. Drip Irrigation
 						</h3>
 						<p>
@@ -115,8 +115,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							5. Conservation Tillage
 						</h3>
 						<p>
@@ -126,8 +126,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							6. Organic Fertilizers
 						</h3>
 						<p>
@@ -137,8 +137,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							7. Agroforestry
 						</h3>
 						<p>
@@ -148,8 +148,8 @@ const SustainableFarming = () => {
 						</p>
 					</div>
 
-					<div className="p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500 mt-6">
-						<h3 className="text-xl font-bold text-green-700 mb-2">
+					<div className={`p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg shadow-md border-l-4 border-green-500`}>
+						<h3 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'} mb-2`}>
 							8. Protection Methods
 						</h3>
 						<p>
@@ -186,11 +186,11 @@ const SustainableFarming = () => {
 					</div>
 				</div>
 
-				<div className="p-6 bg-gray-50 rounded-lg shadow-lg mt-8">
-					<h3 className="text-3xl font-bold text-green-600 mb-4">
+				<div className={`p-6 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg shadow-lg mt-8`}>
+					<h3 className={`text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mb-4`}>
 						Crops with Benefits
 					</h3>
-					<p className="text-gray-700 mb-6">
+					<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-700'} mb-6`}>
 						Explore these crops to learn more about their benefits in
 						sustainable farming. These crops provide environmental, nutritional,
 						and economic advantages, making them excellent choices for modern
@@ -206,8 +206,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Wheat</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Wheat</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Wheat is a staple food crop providing high nutritional value,
 									essential for food security and a source of income for many
 									farmers.
@@ -222,8 +222,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Rice</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Rice</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Rice feeds billions worldwide. It's an essential crop that
 									also supports wetland ecosystems and soil health in
 									sustainable rotations.
@@ -238,8 +238,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Corn</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Corn</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Corn is a versatile crop used for food, animal feed, and
 									biofuel. It’s beneficial for soil when used in crop rotation.
 								</p>
@@ -253,8 +253,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Soybeans</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Soybeans</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Soybeans improve soil nitrogen levels, making them ideal for
 									crop rotation and essential in livestock feed.
 								</p>
@@ -268,8 +268,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Tomatoes</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Tomatoes</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Tomatoes are a high-value crop providing vitamins and
 									antioxidants. They thrive with sustainable pest management
 									practices.
@@ -284,8 +284,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Sunflowers</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Sunflowers</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Sunflowers are great for attracting pollinators and are also
 									used for oil production, which benefits the soil in rotation
 									systems.
@@ -300,10 +300,10 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>
 									Solar Farming
 								</h4>
-								<p className="text-gray-600 mt-1">
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Solar farming supports sustainability by producing renewable
 									energy. Combined with crop production, it enhances farm
 									sustainability.
@@ -318,8 +318,8 @@ const SustainableFarming = () => {
 								className="w-full h-48 object-cover"
 							/>
 							<div className="p-4">
-								<h4 className="text-xl font-bold text-green-700">Herbs</h4>
-								<p className="text-gray-600 mt-1">
+								<h4 className={`text-xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-700'}`}>Herbs</h4>
+								<p className={`${isDarkMode ? 'text-gray-50' : 'text-gray-600'} mt-1`}>
 									Herbs like basil and rosemary provide flavor and medicinal
 									benefits while being low-maintenance and pest-resistant.
 								</p>
@@ -328,7 +328,7 @@ const SustainableFarming = () => {
 					</div>
 				</div>
 
-				<h2 className="text-2xl font-semibold text-green-600 mt-8 mb-4">
+				<h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mt-8 mb-4`}>
 					Why Sustainable Farming Matters
 				</h2>
 
