@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SignIn } from "@clerk/clerk-react";
 import { UserCircle } from "phosphor-react"; // Import Phosphor icon
 
-const FormerLogin = ({ isDarkMode }) => {
+const FarmerLogin = ({ isDarkMode }) => {
 	return (
 		<div
 			className={`min-h-screen flex items-center justify-center ${
@@ -20,7 +20,7 @@ const FormerLogin = ({ isDarkMode }) => {
 						size={32}
 						className={`${isDarkMode ? "text-green-300" : "text-green-600"}`}
 					/>
-					Former Login
+					Farmer Login
 				</h2>
 
 				{/* Description */}
@@ -30,10 +30,10 @@ const FormerLogin = ({ isDarkMode }) => {
 
 				{/* SignIn Component */}
 				<SignIn
-					path="/former-login"
+					path="/farmer-login"
 					routing="path"
-					signUpUrl="/former-signup"
-					forceRedirectUrl={"/former-dashboard"}
+					signUpUrl="/farmer-signup"
+					forceRedirectUrl={"/farmer-dashboard"}
 					appearance={{
 						elements: {
 							card: `shadow-lg ${
@@ -57,4 +57,4 @@ const FormerLogin = ({ isDarkMode }) => {
 	);
 };
 
-export default FormerLogin;
+export default FarmerLogin;

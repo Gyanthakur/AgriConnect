@@ -17,7 +17,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
         </div>
 
         {/* Links */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex justify-center items-center space-x-6">
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/about-us" className="hover:underline">About</Link>
           <SignedIn>
@@ -27,8 +27,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </SignedIn>
           <SignedOut>
             <div className="flex space-x-4">
-              <Link to="/former-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                Former Login
+              <Link to="/farmer-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Farmer Login
               </Link>
               <Link to="/merchant-login" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
                 Merchant Login
@@ -65,8 +65,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </SignedIn>
           <SignedOut>
             <div className="flex flex-col space-y-2">
-              <Link to="/former-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                Former Login
+              <Link to="/farmer-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Farmer Login
               </Link>
               <Link to="/merchant-login" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
                 Merchant Login
@@ -75,7 +75,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </SignedOut>
 
           {/* Theme Toggle Button */}
-          <button onClick={toggleTheme} className="ml-4">
+          <button onClick={toggleTheme} className="">
             {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
           </button>
         </div>

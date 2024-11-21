@@ -1,14 +1,9 @@
 
-
-
-
-
 import logo from './agriConnect.png'
-
 
 export const assets = {
   logo,
-  
+ 
 }
 export const marketPrices = [
 	// Rice Prices by States
@@ -1822,3 +1817,96 @@ export const marketPrices = [
 		timestamp: "2024-11-15T08:30:00Z",
 	},
 ];
+
+
+export const cropSchema = [{
+	cropName: {
+	  type: String,
+	  required: true,
+	  enum: ['Wheat', 'Gram', 'Mung', 'Chickpeas', 'Sugarcane'], // English crop names
+	},
+	hindiCropName: {
+	  type: String,
+	  required: true,
+	  enum: ['गेहूं', 'घन', 'मूंग', 'चना', 'गन्ना'], // Hindi crop names
+	},
+	quantity: {
+	  type: Number,
+	  required: true,
+	},
+	pricePerUnit: {
+	  type: Number,
+	  required: true,
+	},
+	farmer: {
+	//   type: mongoose.Schema.Types.ObjectId,
+	  ref: 'Farmer', // Reference to a farmer schema
+	  required: true,
+	},
+	dateAdded: {
+	  type: Date,
+	  default: Date.now,
+	},
+	status: {
+	  type: String,
+	  enum: ['Available', 'Sold', 'Pending'],
+	  default: 'Sold',
+	},
+	description: {
+	  type: String,
+	  required: false,
+	  default: 'No description available',
+	},
+}
+];
+
+export const sampleCrops = [
+	{
+	  cropName: 'Wheat',
+	  hindiCropName: 'गेहूं',
+	  quantity: 100,
+	  pricePerUnit: 200,
+	  status: 'Sold',
+	  farmer: 'farmerId', // Assume `'farmerId'` is an existing farmer's ID
+	  description: 'High-quality wheat for sale.',
+	},
+	{
+	  cropName: 'Gram',
+	  hindiCropName: 'घन',
+	  quantity: 50,
+	  pricePerUnit: 150,
+	  status: 'Available',
+	  farmer: 'farmerId',
+	  description: 'Fresh gram for sale.',
+	},
+	{
+	  cropName: 'Mung',
+	  hindiCropName: 'मूंग',
+	  quantity: 75,
+	  status: 'Pending',
+	  pricePerUnit: 180,
+	  farmer: 'farmerId',
+	  description: 'Organic mung beans.',
+	},
+	{
+	  cropName: 'Chickpeas',
+	  hindiCropName: 'चना',
+	  quantity: 120,
+	  status: 'Available',
+	  pricePerUnit: 160,
+	  farmer: 'farmerId',
+	  description: 'High-protein chickpeas.',
+	},
+	{
+	  cropName: 'Sugarcane',
+	  hindiCropName: 'गन्ना',
+	  quantity: 200,
+	  pricePerUnit: 300,
+	  status: 'Available',
+	  farmer: 'farmerId',
+	  description: 'Fresh sugarcane for sale.',
+	},
+  ];
+  
+ 
+  

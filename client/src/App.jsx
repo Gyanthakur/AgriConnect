@@ -15,10 +15,12 @@ import Footer from './components/Footer'
 import SustainableFarming from './components/SustainableFarming'
 import LiveAgriNews from './components/LiveAgriNews'
 import MarketPrice from './components/MarketPrice'
-import FormerLogin from './pages/FormerLogin';
-import FormerDashboard from './components/FormerDashboard';
+import FormerLogin from './pages/FarmerLogin';
+import FormerDashboard from './components/FarmerDashboard';
 import MerchantLogin from './pages/MerchantLogin';
 import MerchantDashboard from './components/MerchantDashboard';
+import FarmerDashboard from './components/FarmerDashboard';
+import FarmerLogin from './pages/FarmerLogin';
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -47,8 +49,8 @@ const App = () => {
         <Route path='/sustainable-farming' element={<SustainableFarming isDarkMode={isDarkMode}/>} />
         <Route path='/news' element={<LiveAgriNews isDarkMode = {isDarkMode} />} />
         <Route path='/market-price' element={<MarketPrice isDarkMode={isDarkMode}/>} />
-        <Route path='/former-login' element={<FormerLogin isDarkMode={isDarkMode}/>} />
-        <Route path='/former-dashboard' element={<FormerDashboard isDarkMode={isDarkMode}/>} />
+        <Route path='/farmer-login' element={<FarmerLogin isDarkMode={isDarkMode}/>} />
+        <Route path='/farmer-dashboard' element={<FarmerDashboard isDarkMode={isDarkMode}/>} />
         <Route path='/merchant-login' element={<MerchantLogin isDarkMode={isDarkMode}/>} />
         <Route path='/merchant-dashboard' element={<MerchantDashboard isDarkMode={isDarkMode}/>} />
         
