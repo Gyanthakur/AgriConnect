@@ -21,6 +21,8 @@ import MerchantLogin from './pages/MerchantLogin';
 import MerchantDashboard from './components/MerchantDashboard';
 import FarmerDashboard from './components/FarmerDashboard';
 import FarmerLogin from './pages/FarmerLogin';
+import FarmerSignup from './pages/FarmerSignup';
+import OTPVerification from './components/OTPVerification';
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -50,6 +52,9 @@ const App = () => {
         <Route path='/news' element={<LiveAgriNews isDarkMode = {isDarkMode} />} />
         <Route path='/market-price' element={<MarketPrice isDarkMode={isDarkMode}/>} />
         <Route path='/farmer-login' element={<FarmerLogin isDarkMode={isDarkMode}/>} />
+        <Route path='/farmer-signup' element={<FarmerSignup isDarkMode={isDarkMode}/>} />
+        <Route path="/farmer-signup/otp-verification" element={<OTPVerification isDarkMode={false} />} />
+
         <Route path='/farmer-dashboard' element={<FarmerDashboard isDarkMode={isDarkMode}/>} />
         <Route path='/merchant-login' element={<MerchantLogin isDarkMode={isDarkMode}/>} />
         <Route path='/merchant-dashboard' element={<MerchantDashboard isDarkMode={isDarkMode}/>} />
