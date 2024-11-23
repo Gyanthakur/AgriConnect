@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { SignIn } from "@clerk/clerk-react";
-import { UserCircle } from "phosphor-react"; // Import Phosphor icon
+import React from "react";
+import { SignIn, SignUp } from "@clerk/clerk-react";
+import { UserCircle } from "phosphor-react";
 
 const FarmerLogin = ({ isDarkMode }) => {
 	return (
@@ -25,15 +25,14 @@ const FarmerLogin = ({ isDarkMode }) => {
 
 				{/* Description */}
 				<p className="text-center mb-6">
-					Please log in to access your account.
+					Please log in or sign up to access your dashboard.
 				</p>
 
 				{/* SignIn Component */}
 				<SignIn
 					path="/farmer-login"
 					routing="path"
-					signUpUrl="/farmer-signup"
-					forceRedirectUrl={"/farmer-dashboard"}
+					forceRedirectUrl="/farmer-dashboard" // Redirect to farmer dashboard after sign in
 					appearance={{
 						elements: {
 							card: `shadow-lg ${
@@ -52,6 +51,35 @@ const FarmerLogin = ({ isDarkMode }) => {
 						},
 					}}
 				/>
+
+				{/* SignUp Component */}
+				<div className="mt-6">
+					<h3 className="text-center text-lg font-medium mb-4">
+						New here? Sign up below.
+					</h3>
+					<SignUp
+						path="/farmer-signup"
+						routing="path"
+						forceRedirectUrl="/farmer-login" // Redirect to farmer dashboard after sign up
+						appearance={{
+							elements: {
+								card: `shadow-lg ${
+									isDarkMode ? "border-gray-600" : "border-gray-300"
+								}`,
+								formFieldInput: `rounded-md ${
+									isDarkMode
+										? "bg-gray-700 border-gray-500 focus:ring-green-300"
+										: "border-gray-300 focus:ring-2 focus:ring-green-500"
+								}`,
+								primaryButton: `font-bold py-2 px-4 rounded ${
+									isDarkMode
+										? "bg-green-500 hover:bg-green-400 text-white"
+										: "bg-green-600 hover:bg-green-700 text-white"
+								}`,
+							},
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);

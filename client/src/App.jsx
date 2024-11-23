@@ -15,14 +15,12 @@ import Footer from './components/Footer'
 import SustainableFarming from './components/SustainableFarming'
 import LiveAgriNews from './components/LiveAgriNews'
 import MarketPrice from './components/MarketPrice'
-import FormerLogin from './pages/FarmerLogin';
-import FormerDashboard from './components/FarmerDashboard';
+
 import MerchantLogin from './pages/MerchantLogin';
 import MerchantDashboard from './components/MerchantDashboard';
 import FarmerDashboard from './components/FarmerDashboard';
 import FarmerLogin from './pages/FarmerLogin';
-import FarmerSignup from './pages/FarmerSignup';
-import OTPVerification from './components/OTPVerification';
+
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -44,16 +42,14 @@ const App = () => {
         <Route path='/about-us' element={<About isDarkMode = {isDarkMode}/>} />
         <Route path='/services' element={<Services isDarkMode={isDarkMode} />} />
         <Route path='/contact-us' element={<Contact isDarkMode={isDarkMode}/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/sign-up' element={<Signup/>} />
+        {/* <Route path='/login' element={<Login/>} /> */}
+        {/* <Route path='/sign-up' element={<Signup/>} /> */}
         <Route path='/information-resources' element={<InformationResources isDarkMode={isDarkMode}/>} />
         <Route path='/community-support' element={<CommunitySupport isDarkMode={isDarkMode}/>} />
         <Route path='/sustainable-farming' element={<SustainableFarming isDarkMode={isDarkMode}/>} />
         <Route path='/news' element={<LiveAgriNews isDarkMode = {isDarkMode} />} />
         <Route path='/market-price' element={<MarketPrice isDarkMode={isDarkMode}/>} />
         <Route path='/farmer-login' element={<FarmerLogin isDarkMode={isDarkMode}/>} />
-        <Route path='/farmer-signup' element={<FarmerSignup isDarkMode={isDarkMode}/>} />
-        <Route path="/farmer-signup/otp-verification" element={<OTPVerification isDarkMode={false} />} />
 
         <Route path='/farmer-dashboard' element={<FarmerDashboard isDarkMode={isDarkMode}/>} />
         <Route path='/merchant-login' element={<MerchantLogin isDarkMode={isDarkMode}/>} />
