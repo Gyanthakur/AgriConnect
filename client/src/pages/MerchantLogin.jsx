@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SignIn } from "@clerk/clerk-react";
-import { ShoppingBag } from "phosphor-react"; // Import a merchant-related icon
+import { ShoppingBag, UserCircle } from "phosphor-react"; // Import a merchant-related icon
 
 const MerchantLogin = ({ isDarkMode }) => {
 	return (
@@ -16,9 +16,9 @@ const MerchantLogin = ({ isDarkMode }) => {
 			>
 				{/* Header with Icon */}
 				<h2 className="text-2xl font-bold text-center mb-4 flex items-center justify-center gap-2">
-					<ShoppingBag
+					<UserCircle
 						size={32}
-						className={`${isDarkMode ? "text-blue-300" : "text-blue-600"}`}
+						className={`${isDarkMode ? "text-yellow-400" : "text-blue-600"}`}
 					/>
 					Merchant Login
 				</h2>

@@ -27,10 +27,16 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </SignedIn>
           <SignedOut>
             <div className="flex space-x-4">
+              <Link to="/farmer-signup" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                Farmer Signup
+              </Link>
               <Link to="/farmer-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                 Farmer Login
               </Link>
-              <Link to="/merchant-login" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+              <Link to="/merchant-signup" className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                Merchant Signup
+              </Link>
+              <Link to="/merchant-login" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                 Merchant Login
               </Link>
             </div>
