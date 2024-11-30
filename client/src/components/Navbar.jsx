@@ -91,8 +91,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<Dropdown
 							label="Farmer"
 							links={[
-								{ to: "/farmer-signup", label: "Farmer Signup" },
-								{ to: "/farmer-login", label: "Farmer Login" },
+								{ to: "/farmer-signup", label: "Signup" },
+								{ to: "/farmer-login", label: "Login" },
 							]}
 							isOpen={farmerDropdown}
 							setIsOpen={setFarmerDropdown}
@@ -101,8 +101,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<Dropdown
 							label="Merchant"
 							links={[
-								{ to: "/merchant-signup", label: "Merchant Signup" },
-								{ to: "/merchant-login", label: "Merchant Login" },
+								{ to: "/merchant-signup", label: "Signup" },
+								{ to: "/merchant-login", label: "Login" },
 							]}
 							isOpen={merchantDropdown}
 							setIsOpen={setMerchantDropdown}
@@ -158,7 +158,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							to="/farmer-login"
 							className={`px-4 py-2 border rounded-full ${
 								isDarkMode
-									? "border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white"
+									? "border-green-500 text-green-500 hover:bg-yellow-500 hover:text-white"
 									: "border-white text-white hover:bg-blue-500 hover:text-white"
 							}`}
 						>
