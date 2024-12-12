@@ -175,6 +175,16 @@ const verifyRazorpay = async (req, res) => {
 	}
 };
 
+
+const allFarmers = async(req,res) => {
+	try {
+		const farmers = await farmerModel.find({}).select(['-password'])
+		res.json({success:true,farmers});
+	} catch (error) {
+		console.error(error);
+		res.json({ success: false, message: error.message });
+	}
+};
 export {
 	registerFarmer,
 	LoginFarmer,
@@ -182,4 +192,5 @@ export {
 	updateProfile,
 	paymentRazorpay,
 	verifyRazorpay,
+	allFarmers
 };

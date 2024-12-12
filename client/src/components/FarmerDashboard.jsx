@@ -115,12 +115,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { sampleCrops } from "../assets/assets"; // Import sampleCrops from assets
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
 
 const FarmerDashboard = ({ isDarkMode }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const {token,farmerData,loadFarmerProfileData} = useContext(AppContext)
+  const [merchants, setMerchants] = useState([]);
+
+  const {token,farmerData,loadFarmerProfileData,backendUrl} = useContext(AppContext)
 
   useEffect(() => {
     // Simulate token check and user retrieval
@@ -138,6 +141,23 @@ const FarmerDashboard = ({ isDarkMode }) => {
       setLoading(false); // No token, so stop loading
     }
   }, []);
+
+
+
+   // Fetch all Merchants
+   useEffect(() => {
+    const getAllMerchants = async () => {
+      try {
+        const { data } = await axios.get(backendUrl + '/api/merchant/all-merchant');
+        if (data.success) {
+          setMerchants(data.merchants);
+        }
+      } catch (error) {
+        console.error('Error fetching farmers:', error);
+      }
+    };
+    getAllMerchants();
+  }, [token]);
 
   // Show loading state while checking token or fetching user
   if (loading) {
@@ -176,6 +196,35 @@ const FarmerDashboard = ({ isDarkMode }) => {
             </p>
           </div>
         </section>
+
+
+
+
+          {/* All Merchats Section */}
+          <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} mb-5`}>
+
+        
+          <section className="mt-6">
+          <h3 className="text-2xl font-semibold mb-4 pt-6 pl-6">All Merchants</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {merchants.length > 0 ? (
+              merchants.map((merchant, index) => (
+                <div
+                  key={index}
+                  className={`p-4 m-5 rounded-lg shadow ${isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white'}`}
+                >
+                  <h4 className="text-xl font-semibold">{merchant.name}</h4>
+                  <p className="mt-2">Email: {merchant.email}</p>
+                  <p className="mt-2">Contact: {merchant.phone}</p>
+                </div>
+              ))
+            ) : (
+              <p>No merchants available.</p>
+            )}
+          </div>
+        </section>
+
+        </div>
 
         {/* Crop Management Section */}
         <section className={`${sectionClass} p-6 rounded-lg shadow-md mb-6`}>

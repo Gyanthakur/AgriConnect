@@ -55,6 +55,18 @@ const AppContextProvider = (props) => {
 		}
 	}
 
+
+	const getAllFarmers = async()=>{
+		try {
+			const {data} = await axios.get(backendUrl + '/api/farmer/all-farmer/', {headers:{token}})
+			
+			
+		} catch (error) {
+			console.log(error);
+			toast.error(error.message);
+		}
+	}
+
 	const value = {
 	
 		currencySymbol,

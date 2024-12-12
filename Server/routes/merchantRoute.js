@@ -2,7 +2,7 @@ import express from 'express'
 
 import upload from '../moddlewares/multer.js';
 
-import { getprofile, LoginMerchant, paymentRazorpay, registerMerchant, updateProfile, verifyRazorpay } from '../controllers/MerchantController.js';
+import { allMerchants, getprofile, LoginMerchant, paymentRazorpay, registerMerchant, updateProfile, verifyRazorpay } from '../controllers/MerchantController.js';
 import authMerchant from '../moddlewares/authMerchant.js';
 
 const merchantRouter = express.Router();
@@ -15,5 +15,6 @@ merchantRouter.post('/update-profile',upload.single('image'),authMerchant,update
 
 merchantRouter.post('/payment-razorpay',authMerchant,paymentRazorpay)
 merchantRouter.post('/verifyRazorpay',authMerchant,verifyRazorpay)
+merchantRouter.get('/all-merchant',allMerchants)
 
 export default merchantRouter;

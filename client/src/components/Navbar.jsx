@@ -205,23 +205,18 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 	const navigate = useNavigate();
 	const [showMenu, setShowMenu] = useState(false);
 
-
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const toggleDropdown = () => {
 		setIsDropdownOpen((prev) => !prev);
 	};
-
-
 
 	const { token, setToken, farmerData, mtoken, setMtoken, merchantData } =
 		useContext(AppContext);
 
 	const logout = () => {
 		setToken(false);
-    setMtoken(false);
+		setMtoken(false);
 		localStorage.removeItem("token");
 		localStorage.removeItem("mtoken");
 		navigate("/");
@@ -255,6 +250,47 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<li>Contact</li>
 					</NavLink>
 					{token ? (
+						// <>
+						// 	<NavLink to="/services" className="hover:underline">
+						// 		<li>Services</li>
+						// 	</NavLink>
+						// 	<NavLink to="/farmer-dashboard" className="hover:underline">
+						// 		<li>My Dashboard</li>
+						// 	</NavLink>
+						// 	<div className="relative group">
+						// 		<img
+						// 			className="w-8 h-8 rounded-full cursor-pointer"
+						// 			src={farmerData.image}
+						// 			alt="Profile"
+						// 		/>
+						// 		<div
+						// 			className={`absolute right-0 mt-2 w-48 rounded shadow-lg hidden group-hover:block ${
+						// 				isDarkMode
+						// 					? "bg-gray-700 text-white"
+						// 					: "bg-white text-black"
+						// 			}`}
+						// 		>
+						// 			<p
+						// 				onClick={() => navigate("/my-profile")}
+						// 				className={`block px-4 py-2 ${
+						// 					isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+						// 				} cursor-pointer`}
+						// 			>
+						// 				My Profile
+						// 			</p>
+
+						// 			<p
+						// 				onClick={logout}
+						// 				className={`block px-4 py-2 ${
+						// 					isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+						// 				} cursor-pointer`}
+						// 			>
+						// 				Logout
+						// 			</p>
+						// 		</div>
+						// 	</div>
+						// </>
+
 						<>
 							<NavLink to="/services" className="hover:underline">
 								<li>Services</li>
@@ -262,37 +298,45 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							<NavLink to="/farmer-dashboard" className="hover:underline">
 								<li>My Dashboard</li>
 							</NavLink>
-							<div className="relative group">
+							<div className="relative">
 								<img
 									className="w-8 h-8 rounded-full cursor-pointer"
 									src={farmerData.image}
 									alt="Profile"
+									onClick={toggleDropdown} // Toggle dropdown on click
 								/>
-								<div
-									className={`absolute right-0 mt-2 w-48 rounded shadow-lg hidden group-hover:block ${
-										isDarkMode
-											? "bg-gray-700 text-white"
-											: "bg-white text-black"
-									}`}
-								>
-									<p
-										onClick={() => navigate("/my-profile")}
-										className={`block px-4 py-2 ${
-											isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-										} cursor-pointer`}
+								{isDropdownOpen && ( // Render dropdown if state is true
+									<div
+										className={`absolute right-0 mt-2 w-48 rounded shadow-lg ${
+											isDarkMode
+												? "bg-gray-700 text-white"
+												: "bg-white text-black"
+										}`}
 									>
-										My Profile
-									</p>
-
-									<p
-										onClick={logout}
-										className={`block px-4 py-2 ${
-											isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-										} cursor-pointer`}
-									>
-										Logout
-									</p>
-								</div>
+										<p
+											onClick={() => {
+												navigate("/my-profile");
+												setIsDropdownOpen(false); // Close dropdown after navigation
+											}}
+											className={`block px-4 py-2 ${
+												isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+											} cursor-pointer`}
+										>
+											My Profile
+										</p>
+										<p
+											onClick={() => {
+												logout();
+												setIsDropdownOpen(false); // Close dropdown after logout
+											}}
+											className={`block px-4 py-2 ${
+												isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+											} cursor-pointer`}
+										>
+											Logout
+										</p>
+									</div>
+								)}
 							</div>
 						</>
 					) : mtoken ? (
@@ -337,52 +381,54 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						// 	</div>
 						// </>
 
-            <>
-			<NavLink to="/services" className="hover:underline">
-				<li>Services</li>
-			</NavLink>
-			<NavLink to="/merchant-dashboard" className="hover:underline">
-				<li>My Dashboard</li>
-			</NavLink>
-			<div className="relative">
-				<img
-					className="w-8 h-8 rounded-full cursor-pointer"
-					src={merchantData.image}
-					alt="Profile"
-					onClick={toggleDropdown} // Toggle dropdown on click
-				/>
-				{isDropdownOpen && ( // Render dropdown if state is true
-					<div
-						className={`absolute right-0 mt-2 w-48 rounded shadow-lg ${
-							isDarkMode ? "bg-gray-700 text-white" : "bg-white text-black"
-						}`}
-					>
-						<p
-							onClick={() => {
-								navigate("/my-m-profile");
-								setIsDropdownOpen(false); // Close dropdown after navigation
-							}}
-							className={`block px-4 py-2 ${
-								isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-							} cursor-pointer`}
-						>
-							My Profile
-						</p>
-						<p
-							onClick={() => {
-								logout();
-								setIsDropdownOpen(false); // Close dropdown after logout
-							}}
-							className={`block px-4 py-2 ${
-								isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-							} cursor-pointer`}
-						>
-							Logout
-						</p>
-					</div>
-				)}
-			</div>
-		</>
+						<>
+							<NavLink to="/services" className="hover:underline">
+								<li>Services</li>
+							</NavLink>
+							<NavLink to="/merchant-dashboard" className="hover:underline">
+								<li>My Dashboard</li>
+							</NavLink>
+							<div className="relative">
+								<img
+									className="w-8 h-8 rounded-full cursor-pointer"
+									src={merchantData.image}
+									alt="Profile"
+									onClick={toggleDropdown} // Toggle dropdown on click
+								/>
+								{isDropdownOpen && ( // Render dropdown if state is true
+									<div
+										className={`absolute right-0 mt-2 w-48 rounded shadow-lg ${
+											isDarkMode
+												? "bg-gray-700 text-white"
+												: "bg-white text-black"
+										}`}
+									>
+										<p
+											onClick={() => {
+												navigate("/my-m-profile");
+												setIsDropdownOpen(false); // Close dropdown after navigation
+											}}
+											className={`block px-4 py-2 ${
+												isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+											} cursor-pointer`}
+										>
+											My Profile
+										</p>
+										<p
+											onClick={() => {
+												logout();
+												setIsDropdownOpen(false); // Close dropdown after logout
+											}}
+											className={`block px-4 py-2 ${
+												isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
+											} cursor-pointer`}
+										>
+											Logout
+										</p>
+									</div>
+								)}
+							</div>
+						</>
 					) : (
 						<>
 							<NavLink
@@ -470,9 +516,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 								Logout
 							</button>
 						</>
-					)
-        : (
-          <>
+					) : (
+						<>
 							<NavLink
 								to="/login-farmer"
 								className="px-4 py-2 bg-yellow-600 rounded-full hover:bg-yellow-700"
@@ -486,7 +531,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 								Merchant Signup
 							</NavLink>
 						</>
-        )}
+					)}
 					<button onClick={toggleTheme} className="ml-4">
 						{isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
 					</button>

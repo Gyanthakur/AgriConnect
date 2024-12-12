@@ -86,42 +86,6 @@ const getprofile = async (req, res) => {
 
 // API for update merchant profile
 
-// const updateProfile = async (req, res) => {
-// 	try {
-// 		const { merchantId, name, phone, address, dob, gender } = req.body;
-// 		const imageFile = req.file;
-
-// 		if (!name || !phone || !dob || !gender) {
-// 			return res.json({ success: false, message: "Missing data" });
-// 		}
-
-// 		await merchantModel.findByIdAndUpdate(merchantId, {
-// 			name,
-// 			phone,
-// 			address: JSON.parse(address),
-// 			dob,
-// 			gender,
-// 		});
-
-// 		if (imageFile) {
-// 			// upload image to clouduinary
-// 			const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
-// 				resource_type: "image",
-// 			});
-
-// 			const imageURL = imageUpload.secure_url;
-
-// 			await merchantModel.findByIdAndUpdate(merchantId, { image: imageURL });
-// 		}
-
-// 		res.json({ success: true, message: "Profile Updated" });
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.json({ success: false, message: error.message });
-// 	}
-// };
-
-
 const updateProfile = async (req, res) => {
 	try {
 		const { merchantId, name, phone, address, dob, gender } = req.body;
@@ -258,6 +222,20 @@ const verifyRazorpay = async (req, res) => {
 	}
 };
 
+
+
+
+
+const allMerchants = async(req,res) => {
+	try {
+		const merchants = await merchantModel.find({}).select(['-password'])
+		res.json({success:true,merchants});
+	} catch (error) {
+		console.error(error);
+		res.json({ success: false, message: error.message });
+	}
+};
+
 export {
 	registerMerchant,
 	LoginMerchant,
@@ -265,4 +243,5 @@ export {
 	updateProfile,
 	paymentRazorpay,
 	verifyRazorpay,
+	allMerchants,
 };

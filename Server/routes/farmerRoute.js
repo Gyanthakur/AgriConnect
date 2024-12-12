@@ -1,5 +1,5 @@
 import express from 'express'
-import {getprofile, LoginFarmer, paymentRazorpay, registerFarmer, updateProfile, verifyRazorpay } from '../controllers/farmerController.js'
+import {allFarmers, getprofile, LoginFarmer, paymentRazorpay, registerFarmer, updateProfile, verifyRazorpay } from '../controllers/farmerController.js'
 
 import upload from '../moddlewares/multer.js';
 import authFarmer from '../moddlewares/farmerUser.js';
@@ -14,5 +14,7 @@ farmerRouter.post('/update-profile',upload.single('image'),authFarmer,updateProf
 
 farmerRouter.post('/payment-razorpay',authFarmer,paymentRazorpay)
 farmerRouter.post('/verifyRazorpay',authFarmer,verifyRazorpay)
+
+farmerRouter.get('/all-farmer',allFarmers)
 
 export default farmerRouter;
