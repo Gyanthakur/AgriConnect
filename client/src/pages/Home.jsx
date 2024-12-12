@@ -4,7 +4,7 @@ const Home = ({isDarkMode}) => {
   return (
     
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}>
-      <hr className='border-spacing-1' />
+ 
       {/* Main Heading */}
       <header className="text-center py-16">
         <h1 className="text-5xl font-extrabold leading-normal text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-400">
