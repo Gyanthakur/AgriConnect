@@ -85,6 +85,7 @@ const LoginMerchant = ({isDarkMode}) => {
 						required
 					/>
 				</div>
+				{/* password section */}
 				<div className="w-full">
 					<p>Password</p>
 					<input
