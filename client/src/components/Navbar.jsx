@@ -224,7 +224,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
 	return (
 		<nav
-			className={`p-4 text-white border-b ${
+			className={`p-4 py-3 text-white border-b ${
 				isDarkMode ? "bg-gray-800 " : "bg-green-600 "
 			}`}
 		>
@@ -433,15 +433,15 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<>
 							<NavLink
 								to="/login-farmer"
-								className="px-4 py-2 bg-yellow-600 rounded-full hover:bg-yellow-700"
+								className="px-4 py-1 bg-yellow-600 rounded-full hover:bg-yellow-700"
 							>
-								Farmer Signup
+								Farmer
 							</NavLink>
 							<NavLink
 								to="/login-merchant"
-								className="px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700"
+								className="px-4 py-1 bg-blue-600 rounded-full hover:bg-blue-700"
 							>
-								Merchant Signup
+								Merchant
 							</NavLink>
 						</>
 					)}
@@ -520,15 +520,15 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<>
 							<NavLink
 								to="/login-farmer"
-								className="px-4 py-2 bg-yellow-600 rounded-full hover:bg-yellow-700"
+								className="px-4 py-1 bg-yellow-600 rounded-full hover:bg-yellow-700"
 							>
-								Farmer Signup
+								Farmer 
 							</NavLink>
 							<NavLink
 								to="/login-merchant"
-								className="px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700"
+								className="px-4 py-1 bg-blue-600 rounded-full hover:bg-blue-700"
 							>
-								Merchant Signup
+								Merchant 
 							</NavLink>
 						</>
 					)}

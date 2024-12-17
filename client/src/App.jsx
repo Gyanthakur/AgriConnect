@@ -1,5 +1,8 @@
 import React from 'react'
 import  { useState, useEffect } from 'react';
+
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -41,6 +44,7 @@ const App = () => {
   }, []);
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+      <ToastContainer position='top-right'/>
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}/>
       <Routes>
         <Route path='/' element={<Home isDarkMode={isDarkMode}/>} />
