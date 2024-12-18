@@ -1,77 +1,97 @@
-# <span style="color:green;">🌱 Agriconnect</span>
+<div align="center">
+   
+![agriConnect](https://github.com/user-attachments/assets/a7535a3d-f540-4fcc-9c18-46e0b080b6ca)
+</div>
 
-<img src="https://via.placeholder.com/800x200.png?text=Agriconnect+Banner" alt="Agriconnect Banner" width="100%">
+# 🌱 Agriconnect
 
-Welcome to **Agriconnect**, a platform dedicated to empowering farmers and merchants with seamless communication and robust tools.
-
----
-
-## <span style="color:green;">Features 🌟</span>
-- 🌾 **Former Login**: Simplified access for farmers.
-- 🛒 **Merchant Login**: Tools for merchants to manage resources.
-- 🌍 **Dark/Light Mode**: Switch between themes effortlessly.
-- 📱 **Responsive Design**: Works beautifully on all devices.
+Agriconnect is a modern, full-stack web application designed to streamline agricultural services for farmers and merchants. It provides dedicated **Farmer Login** and **Merchant Login** pages with features tailored for their needs.
 
 ---
 
-## <span style="color:green;">Installation & Setup ⚙️</span>
+## 🌟 Features
+
+- **Two Authentication Methods**: Farmer and Merchant Sign In/Sign Up powered by Clerk.
+- **Responsive Design**: Optimized for all devices.
+- **Interactive UI**: Modern components built with React and Tailwind CSS.
+- **Dashboard Pages**: Separate dashboards for Farmers and Merchants.
+- **Server API Integration**: RESTful APIs for farmers and merchants.
+
+---
+
+## ⚙️ Installation & Setup
+
 
 1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/agriconnect.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd agriconnect
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
+   git clone https://github.com/Gyanthakur/AgriConnect.git
    ```
 
----
 
-## <span style="color:green;">Preview 📸</span>
-### Login Page
-<img src="https://via.placeholder.com/600x400.png?text=Login+Page" alt="Login Page" width="70%">
-
-### Dashboard
-<img src="https://via.placeholder.com/600x400.png?text=Dashboard" alt="Dashboard" width="70%">
-
----
-
-## <span style="color:green;">Contributing 🤝</span>
-We welcome contributions! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature:
-   ```bash
-   git checkout -b feature-name
+## 🗂️ Project Structure
    ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Added a new feature"
-   ```
-4. Push to your branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a Pull Request.
+client/
+│── src/
+│   ├── assets/                     # Images and other static assets
+│   ├── components/                 # Reusable components
+│   │   ├── FarmerDashboard.jsx     # Farmer Dashboard
+│   │   ├── MerchantDashboard.jsx   # Merchant Dashboard
+│   │   ├── Navbar.jsx              # Navigation Bar
+│   │   ├── Footer.jsx              # Footer Component
+│   ├── context/                    # Context API state management
+│   ├── pages/                      # Application Pages
+│   │   ├── FarmerLogin.jsx         # Farmer Login Page
+│   │   ├── MerchantLogin.jsx       # Merchant Login Page
+│   │   ├── Home.jsx                # Home Page
+│   │   ├── Services.jsx            # Services Page
+│   │   ├── About.jsx               # About Us Page
+│   │   ├── Contact.jsx             # Contact Page
+│   │   ├── Signup.jsx              # Signup Page
+│   ├── sign-up/                    # Reusable sign-up components
+│   ├── App.js                      # Main React Component
+│   ├── index.js                    # Entry Point
+│   ├── .env                        # Environment variables
+│   └── README.md                   # Project documentation
+```
 
----
+## Server Side (Backend)
 
-## <span style="color:green;">License 📄</span>
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+```
+Server/
+│── config/
+│   ├── mongoDb.js                  # MongoDB configuration
+│   ├── cloudinary.js               # Cloudinary config for image uploads
+│── controllers/
+│   ├── farmerController.js         # Farmer-specific controllers
+│   ├── merchantController.js       # Merchant-specific controllers
+│── middlewares/
+│   ├── authMerchant.js             # Middleware for merchant authentication
+│   ├── farmerUser.js               # Middleware for farmer user logic
+│   ├── multer.js                   # File upload configuration
+│── models/
+│   ├── farmerModel.js              # Farmer data model
+│   ├── merchantModel.js            # Merchant data model
+│── routes/
+│   ├── farmerRoute.js              # Farmer routes
+│   ├── merchantRoute.js            # Merchant routes
+│── server.js                       # Main server entry point
+│── .env                            # Environment variables
+│── package.json                    # Backend dependencies
+│── README.md                       # Documentation
+```
 
----
+## 📸 Preview
+![image](https://github.com/user-attachments/assets/0fe89c6e-0590-4b50-b325-996966de37c8)
 
-### <span style="color:green;">Connect with Us 🌐</span>
-Follow us on:
-- 🌟 [Instagram](https://instagram.com/agriconnect)
-- 🐦 [Twitter](https://twitter.com/agriconnect)
-- 📘 [Facebook](https://facebook.com/agriconnect)
+![image](https://github.com/user-attachments/assets/1c40d5db-5574-4373-b57c-f42b2b7baa3a)
+![image](https://github.com/user-attachments/assets/447b13ab-ddf3-46ba-a6ff-e6f683b13b5a)
 
-> Made with ❤️ by Agriconnect Team
+
+## ✨ Made with ❤️ by Gyan Pratap Singh ✨
+
+## 🌐 Connect with Us
+
+Contact Us:  📲 [Click here to chat on WhatsApp](https://wa.me/918957818597?text=Hey%20%F0%9F%91%8B%2C%20how%20can%20I%20help%20you%3F)
+
+GitHub Repository: [Agriconnect](https://github.com/Gyanthakur/AgriConnect.git)
+
