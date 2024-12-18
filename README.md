@@ -91,7 +91,9 @@ Server/
 
 ## 🌐 Connect with Us
 
-Contact Us:  📲 [Click here to chat on WhatsApp](https://wa.me/918957818597?text=Hey%20%F0%9F%91%8B%2C%20how%20can%20I%20help%20you%3F)
+Contact Us:  📲<a href="https://wa.me/918957818597?text=Hey%20%F0%9F%91%8B%2C%20how%20can%20I%20help%20you%3F">
+    <img src="https://img.shields.io/badge/WhatsApp-Click%20Me-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp" />
+  </a>
 
 GitHub Repository: [Agriconnect](https://github.com/Gyanthakur/AgriConnect.git)
 
