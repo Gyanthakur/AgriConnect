@@ -58,8 +58,8 @@ const LoginMerchant = ({isDarkMode}) => {
 					{state === "Sign Up" ? "Create Account" : "Login"}
 				</p>
 				<p>
-					Please {state === "Sign Up" ? "Sign Up" : "Log In"} to Buy
-					Crop
+					Please {state === "Sign Up" ? "Sign Up" : "Log In"} to <span className="text-green-500 underline font-medium">Buy
+					Crop </span>
 				</p>
 				{state === "Sign Up" && (
 					<div className="w-full">
