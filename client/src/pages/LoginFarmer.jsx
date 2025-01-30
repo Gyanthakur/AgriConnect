@@ -58,7 +58,7 @@ const LoginFarmer = ({isDarkMode}) => {
 					{state === "Sign Up" ? "Create Account" : "Login"}
 				</p>
 				<p>
-					Please {state === "Sign Up" ? "Sign Up" : "Log In"} to Sell Your Crop
+					Please {state === "Sign Up" ? "Sign Up" : "Log In"} to  <span className="text-green-500 underline font-medium">Sell Your Crop </span>
 					
 				</p>
 				{state === "Sign Up" && (
