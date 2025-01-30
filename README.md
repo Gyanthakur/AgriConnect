@@ -82,8 +82,14 @@ Server/
 
 ## 📸 Preview
 ![image](https://github.com/user-attachments/assets/0fe89c6e-0590-4b50-b325-996966de37c8)
-
+![image](https://github.com/user-attachments/assets/92bd9113-c27b-46a6-aaec-8cde7aa13792)
 ![image](https://github.com/user-attachments/assets/1c40d5db-5574-4373-b57c-f42b2b7baa3a)
+![image](https://github.com/user-attachments/assets/b1df4983-db17-4f17-93a9-e7736c923585)
+![image](https://github.com/user-attachments/assets/525dbdc4-9a4a-468c-8de2-753bdcfe9719)
+![image](https://github.com/user-attachments/assets/fa943049-0985-4ab7-b942-12c706aa7386)
+![image](https://github.com/user-attachments/assets/a2dced20-cc69-42c4-827e-e39806a20e11)
+![image](https://github.com/user-attachments/assets/ffd1f8e4-55b8-494d-91c3-571d13e9960b)
+![image](https://github.com/user-attachments/assets/64509979-a490-48bd-a245-060a453d7424)
 ![image](https://github.com/user-attachments/assets/447b13ab-ddf3-46ba-a6ff-e6f683b13b5a)
 
 
