@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const InformationResources = ({isDarkMode}) => {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-gray-50' : 'bg-gray-50 text-gray-800'} `}>
-      <hr />
+      
       <div className="container mx-auto py-16 px-6">
         
         {/* Main Heading */}

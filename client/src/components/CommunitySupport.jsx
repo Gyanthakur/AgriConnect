@@ -7,7 +7,7 @@ const CommunitySupport = ({ isDarkMode }) => {
         isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-800'
       }`}
     >
-      <hr />
+      
       <div className="container mx-auto py-16 px-6">
         {/* Page Header */}
         <header className="text-center mb-12">

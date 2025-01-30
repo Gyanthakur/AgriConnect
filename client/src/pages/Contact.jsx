@@ -5,6 +5,9 @@ import React from 'react';
 const Contact = ({isDarkMode}) => {
   return (
     <div className={`min-h-screen flex flex-col items-center justify-center ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'} p-6`}>
+    
+      
+      
       <h1 className={`text-4xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mb-6`}>Contact Us</h1>
       <p className={`text-lg ${isDarkMode ? 'text-gray-50' : 'text-gray-700'} mb-10 text-center max-w-xl`}>
         Have any questions or need assistance? Reach out to us, and we'll get back to you as soon as possible.
