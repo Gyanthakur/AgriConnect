@@ -52,7 +52,7 @@ const MyProfile = ({isDarkMode}) => {
 				{/* Image upload and edit */}
 				{isEdit ? (
 					<label htmlFor="image">
-						<div className="inline-block relative cursor-pointer">
+						<div className="inline-block relative cursor-pointer mt-5">
 							<img
 								className="w-36 rounded opacity-75"
 								src={image ? URL.createObjectURL(image) : farmerData.image}
@@ -78,7 +78,7 @@ const MyProfile = ({isDarkMode}) => {
 				{/* Name input */}
 				{isEdit ? (
 					<input
-						className="bg-gray-50 text-3xl font-medium max-w-60 mt-4"
+					className={`${isDarkMode ? 'text-green-400 bg-gray-700' : 'bg-gray-50'}  text-3xl font-medium max-w-60 mt-4`}
 						type="text"
 						value={farmerData.name}
 						onChange={(e) =>
@@ -101,7 +101,7 @@ const MyProfile = ({isDarkMode}) => {
 						<p className="font-medium">Phone:</p>
 						{isEdit ? (
 							<input
-								className="bg-gray-100 max-w-52"
+							className={`${isDarkMode ? 'text-green-400 bg-gray-700' : 'bg-gray-100 '} max-w-52`}
 								type="tel"
 								value={farmerData.phone}
 								onChange={(e) =>
@@ -119,7 +119,7 @@ const MyProfile = ({isDarkMode}) => {
 						{isEdit ? (
 							<p>
 								<input
-									className="bg-gray-50"
+									className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-50'} `}
 									value={farmerData.address.line1}
 									onChange={(e) =>
 										setFarmerData((prev) => ({
@@ -131,7 +131,7 @@ const MyProfile = ({isDarkMode}) => {
 								/>
 								<br />
 								<input
-									className="bg-gray-50"
+									className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-50'} `}
 									value={farmerData.address.line2}
 									onChange={(e) =>
 										setFarmerData((prev) => ({
@@ -159,7 +159,7 @@ const MyProfile = ({isDarkMode}) => {
 						<p className="font-medium">Gender:</p>
 						{isEdit ? (
 							<select
-								className="max-w-20 bg-gray-100"
+							className={`max-w-20 ${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'}`}
 								onChange={(e) =>
 									setFarmerData((prev) => ({ ...prev, gender: e.target.value }))
 								}
@@ -175,7 +175,7 @@ const MyProfile = ({isDarkMode}) => {
 						<p className="font-medium">Birthday:</p>
 						{isEdit ? (
 							<input
-								className="max-w-28 bg-gray-100"
+							className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'} max-w-28 `} 
 								onChange={(e) =>
 									setFarmerData((prev) => ({ ...prev, dob: e.target.value }))
 								}
@@ -189,7 +189,7 @@ const MyProfile = ({isDarkMode}) => {
 				</div>
 
 				{/* Save and Edit buttons */}
-				<div className="mt-10">
+				<div className="mt-10 mb-5">
 					{isEdit ? (
 						<button
 							className="border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-white transition-all"
