@@ -266,11 +266,12 @@ const Contact = ({ isDarkMode }) => {
 				</fieldset>
 
 				<div className="mt-5 flex items-start">
+        {/* <label htmlFor="chechBox"></label> */}
 					<input
 						required
 						type="checkbox"
 						value="consent"
-						className="w-10 h-4 mr-3 border border-gray-300 rounded appearance-none bg-gray-200 focus:ring-1 focus:ring-green-400 cursor-pointer peer checked:bg-green-500 checked:border-green-500 checked:text-white"
+						className="w-4 h-4 mr-3 border border-gray-300 rounded appearance-none bg-gray-200 focus:ring-1 focus:ring-green-400 cursor-pointer peer checked:bg-green-500 checked:border-green-500 checked:text-white"
 					/>
 
 					<div>
