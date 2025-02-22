@@ -205,24 +205,33 @@ const FarmerDashboard = ({ isDarkMode }) => {
 
         
           <section className="mt-6">
-          <h3 className="text-2xl font-semibold mb-4 pt-6 pl-6">All Merchants</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {merchants.length > 0 ? (
-              merchants.map((merchant, index) => (
-                <div
-                  key={index}
-                  className={`p-4 m-5 rounded-lg shadow ${isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white'}`}
-                >
-                  <h4 className="text-xl font-semibold">{merchant.name}</h4>
-                  <p className="mt-2">Email: {merchant.email}</p>
-                  <p className="mt-2">Contact: {merchant.phone}</p>
-                </div>
-              ))
-            ) : (
-              <p>No merchants available.</p>
-            )}
-          </div>
-        </section>
+  <h3 className="text-2xl font-semibold mb-4 pt-6 pl-6">All Merchants</h3>
+  {merchants.length > 0 ? (
+    <div className="overflow-x-auto px-6 ">
+      <table className={`w-full mb-10 table-auto border-collapse border rounded-md ${isDarkMode ? 'bg-gray-800 text-gray-100 border-gray-700' : 'bg-white text-gray-800 border-gray-200'}`}>
+        <thead>
+          <tr className={isDarkMode ? "bg-gray-600" : "bg-gray-400"}>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Name</th>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Email</th>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {merchants.map((merchant, index) => (
+            <tr key={index} className={`   ${isDarkMode ? 'bg-gray-700 hover:text-black hover:bg-gray-100' : 'bg-gray-200 hover:bg-gray-300 hover:text-black'}`}>
+              <td className="py-3 px-4 border-b  border-gray-300 dark:border-gray-600">{merchant.name}</td>
+              <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-600">{merchant.email}</td>
+              <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-600">{merchant.phone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p className="text-gray-500 px-6">No merchants available.</p>
+  )}
+</section>
+
 
         </div>
 
