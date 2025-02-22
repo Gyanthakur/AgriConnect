@@ -348,7 +348,7 @@ const MerchantDashboard = ({ isDarkMode }) => {
 
 
         {/* Farmers Section */}
-        <section className="mt-6">
+        {/* <section className="mt-6">
           <h3 className="text-2xl font-semibold mb-4">All Farmers</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {farmers.length > 0 ? (
@@ -366,7 +366,37 @@ const MerchantDashboard = ({ isDarkMode }) => {
               <p>No farmers available.</p>
             )}
           </div>
-        </section>
+        </section> */}
+        
+        <section className="mt-6">
+  <h3 className="text-2xl font-semibold mb-4">All Farmers</h3>
+  {farmers.length > 0 ? (
+    <div className="overflow-x-auto">
+      <table className={`w-full table-auto border-collapse border ${isDarkMode ? 'bg-gray-800 text-gray-100 border-gray-700' : 'bg-white text-gray-800 border-gray-200'}`}>
+        <thead>
+          <tr className={isDarkMode ? "bg-gray-700" : "bg-gray-300"}>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Name</th>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Email</th>
+            <th className="py-3 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {farmers.map((farmer, index) => (
+            <tr key={index} className={` focus:ring-1 ${isDarkMode ? 'border-gray-700 hover:bg-gray-600' : ' hover:bg-gray-200'}`}>
+              <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-600">{farmer.name}</td>
+              <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-600">{farmer.email}</td>
+              <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-600">{farmer.phone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p className="text-gray-500">No farmers available.</p>
+  )}
+</section>
+
+
 
         {/* Crops Section */}
         <section className="mt-6">
