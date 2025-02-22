@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const LoginFarmer = ({isDarkMode}) => {
 	const { token, setToken, backendUrl } = useContext(AppContext);
@@ -10,10 +11,12 @@ const LoginFarmer = ({isDarkMode}) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
+	const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
+		setLoading(true);
 
     try {
       if(state === "Sign Up"){
@@ -31,7 +34,7 @@ const LoginFarmer = ({isDarkMode}) => {
         const {data} = await axios.post(backendUrl  +'/api/farmer/login', {email,password})
         if(data.success){
           localStorage.setItem('token',data.token);
-          
+
           setToken(data.token);
           toast.success("Farmer logged in successfully")
         }
@@ -39,10 +42,13 @@ const LoginFarmer = ({isDarkMode}) => {
           toast.error(data.message);
         }
       }
-      
+
     } catch (error) {
       toast.error(error.message);
     }
+	finally{
+		setLoading(false);
+	}
 	};
 
   useEffect(()=>{
@@ -59,7 +65,7 @@ const LoginFarmer = ({isDarkMode}) => {
 				</p>
 				<p>
 					Please {state === "Sign Up" ? "Sign Up" : "Log In"} to  <span className="text-green-500 underline font-medium">Sell Your Crop </span>
-					
+
 				</p>
 				{state === "Sign Up" && (
 					<div className="w-full">
@@ -95,8 +101,8 @@ const LoginFarmer = ({isDarkMode}) => {
 						required
 					/>
 				</div>
-				<button type="submit" className="bg-primary text-white w-full p-2 rounded-md text-base">
-					{state === "Sign Up" ? "Create Account" : "Login"}
+				<button type="submit" className="bg-primary text-white w-full flex items-center justify-center p-2 rounded-md text-base">
+					{loading ? <Loading/> : state === "Sign Up" ? "Create Account" : "Login"}
 				</button>
 				{state === "Sign Up" ? (
 					<p>
@@ -125,3 +131,7 @@ const LoginFarmer = ({isDarkMode}) => {
 };
 
 export default LoginFarmer;
+
+
+
+
