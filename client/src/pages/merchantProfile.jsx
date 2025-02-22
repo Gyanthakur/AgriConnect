@@ -105,7 +105,7 @@ const MerchantProfile = ({isDarkMode}) => {
 						<p className="font-medium">Phone:</p>
 						{isEdit ? (
 							<input
-								className={`${isDarkMode ? 'text-green-400 bg-gray-700' : 'bg-gray-100 '} max-w-52`}
+								className={`rounded-md ${isDarkMode ? 'text-green-400 bg-gray-700' : 'bg-gray-100 '} max-w-52`}
 								type="tel"
 								value={merchantData.phone}
 								onChange={(e) =>
@@ -119,12 +119,13 @@ const MerchantProfile = ({isDarkMode}) => {
 							<p className="text-blue-400">{merchantData.phone}</p>
 						)}
 
-						<p className="font-medium">Address:</p>
+						<p className="font-medium">Address: </p>
 						{isEdit ? (
 							<p>
 								<input
-									className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-50'} `}
+									className={`rounded-t-md ${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'} `}
 									value={merchantData.address.line1}
+									placeholder="full address"
 									onChange={(e) =>
 										setMerchantData((prev) => ({
 											...prev,
@@ -135,8 +136,9 @@ const MerchantProfile = ({isDarkMode}) => {
 								/>
 								<br />
 								<input
-									className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-50'} `}
+									className={`rounded-b-md ${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'} `}
 									value={merchantData.address.line2}
+									placeholder="country"
 									onChange={(e) =>
 										setMerchantData((prev) => ({
 											...prev,
@@ -147,7 +149,7 @@ const MerchantProfile = ({isDarkMode}) => {
 								/>
 							</p>
 						) : (
-							<p className="text-gray-500">
+							<p className={` ${isDarkMode? 'text-gray-100' : 'text-gray-600'} `}>
 								{merchantData.address.line1}
 								<br />
 								{merchantData.address.line2}
@@ -163,23 +165,24 @@ const MerchantProfile = ({isDarkMode}) => {
 						<p className="font-medium">Gender:</p>
 						{isEdit ? (
 							<select
-								className={`max-w-20 ${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'}`}
+								className={`max-w-fit rounded-md ${isDarkMode? 'text-green-500 bg-gray-700 ' : 'bg-gray-100'}`}
 								onChange={(e) =>
 									setMerchantData((prev) => ({ ...prev, gender: e.target.value }))
 								}
 								value={merchantData.gender}
 							>
+								<option value="Not Selected">Not selected</option>
 								<option value="Male">Male</option>
 								<option value="Female">Female</option>
 							</select>
 						) : (
-							<p className="text-gray-400">{merchantData.gender}</p>
+							<p className={`${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>{merchantData.gender}</p>
 						)}
 
 						<p className="font-medium">Birthday:</p>
 						{isEdit ? (
 							<input
-								className={`${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'} max-w-28 `} 
+								className={`rounded-md ${isDarkMode? 'text-green-500 bg-gray-700' : 'bg-gray-100'} max-w-28 `} 
 								onChange={(e) =>
 									setMerchantData((prev) => ({ ...prev, dob: e.target.value }))
 								}
@@ -187,7 +190,7 @@ const MerchantProfile = ({isDarkMode}) => {
 								type="date"
 							/>
 						) : (
-							<p className="text-gray-400">{merchantData.dob}</p>
+							<p className={`${isDarkMode ? 'text-gray-100' : 'text-gray-600'}`}>{merchantData.dob}</p>
 						)}
 					</div>
 				</div>
