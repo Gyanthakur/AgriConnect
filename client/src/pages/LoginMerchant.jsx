@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const LoginMerchant = ({isDarkMode}) => {
 	const { mtoken, setMtoken, backendUrl } = useContext(AppContext);
@@ -10,10 +11,12 @@ const LoginMerchant = ({isDarkMode}) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
+	const [loading, setLoading] = useState(false);
   	const navigate = useNavigate();
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
+		setLoading(true);
 
     try {
       if(state === "Sign Up"){
@@ -42,7 +45,9 @@ const LoginMerchant = ({isDarkMode}) => {
       
     } catch (error) {
       toast.error(error.message);
-    }
+    } finally{
+		setLoading(false);
+	}
 	};
 
   useEffect(()=>{
@@ -97,8 +102,11 @@ const LoginMerchant = ({isDarkMode}) => {
 						required
 					/>
 				</div>
-				<button type="submit" className="bg-primary text-white w-full p-2 rounded-md text-base">
-					{state === "Sign Up" ? "Create Account" : "Login"}
+				<button type="submit" className="bg-primary text-white flex justify-center items-center w-full p-2 rounded-md text-base"
+				disabled={loading}
+				>
+					
+					{loading ? <Loading/> : state === "Sign Up" ? "Create Account" : "Login"}
 				</button>
 				{state === "Sign Up" ? (
 					<p>
