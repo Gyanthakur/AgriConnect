@@ -40,7 +40,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
     {
         id: 5,
         name: "Plough",
-        image: "https://media.istockphoto.com/id/104909168/photo/the-wooden-plow-model-white-background-isolated.jpg?s=1024x1024&w=is&k=20&c=WFciyp7-TYP5-LGj2iNd0S2Zwmus9y6b4rj33VLuBCM=",
+        image: "https://www.masseyferguson.com/content/dam/public/masseyfergusonglobal/markets/en/assets/implements/mf-fixed-disc-ploughs/features/mf-disc-ploughs-lfd-1400x933.jpg",
         location: "Prayagraj",
         price: "₹1,100/day",
         description: "Used for primary tillage to break up soil.",
@@ -56,7 +56,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 7,
         name: "Baler",
-        image: "https://5.imimg.com/data5/SELLER/Default/2021/12/KI/ZN/FS/135673220/hay-baler-1000x1000.jpg",
+        image: "https://www.deere.co.in/assets/images/region-1/implements/compact-round-baler/Round_Baler_John_Deere_India__large_70dbbfa73362de5df2fb99e9f729699ff72ca86f.png",
         location: "Gorakhpur",
         price: "₹3,000/day",
         description: "Compact machine for collecting and baling hay.",
@@ -64,7 +64,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 8,
         name: "Sprayer",
-        image: "https://5.imimg.com/data5/SELLER/Default/2023/7/319063599/VE/XG/FW/7941168/agriculture-sprayers-1000x1000.jpg",
+        image: "https://www.rajagro.in/wp-content/uploads/2024/03/aspee-gardenia-battery-sprayer-agr001-8ahbr-agr001-12ahbr-xe.png",
         location: "Faizabad",
         price: "₹700/day",
         description: "Essential for spraying fertilizers and pesticides.",
@@ -72,7 +72,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 9,
         name: "Disc Harrow",
-        image: "https://5.imimg.com/data5/SELLER/Default/2022/12/GM/VB/YQ/127486407/disc-harrow-1000x1000.jpg",
+        image: "https://5.imimg.com/data5/SELLER/Default/2023/5/306622941/ZV/WL/JA/53496462/disc-harrow-min-1536x828-1000x1000.png",
         location: "Mirzapur",
         price: "₹1,300/day",
         description: "Breaks up soil and removes weeds before planting.",
@@ -80,7 +80,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 10,
         name: "Chisel Plough",
-        image: "https://5.imimg.com/data5/SELLER/Default/2023/12/367324272/YG/ZI/XO/2497808/chisel-plough-1000x1000.jpg",
+        image: "https://amjagro.pl/wp-content/uploads/2024/12/plug-dlutowy-darta-4.jpg",
         location: "Bareilly",
         price: "₹1,800/day",
         description: "Deep tillage plough for breaking compacted soil layers.",
@@ -88,7 +88,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 11,
         name: "Fertilizer Spreader",
-        image: "https://5.imimg.com/data5/SELLER/Default/2022/3/UV/XO/YX/84129482/fertilizer-spreader-1000x1000.jpg",
+        image: "https://www.fieldking.com/images/crop-protection/fertilizer-spreader/lg/fertilizer-spreader.png",
         location: "Agra",
         price: "₹1,000/day",
         description: "Ensures uniform fertilizer application across the field.",
@@ -96,7 +96,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 12,
         name: "Water Pump",
-        image: "https://5.imimg.com/data5/SELLER/Default/2022/7/QK/XD/NE/4390030/irrigation-water-pump-1000x1000.jpg",
+        image: "https://www.hondaindiapower.com/admin/public/uploads/Products/Q12r1yyfTb.jpeg?img=70",
         location: "Mathura",
         price: "₹850/day",
         description: "Used for irrigation and draining excess water.",
@@ -104,7 +104,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 13,
         name: "Post Hole Digger",
-        image: "https://5.imimg.com/data5/SELLER/Default/2022/6/GM/NV/MF/17462050/post-hole-digger-1000x1000.jpg",
+        image: "https://shaktimanagro.com/wp-content/uploads/2024/08/Shaktiman_Applications_Post_Hole_Digger_2.jpg",
         location: "Jhansi",
         price: "₹1,400/day",
         description: "Ideal for digging deep holes for fencing and plantations.",
@@ -112,7 +112,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 14,
         name: "Mulcher",
-        image: "https://5.imimg.com/data5/SELLER/Default/2022/7/QT/GD/EK/112967662/mulcher-1000x1000.jpg",
+        image: "https://shaktimanagro.com/wp-content/uploads/2024/08/Shaktiman_Mulcher_Image_1.png",
         location: "Basti",
         price: "₹2,200/day",
         description: "Shreds and spreads crop residues as mulch.",
@@ -120,7 +120,7 @@ const FarmEquipmentRentals = ({ isDarkMode }) => {
       {
         id: 15,
         name: "Threshing Machine",
-        image: "https://5.imimg.com/data5/SELLER/Default/2023/5/309603389/VH/RB/UU/4577472/threshing-machine-1000x1000.jpg",
+        image: "https://5.imimg.com/data5/SELLER/Default/2023/4/303093889/HP/SO/HQ/12830884/paddy-thresher-machine-1000x1000.jpg",
         location: "Ballia",
         price: "₹2,700/day",
         description: "Separates grains from harvested crops efficiently.",
