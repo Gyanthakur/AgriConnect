@@ -483,6 +483,9 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							<NavLink to="/services" className="hover:underline">
 								Services
 							</NavLink>
+							<NavLink to="/farmer-dashboard" className="hover:underline">
+								My Dashboard
+							</NavLink>
 
 							<p
 								onClick={() => navigate("/my-profile")}
@@ -501,6 +504,9 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 						<>
 							<NavLink to="/services" className="hover:underline">
 								Services
+							</NavLink>
+							<NavLink to="/merchant-dashboard" className="hover:underline">
+								My Dashboard
 							</NavLink>
 
 							<p
