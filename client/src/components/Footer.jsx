@@ -1,9 +1,12 @@
 // src/components/Footer.jsx
 
-import React from 'react';
-import { FacebookLogo, TwitterLogo, InstagramLogo, LinkedinLogo } from 'phosphor-react'; // Importing Phosphor icons
+import React, { useEffect } from 'react';
+import { FacebookLogo, TwitterLogo, InstagramLogo, LinkedinLogo, Eye } from 'phosphor-react'; // Importing Phosphor icons
+import Logger from './Logger';
 
 const Footer = ({isDarkMode}) => {
+
+
   return (
     <footer className={`  py-8 mt-12 ${isDarkMode ? 'bg-gray-800 text-white ' : 'bg-green-600 text-white'}`}>
       
@@ -39,12 +42,15 @@ const Footer = ({isDarkMode}) => {
               <li><a href="https://twitter.com" className="hover:text-gray-300"><TwitterLogo size={24} /></a></li>
               <li><a href="https://instagram.com" className="hover:text-gray-300"><InstagramLogo size={24} /></a></li>
               <li><a href="https://linkedin.com" className="hover:text-gray-300"><LinkedinLogo size={24} /></a></li>
+            <Logger isDarkMode={isDarkMode}/>
             </ul>
           </div>
+          
 
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            
             <p>Phone: +91 1234567890</p>
             <p>Email: <a href="mailto:agriconnect@gmail.com" className="hover:underline">agriconnect@gmail.com</a></p>
             <p>Address: Sultanpur, Uttar Pradesh, India</p>
