@@ -35,14 +35,15 @@ const Footer = ({isDarkMode}) => {
           </div>
 
           {/* Social Media */}
-          <div>
+          <div className=''>
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <ul className="flex space-x-4">
+            <ul className="flex md:mr-16  gap-4 md:justify-center md:items-center">
               <li><a href="https://facebook.com" className="hover:text-gray-300"><FacebookLogo size={24} /></a></li>
               <li><a href="https://twitter.com" className="hover:text-gray-300"><TwitterLogo size={24} /></a></li>
               <li><a href="https://instagram.com" className="hover:text-gray-300"><InstagramLogo size={24} /></a></li>
               <li><a href="https://linkedin.com" className="hover:text-gray-300"><LinkedinLogo size={24} /></a></li>
-            <Logger isDarkMode={isDarkMode}/>
+              <li><Logger isDarkMode={isDarkMode}/></li>
+            {/* <Logger isDarkMode={isDarkMode}/> */}
             </ul>
           </div>
           
