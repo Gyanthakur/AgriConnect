@@ -1,0 +1,134 @@
+
+import { v2 as cloudinary } from "cloudinary";
+import Crop from "../models/CropModel.js";
+
+
+
+const addCrop = async (req, res) => {
+    try {
+        let { farmerId, name, category, price, quantity, description, status } = req.body;
+        const imageFile = req.file;
+
+        console.log("Received Data:", req.body, "File:", req.file);
+
+        // Trim inputs if they are strings
+        farmerId = farmerId?.trim();
+        name = name?.trim();
+        category = category?.trim();
+        description = description?.trim();
+
+        // Convert price & quantity to numbers safely
+        price = Number(price);  
+        quantity = Number(quantity);
+
+        // Validate required fields
+        if (!farmerId || !name || !category || isNaN(price) || isNaN(quantity) || !imageFile) {
+            return res.status(400).json({ success: false, message: "Missing required fields or invalid data types" });
+        }
+
+        // Upload image to Cloudinary if available
+        let imageURL = "";
+        if (imageFile) {
+            const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
+                resource_type: "image",
+            });
+            imageURL = imageUpload.secure_url;
+        }
+
+        // Create a new crop document
+        const newCrop = new Crop({
+            farmerId,
+            name,
+            category,
+            price,
+            quantity,
+            description,
+            status,
+            image: imageURL,
+        });
+
+        await newCrop.save();
+        res.status(201).json({ success: true, message: "Crop added successfully", crop: newCrop });
+
+    } catch (error) {
+        console.error("Error adding crop:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
+
+// Get all crops
+const getAllCrops = async (req, res) => {
+    try {
+        const crops = await Crop.find();
+        res.json({ success: true, crops });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Get a single crop by ID
+const getCropById = async (req, res) => {
+    try {
+        const { cropId } = req.params;
+        const crop = await Crop.findById(cropId);
+
+        if (!crop) {
+            return res.json({ success: false, message: "Crop not found" });
+        }
+
+        res.json({ success: true, crop });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Update crop
+const updateCrop = async (req, res) => {
+    try {
+        const { cropId } = req.params;
+        const { name, category, price, quantity, description, status } = req.body;
+        const imageFile = req.file;
+
+        let updateData = { name, category, price, quantity, description, status };
+
+        if (imageFile) {
+            // Upload new image to Cloudinary
+            const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
+                resource_type: "image"
+            });
+            updateData.image = imageUpload.secure_url;
+        }
+
+        const updatedCrop = await Crop.findByIdAndUpdate(cropId, updateData, { new: true });
+
+        if (!updatedCrop) {
+            return res.json({ success: false, message: "Crop not found" });
+        }
+
+        res.json({ success: true, message: "Crop updated successfully", crop: updatedCrop });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Delete a crop
+const deleteCrop = async (req, res) => {
+    try {
+        const { cropId } = req.params;
+        const deletedCrop = await Crop.findByIdAndDelete(cropId);
+
+        if (!deletedCrop) {
+            return res.json({ success: false, message: "Crop not found" });
+        }
+
+        res.json({ success: true, message: "Crop deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+export { addCrop, getAllCrops, getCropById, updateCrop, deleteCrop };
