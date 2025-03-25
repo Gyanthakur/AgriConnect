@@ -1,6 +1,6 @@
 
 import { v2 as cloudinary } from "cloudinary";
-import Crop from "../models/CropModel.js";
+import Crop from "../models/cropModel.js";
 
 
 
