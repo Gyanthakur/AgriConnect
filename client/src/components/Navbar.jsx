@@ -298,6 +298,9 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							<NavLink to="/farmer-dashboard" className="hover:underline">
 								<li>My Dashboard</li>
 							</NavLink>
+							<NavLink to="/sell-crop" className="hover:underline">
+						sell
+					</NavLink>
 							<div className="relative">
 								<img
 									className="w-8 h-8 rounded-full cursor-pointer"
@@ -340,46 +343,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							</div>
 						</>
 					) : mtoken ? (
-						// <>
-						// 	<NavLink to="/services" className="hover:underline">
-						// 		<li>Services</li>
-						// 	</NavLink>
-						// 	<NavLink to="/merchant-dashboard" className="hover:underline">
-						// 		<li>My Dashboard</li>
-						// 	</NavLink>
-						// 	<div className="relative group">
-						// 		<img
-						// 			className="w-8 h-8 rounded-full cursor-pointer"
-						// 			src={merchantData.image}
-						// 			alt="Profile"
-						// 		/>
-						// 		<div
-						// 			className={`absolute right-0 mt-2 w-48 rounded shadow-lg hidden group-hover:block ${
-						// 				isDarkMode
-						// 					? "bg-gray-700 text-white"
-						// 					: "bg-white text-black"
-						// 			}`}
-						// 		>
-						// 			<p
-						// 				onClick={() => navigate("/my-m-profile")}
-						// 				className={`block px-4 py-2 ${
-						// 					isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-						// 				} cursor-pointer`}
-						// 			>
-						// 				My Profile
-						// 			</p>
-
-						// 			<p
-						// 				onClick={logout}
-						// 				className={`block px-4 py-2 ${
-						// 					isDarkMode ? "hover:bg-gray-500" : "hover:bg-gray-100"
-						// 				} cursor-pointer`}
-						// 			>
-						// 				Logout
-						// 			</p>
-						// 		</div>
-						// 	</div>
-						// </>
 
 						<>
 							<NavLink to="/services" className="hover:underline">
@@ -478,6 +441,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 					<NavLink to="/contact-us" className="hover:underline">
 						Contact
 					</NavLink>
+					
 					{token ? (
 						<>
 							<NavLink to="/services" className="hover:underline">
@@ -495,6 +459,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							>
 								My Profile
 							</p>
+							
 
 							<button onClick={logout} className="text-red-500 hover:underline">
 								Logout

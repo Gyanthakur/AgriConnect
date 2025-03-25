@@ -31,6 +31,7 @@ import MerchantProfile from './pages/merchantProfile';
 import CropAdvisory from './components/CropAdvisory';
 import WeatherInsights from './components/WeatherInsights';
 import FarmEquipmentRentals from './components/FarmEquipmentRentals';
+import SellCrop from './components/SellCrop';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -78,12 +79,13 @@ const App = () => {
         <Route path='/crop-advisory' element={<CropAdvisory isDarkMode={isDarkMode}/>} />
         <Route path='/weather' element={<WeatherInsights isDarkMode={isDarkMode}/>} />
         <Route path='/equipment-rentals' element={<FarmEquipmentRentals isDarkMode={isDarkMode}/>} />
+        <Route path='/sell-crop' element={<SellCrop isDarkMode={isDarkMode}/>} />
         
         
 
         
 
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage isDarkMode={isDarkMode} />} />
 
       </Routes>
       <Footer isDarkMode = {isDarkMode} />

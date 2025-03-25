@@ -7,7 +7,7 @@ const Services = ({isDarkMode}) => {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
     
-      <h1 className="text-4xl mt-5 font-bold text-green-600 text-center mb-10">Our Services</h1>
+      <h1 className={`text-4xl mt-5 font-bold ${isDarkMode ? "text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-400" : 'text-green-600'}  text-center mb-10`}>Our Services</h1>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Crop Advisory Service */}

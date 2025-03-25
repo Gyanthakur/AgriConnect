@@ -3,10 +3,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ErrorPage = () => {
+const ErrorPage = ({isDarkMode}) => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
-      <h1 className="text-6xl font-bold text-green-600 mb-4">404</h1>
+    <div className={`min-h-screen flex flex-col items-center justify-center ${isDarkMode ? 'bg-gray-600 text-white' : 'bg-gray-100'}  text-gray-800`}>
+      <h1 className={`text-6xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-600'} mb-4`}>404</h1>
       <h2 className="text-2xl font-semibold mb-4">Oops! Page not found.</h2>
       <p className="text-lg mb-6">
         Sorry, the page you're looking for doesn't exist. You might have followed an incorrect link or typed the wrong URL.
