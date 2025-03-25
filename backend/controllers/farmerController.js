@@ -3,8 +3,7 @@ import bcript from "bcrypt";
 import farmerModel from "../models/farmerModel.js";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
-// import doctorModel from "../models/doctorModel.js";
-// import appointmentModel from "../models/appointmentModel.js";
+
 import razorpay from "razorpay";
 // api to resister farmer
 
@@ -73,7 +72,7 @@ const LoginFarmer = async (req, res) => {
 
 // API to get farmer profile data
 
-const getprofile = async (req, res) => {
+const getProfile = async (req, res) => {
 	try {
 		const { farmerId } = req.body;
 		const farmerData = await farmerModel.findById(farmerId).select("-password");
@@ -185,12 +184,17 @@ const allFarmers = async(req,res) => {
 		res.json({ success: false, message: error.message });
 	}
 };
+
+
+
+
 export {
 	registerFarmer,
 	LoginFarmer,
-	getprofile,
+	getProfile,
 	updateProfile,
 	paymentRazorpay,
 	verifyRazorpay,
 	allFarmers
 };
+
