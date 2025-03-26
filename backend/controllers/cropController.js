@@ -67,6 +67,45 @@ const getAllCrops = async (req, res) => {
     }
 };
 
+const getMyCrops = async (req, res) => {
+    try {
+        // Ensure farmer is authenticated
+        if (!req.body.farmerId) {
+            return res.status(401).json({ success: false, message: "Unauthorized access" });
+        }
+
+        const farmerId = req.body.farmerId; // Get farmer ID from auth middleware
+
+        // Fetch only the crops belonging to the logged-in farmer
+        const crops = await Crop.find({ farmerId }); // Correct query
+
+        res.json({ success: true, crops });
+    } catch (error) {
+        console.error("Error fetching farmer's crops:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
+
+
+
+
+// Get a single crop by ID
+const getCropByFarmerId = async (req, res) => {
+    try {
+        const { farmerId } = req.params;
+        const crop = await Crop.findById(farmerId);
+
+        if (!crop) {
+            return res.json({ success: false, message: "Crop not found" });
+        }
+
+        res.json({ success: true, crop });
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
 // Get a single crop by ID
 const getCropById = async (req, res) => {
     try {
@@ -131,4 +170,4 @@ const deleteCrop = async (req, res) => {
     }
 };
 
-export { addCrop, getAllCrops, getCropById, updateCrop, deleteCrop };
+export { addCrop, getAllCrops, getMyCrops, getCropByFarmerId, getCropById, updateCrop, deleteCrop };
