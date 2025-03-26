@@ -82,37 +82,103 @@ const SellCrop = ({ isDarkMode }) => {
   };
 
   return (
-    <div className={`min-h-screen p-6 ${isDarkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Sell Your Crop</h2>
-        {message && <p className="text-center text-green-600 mb-4">{message}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input type="text" name="name" placeholder="Crop Name" value={cropData.name} onChange={handleChange} required className="w-full p-2 border rounded" />
-          <select name="category" value={cropData.category} onChange={handleChange} required className="w-full p-2 border rounded">
-            <option value="Grains">Grains</option>
-            <option value="Fruits">Fruits</option>
-            <option value="Vegetables">Vegetables</option>
-            <option value="Pulses">Pulses</option>
-            <option value="Spices">Spices</option>
-            <option value="Other">Other</option>
-          </select>
-          <input type="number" name="quantity" placeholder="Quantity (Kg)" value={cropData.quantity} onChange={handleChange} required min="1" className="w-full p-2 border rounded" />
-          <input type="number" name="price" placeholder="Price per Kg (₹)" value={cropData.price} onChange={handleChange} required min="1" className="w-full p-2 border rounded" />
-          <textarea name="description" placeholder="Crop Description" value={cropData.description} onChange={handleChange} required className="w-full p-2 border rounded"></textarea>
-          
-          {/* Status dropdown added */}
-          <select name="status" value={cropData.status} onChange={handleChange} required className="w-full p-2 border rounded">
-            <option value="available">Available</option>
-            <option value="sold">Sold</option>
-          </select>
-
-          <input type="file" accept="image/*" onChange={handleFileChange} required className="w-full p-2 border rounded" />
-          <button type="submit" className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700" disabled={loading}>
-            {loading ? "Posting..." : "Post Crop for Sale"}
-          </button>
-        </form>
-      </div>
+    <div className={`min-h-screen p-6 flex items-center justify-center ${isDarkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
+    <div className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg ${isDarkMode ? "bg-gray-800" : "bg-white"}`}>
+      <h2 className="text-2xl font-bold mb-4 text-center">Sell Your Crop</h2>
+      
+      {message && <p className="text-center text-green-500 font-medium mb-4">{message}</p>}
+      
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Crop Name" 
+          value={cropData.name} 
+          onChange={handleChange} 
+          required 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`} 
+        />
+  
+        <select 
+          name="category" 
+          value={cropData.category} 
+          onChange={handleChange} 
+          required 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`}
+        >
+          <option value="Grains">Grains</option>
+          <option value="Fruits">Fruits</option>
+          <option value="Vegetables">Vegetables</option>
+          <option value="Pulses">Pulses</option>
+          <option value="Spices">Spices</option>
+          <option value="Other">Other</option>
+        </select>
+  
+        <input 
+          type="number" 
+          name="quantity" 
+          placeholder="Quantity (Kg)" 
+          value={cropData.quantity} 
+          onChange={handleChange} 
+          required 
+          min="1" 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`} 
+        />
+  
+        <input 
+          type="number" 
+          name="price" 
+          placeholder="Price per Kg (₹)" 
+          value={cropData.price} 
+          onChange={handleChange} 
+          required 
+          min="1" 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`} 
+        />
+  
+        <textarea 
+          name="description" 
+          placeholder="Crop Description" 
+          value={cropData.description} 
+          onChange={handleChange} 
+          required 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`}
+        ></textarea>
+  
+        {/* Status Dropdown */}
+        <select 
+          name="status" 
+          value={cropData.status} 
+          onChange={handleChange} 
+          required 
+          className={`w-full p-3 rounded-md border ${isDarkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-gray-100 border-gray-300 text-gray-900"}`}
+        >
+          <option value="available">Available</option>
+          <option value="pending">Pending</option>
+          <option value="sold">Sold</option>
+        </select>
+  
+        {/* File Upload */}
+        <input 
+          type="file" 
+          accept="image/*" 
+          onChange={handleFileChange} 
+          required 
+          className={`w-full p-3 border rounded-md cursor-pointer ${isDarkMode? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-100'}   `}
+        />
+  
+        {/* Submit Button */}
+        <button 
+          type="submit" 
+          className="w-full py-3 text-white rounded-md transition-all duration-200 bg-green-600 hover:bg-green-700 disabled:bg-gray-500" 
+          disabled={loading}
+        >
+          {loading ? "Posting..." : "Post Crop for Sale"}
+        </button>
+      </form>
     </div>
+  </div>
+  
   );
 };
 
