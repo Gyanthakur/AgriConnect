@@ -27,7 +27,7 @@ const cropSchema = new mongoose.Schema({
     },
     status: {
       type: String,
-      enum: ["available", "sold"],
+      enum: ["available", "pending", "sold"],
       default: "available", // Default status is available
   },
     image: {
