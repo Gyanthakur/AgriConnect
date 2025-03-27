@@ -3,6 +3,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const SellCrop = ({ isDarkMode }) => {
   const { token, backendUrl, farmerData } = useContext(AppContext);
@@ -63,6 +64,7 @@ const SellCrop = ({ isDarkMode }) => {
 
       if (response.data.success) {
         setMessage("Crop listed successfully!");
+        toast.success("Your Crop added successfully!");
         setCropData({
           name: "",
           category: "Grains",
@@ -117,7 +119,7 @@ const SellCrop = ({ isDarkMode }) => {
         <input 
           type="number" 
           name="quantity" 
-          placeholder="Quantity (Kg)" 
+          placeholder="Quantity (Quintal)" 
           value={cropData.quantity} 
           onChange={handleChange} 
           required 
@@ -128,7 +130,7 @@ const SellCrop = ({ isDarkMode }) => {
         <input 
           type="number" 
           name="price" 
-          placeholder="Price per Kg (₹)" 
+          placeholder="Price per Quintal (₹)" 
           value={cropData.price} 
           onChange={handleChange} 
           required 
