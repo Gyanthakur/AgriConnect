@@ -4,7 +4,7 @@ import  { useState, useEffect } from 'react';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -32,9 +32,11 @@ import CropAdvisory from './components/CropAdvisory';
 import WeatherInsights from './components/WeatherInsights';
 import FarmEquipmentRentals from './components/FarmEquipmentRentals';
 import SellCrop from './components/SellCrop';
+import BuyCropPage from './components/BuyCropPage';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { cropId } = useParams();
 
   // Toggle dark mode
   const toggleTheme = () => {
@@ -55,8 +57,6 @@ const App = () => {
         <Route path='/about-us' element={<About isDarkMode = {isDarkMode}/>} />
         <Route path='/services' element={<Services isDarkMode={isDarkMode} />} />
         <Route path='/contact-us' element={<Contact isDarkMode={isDarkMode}/>} />
-        {/* <Route path='/login' element={<Login/>} /> */}
-        {/* <Route path='/sign-up' element={<Signup/>} /> */}
         <Route path='/information-resources' element={<InformationResources isDarkMode={isDarkMode}/>} />
         <Route path='/community-support' element={<CommunitySupport isDarkMode={isDarkMode}/>} />
         <Route path='/sustainable-farming' element={<SustainableFarming isDarkMode={isDarkMode}/>} />
@@ -80,6 +80,8 @@ const App = () => {
         <Route path='/weather' element={<WeatherInsights isDarkMode={isDarkMode}/>} />
         <Route path='/equipment-rentals' element={<FarmEquipmentRentals isDarkMode={isDarkMode}/>} />
         <Route path='/sell-crop' element={<SellCrop isDarkMode={isDarkMode}/>} />
+        {/* <Route path='/buy-crop/:cropId' element={<BuyCropPage isDarkMode={isDarkMode}/>} /> */}
+        <Route path="/buy-crop/:cropId" element={<BuyCropPage isDarkMode={isDarkMode} />} />
         
         
 
