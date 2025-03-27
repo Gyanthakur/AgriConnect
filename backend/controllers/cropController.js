@@ -1,6 +1,7 @@
 
 import { v2 as cloudinary } from "cloudinary";
 import Crop from "../models/cropModel.js";
+import farmerModel from "../models/farmerModel.js";
 
 
 
@@ -107,19 +108,49 @@ const getCropByFarmerId = async (req, res) => {
 };
 
 // Get a single crop by ID
+// const getCropById = async (req, res) => {
+//     try {
+//         const { cropId } = req.params;
+//         const { farmerId } = req.params;
+//         console.log("Received Crop ID:", cropId);
+//         console.log("Received Farmer ID:", farmerId);
+//         const crop = await Crop.findById(cropId);
+
+//         if (!crop) {
+//             return res.json({ success: false, message: "Crop not found" });
+//         }
+
+//         res.json({ success: true, crop });
+//     } catch (error) {
+//         console.error(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
 const getCropById = async (req, res) => {
     try {
         const { cropId } = req.params;
-        const crop = await Crop.findById(cropId);
+        // console.log("Received Crop ID:", cropId);
+
+        // Fetch crop with farmer details
+        const crop = await Crop.findById(cropId).lean();
 
         if (!crop) {
-            return res.json({ success: false, message: "Crop not found" });
+            return res.status(404).json({ success: false, message: "Crop not found" });
         }
 
-        res.json({ success: true, crop });
+        // Fetch farmer details
+        const farmer = await farmerModel.findById(crop.farmerId).select("name email phone address image gender dob");
+        // console.log("Farmer:", farmer);
+        
+        if (!farmer) {
+            return res.status(404).json({ success: false, message: "Farmer not found" });
+        }
+
+        res.json({ success: true, crop, farmer });
     } catch (error) {
-        console.error(error);
-        res.json({ success: false, message: error.message });
+        console.error("Error in getCropById:", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
