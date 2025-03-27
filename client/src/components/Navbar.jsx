@@ -299,8 +299,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 								<li>My Dashboard</li>
 							</NavLink>
 							<NavLink to="/sell-crop" className="hover:underline">
-						sell
-					</NavLink>
+								sell
+							</NavLink>
 							<div className="relative">
 								<img
 									className="w-8 h-8 rounded-full cursor-pointer"
@@ -343,7 +343,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							</div>
 						</>
 					) : mtoken ? (
-
 						<>
 							<NavLink to="/services" className="hover:underline">
 								<li>Services</li>
@@ -441,7 +440,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 					<NavLink to="/contact-us" className="hover:underline">
 						Contact
 					</NavLink>
-					
+
 					{token ? (
 						<>
 							<NavLink to="/services" className="hover:underline">
@@ -459,7 +458,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 							>
 								My Profile
 							</p>
-							
 
 							<button onClick={logout} className="text-red-500 hover:underline">
 								Logout
@@ -493,13 +491,13 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 								to="/login-farmer"
 								className="px-4 py-1 bg-yellow-600 rounded-full hover:bg-yellow-700"
 							>
-								Farmer 
+								Farmer
 							</NavLink>
 							<NavLink
 								to="/login-merchant"
 								className="px-4 py-1 bg-blue-600 rounded-full hover:bg-blue-700"
 							>
-								Merchant 
+								Merchant
 							</NavLink>
 						</>
 					)}
