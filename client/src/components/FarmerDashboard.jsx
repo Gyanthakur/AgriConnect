@@ -4,6 +4,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import Loading from "./Loading";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const FarmerDashboard = ({ isDarkMode }) => {
 	const [user, setUser] = useState(null);
@@ -13,6 +14,12 @@ const FarmerDashboard = ({ isDarkMode }) => {
 	const [error, setError] = useState("");
 	const [editCrop, setEditCrop] = useState(null); // Stores crop being edited
 	const [showModal, setShowModal] = useState(false);
+
+	const totalEarnings = crops
+		.filter((crop) => crop.status === "sold")
+		.reduce((sum, crop) => sum + crop.price * crop.quantity, 0);
+
+	const soldCrops = crops.filter((crop) => crop.status === "sold");
 
 	const [merchants, setMerchants] = useState([]);
 
@@ -37,30 +44,6 @@ const FarmerDashboard = ({ isDarkMode }) => {
 	}, []);
 
 	// get farmer crops
-
-	// useEffect(() => {
-	// 	const fetchCrops = async () => {
-	// 		try {
-	// 			const response = await axios.get(`${backendUrl}/api/farmer/crop/mine`, {
-	// 				headers: {
-	// 					token,
-	// 				},
-	// 			});
-
-	// 			if (response.data.success) {
-	// 				setCrops(response.data.crops);
-	// 			} else {
-	// 				setError("Failed to fetch your crops.");
-	// 			}
-	// 		} catch (err) {
-	// 			setError("Error fetching crops. Please try again.");
-	// 		}
-	// 		setLoading(false);
-	// 	};
-
-	// 	fetchCrops();
-	// }, [backendUrl, token]);
-
 	useEffect(() => {
 		const fetchCrops = async () => {
 			try {
@@ -128,7 +111,7 @@ const FarmerDashboard = ({ isDarkMode }) => {
 				`${backendUrl}/api/farmer/crop/delete/${cropId}`,
 				{
 					headers: {
-						token, // Include token in headers
+						token,
 					},
 				}
 			);
@@ -175,19 +158,14 @@ const FarmerDashboard = ({ isDarkMode }) => {
 
 	// If no user data is available
 	if (!user) {
-		return <div>No user data available. Please log in.</div>;
+		return (
+			<div className={`${isDarkMode ? "text-white" : "text-black"}`}>
+				No user data available. Please log in.
+			</div>
+		);
 	}
 
-	// Conditional styles for dark mode
-	const containerClass = isDarkMode
-		? "bg-gray-900 text-white"
-		: "bg-gray-100 text-gray-900";
-	const sectionClass = isDarkMode
-		? "bg-gray-800 text-white"
-		: "bg-white text-gray-900";
-	const headerClass = isDarkMode
-		? "bg-gray-700 text-white"
-		: "bg-green-600 text-white";
+
 
 	return (
 		<div
@@ -199,10 +177,10 @@ const FarmerDashboard = ({ isDarkMode }) => {
 				{/* Header */}
 				<header
 					className={`  ${
-						isDarkMode ? "bg-gray-900 text-green-600" : "bg-green-200"
+						isDarkMode ? "bg-gray-900 text-green-400" : "bg-green-200"
 					} flex flex-col items-center  p-4 rounded-lg shadow-md mb-6`}
 				>
-					<h1 className="text-2xl flex text-center items-center font-bold">
+					<h1 className={`text-2xl flex text-center items-center font-bold`}>
 						Welcome to the Former Dashboard
 					</h1>
 					<p className="text-sm flex text-center items-center">
@@ -211,8 +189,7 @@ const FarmerDashboard = ({ isDarkMode }) => {
 				</header>
 
 				{/* User Info Section */}
-				{/* User Info Section */}
-				<section className={`${sectionClass} p-6 rounded-lg shadow-md mb-6`}>
+				<section className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-6 rounded-lg shadow-md mb-6`}>
 					<h2 className="text-xl font-semibold mb-4">Your Profile</h2>
 					<div>
 						<p>
@@ -222,6 +199,28 @@ const FarmerDashboard = ({ isDarkMode }) => {
 							<strong>Email:</strong> {farmerData?.email || "Not available"}
 						</p>
 					</div>
+				</section>
+
+				{/* Dashboard Widgets */}
+				<section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					{[
+						{ title: "Total Earnings", value: `₹${totalEarnings}` },
+						{ title: "Total Sales", value: soldCrops.length },
+						{
+							title: "Sold Crops",
+							value: soldCrops.map((crop) => crop.name).join(", ") || "N/A",
+						},
+					].map(({ title, value }, index) => (
+						<div
+							key={index}
+							className={`p-4 rounded-lg shadow ${
+								isDarkMode ? "bg-gray-800 text-gray-100" : "bg-white"
+							}`}
+						>
+							<h3 className="text-xl font-semibold mb-2">{title}</h3>
+							<p className="text-2xl font-bold">{value}</p>
+						</div>
+					))}
 				</section>
 
 				{/* All Merchats Section */}
@@ -362,7 +361,6 @@ const FarmerDashboard = ({ isDarkMode }) => {
 											<strong>Description:</strong> {crop.description}
 										</p>
 										<p className="text-sm gap-5">
-											
 											<strong>Status:</strong>
 											{/* <span
 											className={` top-2 right-2 px-3 py-1 m-4 rounded-full text-white font-semibold   ${
@@ -439,7 +437,7 @@ const FarmerDashboard = ({ isDarkMode }) => {
 								/>
 
 								<label className="block mt-2 text-sm font-medium">
-									Quantity (Kg):
+									Quantity (Quintal):
 								</label>
 								<input
 									type="number"
@@ -454,7 +452,7 @@ const FarmerDashboard = ({ isDarkMode }) => {
 								/>
 
 								<label className="block mt-2 text-sm font-medium">
-									Price Per Kg:
+									Price Per Quintal:
 								</label>
 								<input
 									type="number"
@@ -507,7 +505,7 @@ const FarmerDashboard = ({ isDarkMode }) => {
 				</section>
 
 				{/* Dashboard Actions */}
-				<section className={`${sectionClass} p-6 rounded-lg shadow-md`}>
+				<section className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-6 rounded-lg shadow-md`}>
 					<h2 className="text-xl font-semibold mb-4">Dashboard Actions</h2>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						<div
@@ -527,8 +525,10 @@ const FarmerDashboard = ({ isDarkMode }) => {
 									: "bg-gray-200 hover:bg-gray-300"
 							} rounded-lg shadow cursor-pointer`}
 						>
-							<h3 className="text-lg font-semibold">View Market Prices</h3>
-							<p className="text-sm">Check current market rates for crops.</p>
+							<Link to={"/market-price"}>
+								<h3 className="text-lg font-semibold">View Market Prices</h3>
+								<p className="text-sm">Check current market rates for crops.</p>
+							</Link>
 						</div>
 						<div
 							className={`p-4 ${
