@@ -27,19 +27,17 @@ const FarmerDashboard = ({ isDarkMode }) => {
 		useContext(AppContext);
 
 	useEffect(() => {
-		// Simulate token check and user retrieval
-		// const token = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
 		if (token) {
-			// Fetch user details if token exists (simulate API call)
+			
 			setTimeout(() => {
 				setUser({
 					Name: farmerData.name,
 					email: farmerData.email,
 				});
 				setLoading(false);
-			}, 1000); // Simulate API response delay
+			}, 1000); 
 		} else {
-			setLoading(false); // No token, so stop loading
+			setLoading(false); 
 		}
 	}, []);
 
