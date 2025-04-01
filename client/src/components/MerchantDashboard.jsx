@@ -65,7 +65,7 @@ const MerchantDashboard = ({ isDarkMode }) => {
 
 				if (response.data.success) {
 					setCrops(response.data.crops);
-					console.log("crop url", response.data.crops.image);
+					
 				} else {
 					setError("Failed to fetch crops.");
 				}
@@ -188,9 +188,9 @@ const MerchantDashboard = ({ isDarkMode }) => {
 							>
 								<thead>
 									<tr className={isDarkMode ? "bg-gray-700" : "bg-gray-300"}>
-										<th className="py-3 px-4 border-b">Name</th>
-										<th className="py-3 px-4 border-b">Email</th>
-										<th className="py-3 px-4 border-b">Contact</th>
+										<td className="py-3 px-7  border-b font-bold">Name</td>
+										<td className="py-3 px-9 border-b font-bold">Email</td>
+										<td className="py-3 px-9 border-b font-bold">Contact</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -199,9 +199,9 @@ const MerchantDashboard = ({ isDarkMode }) => {
 											key={index}
 											className={`hover:bg-gray-200 dark:hover:bg-gray-600`}
 										>
-											<td className="py-3 px-4 border-b">{farmer.name}</td>
-											<td className="py-3 px-4 border-b">{farmer.email}</td>
-											<td className="py-3 px-4 border-b">{farmer.phone}</td>
+											<td className="py-3 px-7 border-b">{farmer.name}</td>
+											<td className="py-3 px-7 border-b">{farmer.email}</td>
+											<td className="py-3 px-7 border-b">{farmer.phone}</td>
 										</tr>
 									))}
 								</tbody>
