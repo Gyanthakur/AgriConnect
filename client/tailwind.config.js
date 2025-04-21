@@ -4,15 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      colors:{
-        'primary' : "#5f6fff",
+      colors: {
+        'primary': "#5f6fff",
         'bg-accent': "#00e676"
-        
+
       },
-      gridTemplateColumns:{
-        'auto':'repeat(auto-fill, minmax(200px,1fr))'
+      gridTemplateColumns: {
+        'auto': 'repeat(auto-fill, minmax(200px,1fr))'
       }
     },
   },
