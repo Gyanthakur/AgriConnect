@@ -30,6 +30,9 @@ import MyCrops from "./pages/dashboard/MyCrops";
 import AddCrop from "./pages/dashboard/AddCrop";
 import EditCrop from "./pages/dashboard/EditCrop";
 import CropsLayout from "./pages/dashboard/CropsLayout";
+import EquipmentLayout from "./pages/dashboard/EquipmentLayout";
+import MyEquipments from "./pages/dashboard/MyEquipments";
+import AddEquipment from "./pages/dashboard/AddEquipment";
 
 // Shop pages
 import ShopLayout from "./pages/shop/ShopLayout";
@@ -38,6 +41,10 @@ import CropsListing from "./pages/shop/CropListing";
 import ChatPage from "./pages/ChatPage";
 import PlantingCalendarPage from "./pages/PlantingCalendarPage";
 import CropDatabasePage from "./pages/CropDatabasePage";
+import EditEquipment from "./pages/dashboard/EditEquipment";
+
+import RentalLayout from "./pages/rental/RentalLayout";
+import EquipmentDetail from "./pages/rental/EquipmentDetail";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -71,6 +78,11 @@ const App = () => {
             <Route path="community" element={<CommunitySupport />} />
             <Route path="equipment" element={<FarmEquipmentRentals />} />
             <Route path="market-price" element={<MarketPrice />} />
+            <Route path="equipments" element={<EquipmentLayout />}>
+              <Route path="" element={<MyEquipments />} />
+              <Route path="add" element={<AddEquipment />} />
+              <Route path="edit/:equipmentId" element={<EditEquipment />} />
+            </Route>
             <Route path="crops" element={<CropsLayout />}>
               <Route path="" element={<MyCrops />} />
               <Route path="add" element={<AddCrop />} />
@@ -80,6 +92,10 @@ const App = () => {
           </Route>
           <Route path="/services" element={<Services />} />
           <Route path="/" element={<Home />} />
+          <Route path="/rental" element={<RentalLayout />}>
+            <Route path="" element={<FarmEquipmentRentals />} />
+            <Route path=":equipmentId" element={<EquipmentDetail />} />
+          </Route>
           <Route path="/shop" element={<ShopLayout />}>
             <Route path="" element={<CropsListing />} />
             <Route path=":cropId" element={<CropDetail />} />

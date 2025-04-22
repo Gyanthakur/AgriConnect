@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-export const generateJWT = (payload, secret, expiresIn = "7d") => {
+export const generateJWT = (payload, secret, expiresIn = "30d") => {
     try {
         return jwt.sign(payload, secret, { expiresIn });
     } catch (error) {

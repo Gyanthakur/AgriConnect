@@ -51,10 +51,10 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               Chatbot
             </NavLink>
             <NavLink
-              to="/contact-us"
+              to="/rental"
               className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500"
             >
-              Contact
+              Rental
             </NavLink>
             {getToken() && user && (
               <>
@@ -116,7 +116,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                   Log In
                 </NavLink>
                 <NavLink
-                  to="/signup"
+                  to="/register"
                   className="px-4 py-2 text-white transition bg-green-600 rounded-lg dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600"
                 >
                   Sign Up
@@ -159,10 +159,10 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               About
             </NavLink>
             <NavLink
-              to="/contact-us"
+              to="/rental"
               className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500"
             >
-              Contact
+              Rental
             </NavLink>
 
             {getToken() ? (
@@ -201,7 +201,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                   Log In
                 </NavLink>
                 <NavLink
-                  to="/signup"
+                  to="/register"
                   className="px-4 py-2 text-white transition bg-green-600 rounded-lg dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600"
                 >
                   Sign Up

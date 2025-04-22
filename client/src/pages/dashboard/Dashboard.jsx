@@ -12,6 +12,7 @@ import {
   Info,
   Phone,
   Settings,
+  WashingMachine,
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -41,6 +42,30 @@ const Dashboard = () => {
         "Purchase high-quality seeds, saplings and other crop varieties from trusted suppliers.",
     },
     {
+      id: "myEquipments",
+      label: "My Equipments",
+      icon: WashingMachine,
+      href: "/dashboard/equipments",
+      description:
+        "Manage your equipment inventory, including rentals and purchases, for efficient farming operations.",
+    },
+    {
+      id: "addEquipment",
+      label: "Add Equipment",
+      icon: PlusSquare,
+      href: "/dashboard/equipments/add",
+      description:
+        "Register new equipment and tools to keep track of your farming assets.",
+    },
+    {
+      id: "rentEquipment",
+      label: "Rent Equipment",
+      icon: Tractor,
+      href: "/rental",
+      description:
+        "Find and rent essential farming equipment at competitive rates from nearby providers.",
+    },
+    {
       id: "weather",
       label: "Weather Forecast",
       icon: CloudSun,
@@ -56,14 +81,7 @@ const Dashboard = () => {
       description:
         "Track current agricultural commodity prices to maximize profits when selling your produce.",
     },
-    {
-      id: "rentEquipment",
-      label: "Rent Equipment",
-      icon: Tractor,
-      href: "/dashboard/equipment",
-      description:
-        "Find and rent essential farming equipment at competitive rates from nearby providers.",
-    },
+
     {
       id: "community",
       label: "Community",

@@ -6,6 +6,7 @@ import userRouter from './routes/user.routes.js'
 import utilsRouter from './routes/utils.routes.js'
 import cropRouter from './routes/crop.routes.js'
 import ChatRouter from './routes/chat.routes.js'
+import equipmentRouter from './routes/equipment.routes.js'
 const app = express()
 app.use(express.json())
 const corsOptions = {
@@ -19,6 +20,7 @@ app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/utils", utilsRouter)
 app.use("/api/crop", cropRouter)
+app.use("/api/equipment", equipmentRouter)
 app.use("/api/chat", ChatRouter)
 app.get('/health', (req, res) => {
     res.send("healthy")

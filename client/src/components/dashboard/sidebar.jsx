@@ -19,6 +19,7 @@ import {
   Calendar,
   InfoIcon,
   Bot,
+  WashingMachineIcon,
 } from "lucide-react";
 import { AppContext } from "../../context/AppContext";
 
@@ -50,6 +51,31 @@ export default function Sidebar() {
       label: "Add Crop",
       icon: PlusSquare,
       href: "/dashboard/crops/add",
+    },
+
+    {
+      id: "myEquipments",
+      label: "My Equipments",
+      icon: WashingMachineIcon,
+      href: "/dashboard/equipments",
+    },
+    {
+      id: "addEquipment",
+      label: "Add Equipment",
+      icon: PlusSquare,
+      href: "/dashboard/equipments/add",
+    },
+    {
+      id: "information-resources",
+      label: "Information Resources",
+      icon: Info,
+      href: "/information-resources",
+    },
+    {
+      id: "sustainable-farming",
+      label: "Sustainable Farming",
+      icon: Leaf,
+      href: "/sustainable-farming",
     },
     {
       id: "chatbot",
