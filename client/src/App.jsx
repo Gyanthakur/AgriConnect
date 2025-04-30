@@ -47,85 +47,85 @@ import RentalLayout from "./pages/rental/RentalLayout";
 import EquipmentDetail from "./pages/rental/EquipmentDetail";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const location = useLocation(); // Get current route
+	const [isDarkMode, setIsDarkMode] = useState(false);
+	const location = useLocation(); // Get current route
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark", !isDarkMode);
-  };
+	const toggleTheme = () => {
+		setIsDarkMode(!isDarkMode);
+		document.documentElement.classList.toggle("dark", !isDarkMode);
+	};
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-zinc-900">
-      <ToastContainer position="top-right" />
-      {location.pathname !== "/chatbot" && (
-        <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      )}
-      <div className="w-full min-h-[92vh]">
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<SignupPage />} />
-          <Route path="/my-profile" element={<MyProfile />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="/community-support" element={<CommunitySupport />} />
-          <Route path="/weather" element={<WeatherInsights />} />
-          <Route path="/market-price" element={<MarketPrice />} />
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route path="" element={<Dashboard />} />
-            <Route path="weather" element={<WeatherInsights />} />
-            <Route path="news" element={<LiveAgriNews />} />
-            <Route path="community" element={<CommunitySupport />} />
-            <Route path="equipment" element={<FarmEquipmentRentals />} />
-            <Route path="market-price" element={<MarketPrice />} />
-            <Route path="equipments" element={<EquipmentLayout />}>
-              <Route path="" element={<MyEquipments />} />
-              <Route path="add" element={<AddEquipment />} />
-              <Route path="edit/:equipmentId" element={<EditEquipment />} />
-            </Route>
-            <Route path="crops" element={<CropsLayout />}>
-              <Route path="" element={<MyCrops />} />
-              <Route path="add" element={<AddCrop />} />
-              <Route path="edit/:cropId" element={<EditCrop />} />
-            </Route>
-            <Route path="settings" element={<MyProfile />} />
-          </Route>
-          <Route path="/services" element={<Services />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/rental" element={<RentalLayout />}>
-            <Route path="" element={<FarmEquipmentRentals />} />
-            <Route path=":equipmentId" element={<EquipmentDetail />} />
-          </Route>
-          <Route path="/shop" element={<ShopLayout />}>
-            <Route path="" element={<CropsListing />} />
-            <Route path=":cropId" element={<CropDetail />} />
-          </Route>
-          <Route path="/chatbot" element={<ChatPage />} />
-          <Route
-            path="/planting-calculator"
-            element={<PlantingCalendarPage />}
-          />
-          <Route path="/crop-database" element={<CropDatabasePage />} />
-          <Route
-            path="/information-resources"
-            element={<InformationResources isDarkMode={isDarkMode} />}
-          />
-          <Route
-            path="/sustainable-farming"
-            element={<SustainableFarming isDarkMode={isDarkMode} />}
-          />
-          <Route path="/news" element={<LiveAgriNews />} />
-          <Route
-            path="/crop-advisory"
-            element={<CropAdvisory isDarkMode={isDarkMode} />}
-          />
-          <Route path="/equipment-rentals" element={<FarmEquipmentRentals />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
-      {location.pathname !== "/chatbot" && <Footer />}
-    </div>
-  );
+	return (
+		<div className="min-h-screen bg-gray-50 dark:bg-zinc-900">
+			<ToastContainer position="top-right" />
+			{location.pathname !== "/chatbot" && (
+				<Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+			)}
+			<div className="w-full min-h-[92vh]">
+				<Routes>
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/register" element={<SignupPage />} />
+					<Route path="/my-profile" element={<MyProfile />} />
+					<Route path="/about-us" element={<About />} />
+					<Route path="/contact-us" element={<Contact />} />
+					<Route path="/community-support" element={<CommunitySupport />} />
+					<Route path="/weather" element={<WeatherInsights />} />
+					<Route path="/market-price" element={<MarketPrice />} />
+					<Route path="/dashboard" element={<DashboardLayout />}>
+						<Route path="" element={<Dashboard />} />
+						<Route path="weather" element={<WeatherInsights />} />
+						<Route path="news" element={<LiveAgriNews />} />
+						<Route path="community" element={<CommunitySupport />} />
+						<Route path="equipment" element={<FarmEquipmentRentals />} />
+						<Route path="market-price" element={<MarketPrice />} />
+						<Route path="equipments" element={<EquipmentLayout />}>
+							<Route path="" element={<MyEquipments />} />
+							<Route path="add" element={<AddEquipment />} />
+							<Route path="edit/:equipmentId" element={<EditEquipment />} />
+						</Route>
+						<Route path="crops" element={<CropsLayout />}>
+							<Route path="" element={<MyCrops />} />
+							<Route path="add" element={<AddCrop />} />
+							<Route path="edit/:cropId" element={<EditCrop />} />
+						</Route>
+						<Route path="settings" element={<MyProfile />} />
+					</Route>
+					<Route path="/services" element={<Services />} />
+					<Route path="/" element={<Home />} />
+					<Route path="/rental" element={<RentalLayout />}>
+						<Route path="" element={<FarmEquipmentRentals />} />
+						<Route path=":equipmentId" element={<EquipmentDetail />} />
+					</Route>
+					<Route path="/shop" element={<ShopLayout />}>
+						<Route path="" element={<CropsListing />} />
+						<Route path=":cropId" element={<CropDetail />} />
+					</Route>
+					<Route path="/chatbot" element={<ChatPage />} />
+					<Route
+						path="/planting-calculator"
+						element={<PlantingCalendarPage />}
+					/>
+					<Route path="/crop-database" element={<CropDatabasePage />} />
+					<Route
+						path="/information-resources"
+						element={<InformationResources isDarkMode={isDarkMode} />}
+					/>
+					<Route
+						path="/sustainable-farming"
+						element={<SustainableFarming isDarkMode={isDarkMode} />}
+					/>
+					<Route path="/news" element={<LiveAgriNews />} />
+					<Route
+						path="/crop-advisory"
+						element={<CropAdvisory isDarkMode={isDarkMode} />}
+					/>
+					<Route path="/equipment-rentals" element={<FarmEquipmentRentals />} />
+					<Route path="*" element={<ErrorPage />} />
+				</Routes>
+			</div>
+			{location.pathname !== "/chatbot" && <Footer />}
+		</div>
+	);
 };
 
 export default App;
