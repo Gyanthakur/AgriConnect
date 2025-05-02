@@ -33,7 +33,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-[url('/api/placeholder/1400/800')] bg-cover bg-center"></div>
         </div>
         <div className="container px-6 mx-auto text-center">
-          <h1 className="text-5xl font-extrabold leading-tight text-transparent md:text-6xl bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500 dark:from-green-400 dark:to-teal-300">
+          <h1 className="text-5xl font-extrabold leading-normal text-transparent md:text-6xl bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500 dark:from-green-400 dark:to-teal-300">
             Agriconnect
           </h1>
           <p className="max-w-2xl mx-auto mt-6 text-lg font-medium text-gray-700 md:text-xl dark:text-gray-300">
