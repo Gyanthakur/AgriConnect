@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useParams,
+  Outlet,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -45,6 +51,16 @@ import EditEquipment from "./pages/dashboard/EditEquipment";
 
 import RentalLayout from "./pages/rental/RentalLayout";
 import EquipmentDetail from "./pages/rental/EquipmentDetail";
+import OrderPage from "./components/OrderPage";
+import MyOrdersPage from "./components/MyOrdersPage";
+import ManageOrdersPage from "./components/ManageOrdersPage";
+import OrderDetail from "./components/OrderDetail";
+import ManageOrderPage from "./components/ManageOrderPage";
+import RentalOrderPage from "./components/RentalOrderPage";
+import ManageEquipmentsRentals from "./components/ManageEquipmentRentals";
+import MyRentalOrdersPage from "./components/ManageMyEqupmentRentals";
+import ManageMyEquipmentRental from "./components/ManageEqupmentRental";
+import ManageEquipmentRental from "./components/ManageEquipmentRental";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -82,11 +98,33 @@ const App = () => {
               <Route path="" element={<MyEquipments />} />
               <Route path="add" element={<AddEquipment />} />
               <Route path="edit/:equipmentId" element={<EditEquipment />} />
+              <Route
+                path="rentals/manage"
+                element={<ManageEquipmentsRentals />}
+              />
+              <Route
+                path="rental/manage/:rentalId"
+                element={<ManageEquipmentRental />}
+              />
+
+              <Route path="rentals/my" element={<MyRentalOrdersPage />} />
+              <Route
+                path="rental/my/manage/:rentalId"
+                element={<ManageMyEquipmentRental />}
+              />
             </Route>
             <Route path="crops" element={<CropsLayout />}>
               <Route path="" element={<MyCrops />} />
               <Route path="add" element={<AddCrop />} />
               <Route path="edit/:cropId" element={<EditCrop />} />
+            </Route>
+            <Route path="my-orders" element={<Outlet />}>
+              <Route path="" element={<MyOrdersPage />} />
+              <Route path=":orderId" element={<OrderDetail />} />
+            </Route>
+            <Route path="seller" element={<Outlet />}>
+              <Route path="orders" element={<ManageOrdersPage />} />
+              <Route path="order/:orderId" element={<ManageOrderPage />} />
             </Route>
             <Route path="settings" element={<MyProfile />} />
           </Route>
@@ -95,16 +133,19 @@ const App = () => {
           <Route path="/rental" element={<RentalLayout />}>
             <Route path="" element={<FarmEquipmentRentals />} />
             <Route path=":equipmentId" element={<EquipmentDetail />} />
+            <Route path="order/:orderId" element={<RentalOrderPage />} />
           </Route>
           <Route path="/shop" element={<ShopLayout />}>
             <Route path="" element={<CropsListing />} />
             <Route path=":cropId" element={<CropDetail />} />
+            <Route path="order/:orderId" element={<OrderPage />} />
           </Route>
           <Route path="/chatbot" element={<ChatPage />} />
           <Route
             path="/planting-calculator"
             element={<PlantingCalendarPage />}
           />
+          <Route path="/order/:orderId" element={<OrderPage />} />
           <Route path="/crop-database" element={<CropDatabasePage />} />
           <Route
             path="/information-resources"

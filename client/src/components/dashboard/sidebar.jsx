@@ -35,6 +35,12 @@ export default function Sidebar() {
       href: "/dashboard",
     },
     {
+      id: "myOrders",
+      label: "My Orders",
+      icon: ShoppingCart,
+      href: "/dashboard/my-orders",
+    },
+    {
       id: "orders",
       label: "Manage Orders",
       icon: ShoppingBag,
@@ -64,6 +70,18 @@ export default function Sidebar() {
       label: "Add Equipment",
       icon: PlusSquare,
       href: "/dashboard/equipments/add",
+    },
+    {
+      id: "manageEquipmentRentals",
+      label: "Manage Equipments REnatls",
+      icon: ShoppingBagIcon,
+      href: "/dashboard/equipments/rentals/manage",
+    },
+    {
+      id: "manageMyRentals",
+      label: "Manage My Rentals",
+      icon: ShoppingBagIcon,
+      href: "/dashboard/equipments/rentals/my",
     },
     {
       id: "information-resources",

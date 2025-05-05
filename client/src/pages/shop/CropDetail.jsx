@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { getToken } from "../../utils/token.utils";
+import { toast } from "react-toastify";
 
 const CropDetail = () => {
   const { cropId } = useParams();
@@ -11,6 +12,7 @@ const CropDetail = () => {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [orderLoading, setOrderLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -37,7 +39,6 @@ const CropDetail = () => {
         setLoading(false);
       }
     };
-
     fetchProduct();
   }, [cropId]);
 
@@ -57,6 +58,54 @@ const CropDetail = () => {
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    }
+  };
+
+  const initiateOrder = async () => {
+    if (!getToken()) {
+      navigate(`/login?redirect=/crop/${cropId}`, {
+        state: { from: `/crop/${cropId}` },
+      });
+      return;
+    }
+
+    if (quantity <= 0 || quantity > product.quantity) {
+      setError("Invalid quantity selected");
+      return;
+    }
+
+    setOrderLoading(true);
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_BACKEND_URL + "/api/order/initiate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`,
+          },
+          body: JSON.stringify({
+            items: [
+              {
+                cropId: cropId,
+                quantity: quantity,
+              },
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok && data.order) {
+        navigate(`/order/${data.order._id}`);
+      } else {
+        toast.error(data?.message || "Failed to initiate order");
+      }
+    } catch (err) {
+      console.error("Error initiating order:", err);
+      toast.error(err?.message || "Error initiating order");
+    } finally {
+      setOrderLoading(false);
     }
   };
 
@@ -101,7 +150,7 @@ const CropDetail = () => {
   );
 
   // Error display component
-  const ErrorDisplay = () => (
+  const ErrorDisplay = ({ message }) => (
     <div className="p-4 my-8 border-l-4 border-red-500 bg-red-50">
       <div className="flex">
         <div className="flex-shrink-0">
@@ -120,10 +169,10 @@ const CropDetail = () => {
         </div>
         <div className="ml-3">
           <h3 className="text-sm font-medium text-red-800">
-            Unable to load product
+            {message?.includes("Unable") ? message : "Unable to load product"}
           </h3>
           <div className="mt-2 text-sm text-red-700">
-            <p>{error}</p>
+            <p>{message || error}</p>
           </div>
           <div className="mt-4">
             <button
@@ -141,6 +190,53 @@ const CropDetail = () => {
               Return to listings
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Order status notification
+  const OrderNotification = ({ message, type }) => (
+    <div
+      className={`p-4 my-4 border-l-4 ${
+        type === "error"
+          ? "border-red-500 bg-red-50"
+          : "border-green-500 bg-green-50"
+      }`}
+    >
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <svg
+            className={`w-5 h-5 ${
+              type === "error" ? "text-red-500" : "text-green-500"
+            }`}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            {type === "error" ? (
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1-5a1 1 0 112 0v4a1 1 0 11-2 0v-4zm1-7a1 1 0 100 2 1 1 0 000-2z"
+                clipRule="evenodd"
+              />
+            ) : (
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
+            )}
+          </svg>
+        </div>
+        <div className="ml-3">
+          <p
+            className={`text-sm ${
+              type === "error" ? "text-red-700" : "text-green-700"
+            }`}
+          >
+            {message}
+          </p>
         </div>
       </div>
     </div>
@@ -180,7 +276,7 @@ const CropDetail = () => {
         {loading ? (
           <ProductSkeleton />
         ) : error ? (
-          <ErrorDisplay />
+          <ErrorDisplay message={error} />
         ) : (
           product && (
             <div className="p-6 bg-white ">
@@ -379,6 +475,24 @@ const CropDetail = () => {
                     </div>
                   </div>
 
+                  {/* Order total calculation */}
+                  <div className="p-4 mb-6 rounded-lg bg-green-50">
+                    <div className="flex justify-between mb-2 text-sm text-gray-600">
+                      <span>Price per {product.unit}:</span>
+                      <span>₹{product.price.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between mb-2 text-sm text-gray-600">
+                      <span>Quantity:</span>
+                      <span>
+                        {quantity} {product.unit}
+                      </span>
+                    </div>
+                    <div className="flex justify-between pt-2 mt-2 text-lg font-semibold border-t border-green-100">
+                      <span>Total:</span>
+                      <span>₹{(product.price * quantity).toFixed(2)}</span>
+                    </div>
+                  </div>
+
                   {/* Quantity selector */}
                   <div className="mb-6">
                     <label
@@ -437,9 +551,12 @@ const CropDetail = () => {
                     </div>
                   </div>
 
+                  {/* Error notification */}
+                  {error && <OrderNotification message={error} type="error" />}
+
                   {/* Action Buttons */}
                   <div className="flex gap-4">
-                    {product.isUserCrop ? (
+                    {!product.isUserCrop ? (
                       <button
                         disabled={product.quantity === 0}
                         type="button"
@@ -449,11 +566,46 @@ const CropDetail = () => {
                       </button>
                     ) : (
                       <button
-                        disabled={product.quantity === 0}
+                        disabled={product.quantity === 0 || orderLoading}
+                        onClick={initiateOrder}
                         type="button"
-                        className="flex-1 px-4 py-3 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        className={`flex-1 px-4 py-3 font-semibold text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
+                          product.quantity === 0
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : orderLoading
+                            ? "bg-green-400 cursor-wait"
+                            : "bg-green-600 hover:bg-green-700"
+                        }`}
                       >
-                        Add to Cart
+                        {orderLoading ? (
+                          <>
+                            <svg
+                              className="inline w-5 h-5 mr-2 -ml-1 text-white animate-spin"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                            Processing...
+                          </>
+                        ) : product.quantity === 0 ? (
+                          "Out of Stock"
+                        ) : (
+                          "Buy Now"
+                        )}
                       </button>
                     )}
 

@@ -9,8 +9,25 @@ const EquipmentDetail = () => {
   const [equipment, setEquipment] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [rentalDays, setRentalDays] = useState(1);
+  const [rentalStart, setRentalStart] = useState("");
+  const [rentalEnd, setRentalEnd] = useState("");
   const [selectedImage, setSelectedImage] = useState(0);
+  const [orderLoading, setOrderLoading] = useState(false);
+
+  // Calculate default dates (today and tomorrow)
+  useEffect(() => {
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    // Format dates as YYYY-MM-DD for input fields
+    const formatDateForInput = (date) => {
+      return date.toISOString().split("T")[0];
+    };
+
+    setRentalStart(formatDateForInput(today));
+    setRentalEnd(formatDateForInput(tomorrow));
+  }, []);
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -42,28 +59,95 @@ const EquipmentDetail = () => {
     fetchEquipment();
   }, [equipmentId]);
 
-  const handleRentalDaysChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (value > 0 && value <= 30) {
-      setRentalDays(value);
+  const initiateRental = async () => {
+    if (!getToken()) {
+      navigate(`/login?redirect=/equipment/${equipmentId}`, {
+        state: { from: `/equipment/${equipmentId}` },
+      });
+      return;
+    }
+
+    // Check if equipment is available
+    if (equipment.status !== "available") {
+      toast.error("This equipment is currently unavailable for rental");
+      return;
+    }
+
+    // Validate dates
+    const startDate = new Date(rentalStart);
+    const endDate = new Date(rentalEnd);
+    if (isNaN(startDate) || isNaN(endDate) || endDate <= startDate) {
+      toast.error("Please select valid rental dates");
+      return;
+    }
+
+    setOrderLoading(true);
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_BACKEND_URL + "/api/rental/initiate",
+        {
+          equipmentId: equipmentId,
+          rentalStart: rentalStart,
+          rentalEnd: rentalEnd,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+
+      if (response.data.order) {
+        navigate(`/rental/order/${response.data.order._id}`);
+      } else {
+        toast.error(response.data?.message || "Failed to initiate rental");
+      }
+    } catch (err) {
+      console.error("Error initiating rental:", err);
+      toast.error(err.response?.data?.message || "Error initiating rental");
+    } finally {
+      setOrderLoading(false);
     }
   };
 
-  const incrementRentalDays = () => {
-    if (rentalDays < 30) {
-      setRentalDays(rentalDays + 1);
+  // Calculate the total days and price when rental dates change
+  const calculateTotalDays = () => {
+    const startDate = new Date(rentalStart);
+    const endDate = new Date(rentalEnd);
+    if (isNaN(startDate) || isNaN(endDate) || endDate <= startDate) {
+      return 0;
     }
+
+    const msInDay = 1000 * 60 * 60 * 24;
+    return Math.ceil((endDate - startDate) / msInDay);
   };
 
-  const decrementRentalDays = () => {
-    if (rentalDays > 1) {
-      setRentalDays(rentalDays - 1);
-    }
+  const calculateTotalPrice = () => {
+    if (!equipment) return 0;
+    const totalDays = calculateTotalDays();
+    return equipment.pricePerDay * totalDays;
   };
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  // Minimum date for the date picker (today)
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  // Minimum end date based on selected start date
+  const getMinEndDate = () => {
+    if (!rentalStart) return getMinDate();
+
+    const startDate = new Date(rentalStart);
+    const nextDay = new Date(startDate);
+    nextDay.setDate(startDate.getDate() + 1);
+    return nextDay.toISOString().split("T")[0];
   };
 
   // Skeleton loader component
@@ -421,74 +505,79 @@ const EquipmentDetail = () => {
                     </div>
                   </div>
 
-                  {/* Rental days selector */}
+                  {/* Date selector */}
                   <div className="mb-6">
-                    <label
-                      htmlFor="rentalDays"
-                      className="block mb-2 text-sm font-medium text-gray-700"
-                    >
-                      Rental Duration (Days)
-                    </label>
-                    <div className="flex">
-                      <button
-                        type="button"
-                        onClick={decrementRentalDays}
-                        className="px-3 py-2 text-gray-500 border border-gray-300 rounded-l-md bg-gray-50 hover:bg-gray-100"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
+                    <h3 className="mb-2 text-lg font-semibold">
+                      Rental Period
+                    </h3>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="rentalStart"
+                          className="block mb-2 text-sm font-medium text-gray-700"
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        type="number"
-                        id="rentalDays"
-                        name="rentalDays"
-                        min="1"
-                        max="30"
-                        value={rentalDays}
-                        onChange={handleRentalDaysChange}
-                        className="flex-1 p-2 text-center border-gray-300 border-y focus:ring-blue-500 focus:border-blue-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={incrementRentalDays}
-                        className="px-3 py-2 text-gray-500 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
+                          Start Date
+                        </label>
+                        <input
+                          type="date"
+                          id="rentalStart"
+                          name="rentalStart"
+                          value={rentalStart}
+                          min={getMinDate()}
+                          onChange={(e) => setRentalStart(e.target.value)}
+                          className="block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="rentalEnd"
+                          className="block mb-2 text-sm font-medium text-gray-700"
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          End Date
+                        </label>
+                        <input
+                          type="date"
+                          id="rentalEnd"
+                          name="rentalEnd"
+                          value={rentalEnd}
+                          min={getMinEndDate()}
+                          onChange={(e) => setRentalEnd(e.target.value)}
+                          className="block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                          required
+                        />
+                      </div>
                     </div>
-                    <p className="mt-2 text-sm text-gray-500">
-                      Total:{" "}
-                      <span className="font-semibold">
-                        ₹{equipment.pricePerDay * rentalDays}
-                      </span>{" "}
-                      for {rentalDays} day{rentalDays > 1 ? "s" : ""}
-                    </p>
+
+                    {/* Show calculated rental information */}
+                    <div className="p-3 mt-4 border border-blue-100 rounded-md bg-blue-50">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Duration:</span>
+                        <span className="font-medium">
+                          {calculateTotalDays()} day
+                          {calculateTotalDays() !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      <div className="flex justify-between mt-1">
+                        <span className="text-gray-700">Rate:</span>
+                        <span className="font-medium">
+                          ₹{equipment.pricePerDay}/day
+                        </span>
+                      </div>
+                      <div className="flex justify-between pt-2 mt-2 border-t border-blue-200">
+                        <span className="font-semibold text-gray-800">
+                          Total:
+                        </span>
+                        <span className="font-semibold text-blue-700">
+                          ₹{calculateTotalPrice()}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Action Buttons */}
                   <div className="flex gap-4">
-                    {equipment.isUserEquipment ? (
+                    {!equipment.isUserEquipment ? (
                       <button
                         type="button"
                         className="flex-1 px-4 py-3 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -497,15 +586,20 @@ const EquipmentDetail = () => {
                       </button>
                     ) : (
                       <button
-                        disabled={equipment.status !== "available"}
+                        disabled={
+                          equipment.status !== "available" || orderLoading
+                        }
+                        onClick={initiateRental}
                         type="button"
                         className={`flex-1 px-4 py-3 font-semibold text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                          equipment.status === "available"
+                          equipment.status === "available" && !orderLoading
                             ? "bg-blue-600 hover:bg-blue-700"
                             : "bg-gray-400 cursor-not-allowed"
                         }`}
                       >
-                        {equipment.status === "available"
+                        {orderLoading
+                          ? "Processing..."
+                          : equipment.status === "available"
                           ? "Book Now"
                           : "Currently Unavailable"}
                       </button>

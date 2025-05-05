@@ -19,7 +19,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md dark:bg-gray-900">
-      <div className="px-6 py-4 mx-auto ">
+      <div className="px-6 py-2 mx-auto ">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
           <div
@@ -79,7 +79,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             {getToken() && user ? (
               <div className="relative">
                 <img
-                  className="w-6 h-6 rounded-full cursor-pointer"
+                  className="w-8 h-8 rounded-full cursor-pointer"
                   src={user?.image}
                   alt="Profile"
                   onClick={toggleDropdown}

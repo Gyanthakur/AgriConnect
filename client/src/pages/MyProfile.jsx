@@ -91,6 +91,8 @@ const ProfilePage = () => {
       image: user?.image || "",
       gender: user?.gender || "Not Selected",
       dob: user?.dob ? new Date(user.dob).toISOString().split("T")[0] : "",
+      aadharId: user?.aadharId || "",
+      farmerId: user?.farmerId || "",
       address: {
         line: user?.address?.line || "",
         city: user?.address?.city || "",
@@ -139,13 +141,12 @@ const ProfilePage = () => {
                 </label>
                 <input
                   type="text"
-                  value={
-                    user?.aadharId
-                      ? "********" + user?.aadharId.slice(-4)
-                      : "No Aadhar ID"
-                  }
-                  disabled
-                  className="w-full p-2 bg-gray-100 border rounded-md cursor-not-allowed dark:bg-gray-600"
+                  name="aadharId"
+                  onChange={handleChange}
+                  value={formData.aadharId}
+                  placeholder="Aadhar Id"
+                  disabled={user?.aadharId ? true : false}
+                  className="w-full p-2 bg-gray-100 border rounded-md dark:bg-gray-600"
                 />
               </div>
             </div>
@@ -156,13 +157,12 @@ const ProfilePage = () => {
                 </label>
                 <input
                   type="text"
-                  value={
-                    user?.farmerId
-                      ? "********" + user?.farmerId.slice(-4)
-                      : "No Aadhar ID"
-                  }
-                  disabled
-                  className="w-full p-2 bg-gray-100 border rounded-md cursor-not-allowed dark:bg-gray-600"
+                  name="farmerId"
+                  onChange={handleChange}
+                  disabled={user?.farmerId ? true : false}
+                  placeholder="Farmer Id"
+                  value={formData.farmerId}
+                  className="w-full p-2 bg-gray-100 border rounded-md dark:bg-gray-600"
                 />
               </div>
             </div>
