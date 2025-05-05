@@ -20,7 +20,7 @@ export default function SignupForm() {
   const [canResendOTP, setCanResendOTP] = useState(false);
   3;
   const handlePostSignIn = () => {
-    window.location.href = `/setup?redirect=${redirect}`;
+    window.location.href = `/dashboard/settings?redirect=${redirect}`;
   };
   const step1Config = {
     fields: [

@@ -15,14 +15,14 @@ const userSchema = new mongoose.Schema(
         firstName: {
             type: String,
             trim: true,
-            minlength: 3,
+           
             maxlength: 50,
             default: "",
         },
         lastName: {
             type: String,
             trim: true,
-            minlength: 3,
+           
             maxlength: 50,
             default: "",
         },

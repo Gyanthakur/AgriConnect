@@ -123,13 +123,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 </NavLink>
               </>
             )}
-
             <button
               onClick={toggleTheme}
               className="hidden text-gray-600 md:flex dark:text-gray-300"
             >
               {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+              
             </button>
+
 
             {/* Mobile Menu Button */}
             <button
@@ -208,6 +209,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 </NavLink>
               </>
             )}
+            
+            <button
+              onClick={toggleTheme}
+              className="text-gray-600 md:flex dark:text-gray-300"
+            >
+              {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+              
+            </button>
           </div>
         )}
       </div>
