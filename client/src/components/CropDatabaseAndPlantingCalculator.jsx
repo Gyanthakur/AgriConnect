@@ -19,338 +19,586 @@ export default function CropDatabaseAndPlantingCalculator({ section }) {
   const cropDatabase = [
     {
       id: 1,
-      name: "Tomato",
-      category: "Fruit Vegetables",
-      image: "🍅",
+      name: "Wheat (Gehun)",
+      category: "Cereal Grain",
+      image: "🌾",
       basics: {
-        latinName: "Solanum lycopersicum",
-        growthHabit: "Annual vine/bush",
-        height: "2-6 feet depending on variety",
-        spacing: "18-36 inches between plants",
-        yield: "10-15 pounds per plant (indeterminate)",
+        latinName: "Triticum aestivum",
+        growthHabit: "Annual crop",
+        height: "2-4 feet",
+        spacing: "20-25 cm between rows",
+        yield: "3-5 tonnes per hectare",
       },
       growingInfo: {
-        sunlight: "Full sun (6-8 hours)",
-        soil: "Well-draining, slightly acidic (pH 6.0-6.8)",
-        waterNeeds: "Consistent moisture, 1-2 inches per week",
-        fertilizer: "Balanced fertilizer with higher phosphorus when fruiting",
-        companions: "Basil, marigolds, nasturtiums, onions",
-        avoid: "Potatoes, corn, brassicas",
+        sunlight: "Full sun",
+        soil: "Loamy to clayey soil, well-drained",
+        waterNeeds: "Moderate, 4-6 irrigations during growing season",
+        fertilizer: "NPK mixture with higher nitrogen during early growth",
+        companions: "Gram, mustard, coriander",
+        avoid: "Rice fields recently harvested without proper preparation",
       },
       plantingDates: {
-        "5a": { start: "Apr 15", end: "May 30", harvest: "Jul 15 - Oct 1" },
-        "5b": { start: "Apr 10", end: "May 30", harvest: "Jul 10 - Oct 5" },
-        "6a": { start: "Apr 1", end: "Jun 10", harvest: "Jul 1 - Oct 15" },
-        "6b": { start: "Mar 25", end: "Jun 15", harvest: "Jun 25 - Oct 20" },
-        "7a": { start: "Mar 15", end: "Jun 30", harvest: "Jun 15 - Oct 30" },
-        "7b": { start: "Mar 10", end: "Jul 10", harvest: "Jun 10 - Nov 5" },
-        "8a": { start: "Mar 1", end: "Jul 20", harvest: "Jun 1 - Nov 15" },
-        "8b": { start: "Feb 20", end: "Aug 1", harvest: "May 20 - Nov 30" },
-        "9a": { start: "Feb 1", end: "Aug 15", harvest: "May 1 - Dec 15" },
-        "9b": { start: "Jan 15", end: "Sep 1", harvest: "Apr 15 - Dec 30" },
+        "North India": {
+          start: "Late October",
+          end: "Mid November",
+          harvest: "March - April",
+        },
+        "Central India": {
+          start: "Early November",
+          end: "Late November",
+          harvest: "February - March",
+        },
+        "South India": {
+          start: "Mid November",
+          end: "Mid December",
+          harvest: "February - March",
+        },
       },
       careInstructions: {
-        pruning:
-          "Remove suckers for indeterminate varieties, trim lower leaves as plant grows",
-        pests: "Watch for hornworms, aphids, whiteflies, and stink bugs",
-        diseases: "Susceptible to blight, wilt, and virus diseases",
-        tips: "Stake or cage plants, mulch soil to retain moisture, avoid wetting foliage",
+        pruning: "Not required",
+        pests: "Watch for aphids, termites, and stem borers",
+        diseases: "Rust, powdery mildew, and leaf blight",
+        tips: "First irrigation should be light, subsequent ones heavier. Control weeds during first 30-40 days",
       },
       harvestStorage: {
-        whenToHarvest: "When fully colored but still firm",
-        howToHarvest: "Twist gently or cut with pruners",
-        storage: "Room temperature for best flavor, up to 5 days",
-        preservation: "Can be frozen, dried, or canned",
+        whenToHarvest: "When heads turn golden-brown and grains become hard",
+        howToHarvest: "Cut with sickle or use combine harvester",
+        storage: "Store in clean, dry gunny bags in cool, dry place",
+        preservation:
+          "Treat with neem leaves or use approved storage pesticides to prevent weevils",
       },
       varieties: [
-        "Roma (paste)",
-        "Beefsteak (large slicing)",
-        "Cherry (small)",
-        "Brandywine (heirloom)",
-        "Early Girl (early producer)",
+        "HD-2967 (high yield)",
+        "PBW-343 (disease resistant)",
+        "WH-542 (early maturing)",
+        "Lokwan (good quality)",
+        "Sharbati (premium quality)",
       ],
     },
     {
       id: 2,
-      name: "Lettuce",
-      category: "Leafy Greens",
-      image: "🥬",
-      basics: {
-        latinName: "Lactuca sativa",
-        growthHabit: "Annual, rosette",
-        height: "6-12 inches",
-        spacing: "8-12 inches between plants",
-        yield: "1 head per plant or multiple cuttings for leaf types",
-      },
-      growingInfo: {
-        sunlight: "Partial shade to full sun (cooler climates)",
-        soil: "Rich, well-draining soil, pH 6.0-7.0",
-        waterNeeds: "Regular watering, keep soil moist",
-        fertilizer: "Light nitrogen fertilizer before planting",
-        companions: "Carrots, radishes, cucumbers, strawberries",
-        avoid: "Brassicas, celery",
-      },
-      plantingDates: {
-        "5a": {
-          start: "Apr 1",
-          end: "May 15",
-          harvest: "May 15 - Jun 30",
-          fall: "Aug 1 - Sep 1",
-        },
-        "5b": {
-          start: "Mar 25",
-          end: "May 20",
-          harvest: "May 10 - Jul 5",
-          fall: "Aug 1 - Sep 10",
-        },
-        "6a": {
-          start: "Mar 15",
-          end: "May 25",
-          harvest: "May 5 - Jul 10",
-          fall: "Aug 1 - Sep 15",
-        },
-        "6b": {
-          start: "Mar 10",
-          end: "May 30",
-          harvest: "Apr 25 - Jul 15",
-          fall: "Aug 1 - Sep 20",
-        },
-        "7a": {
-          start: "Mar 1",
-          end: "Jun 1",
-          harvest: "Apr 15 - Jul 20",
-          fall: "Aug 15 - Oct 1",
-        },
-        "7b": {
-          start: "Feb 20",
-          end: "Jun 10",
-          harvest: "Apr 10 - Jul 25",
-          fall: "Aug 20 - Oct 10",
-        },
-        "8a": {
-          start: "Feb 10",
-          end: "Jun 15",
-          harvest: "Apr 1 - Jul 25",
-          fall: "Sep 1 - Nov 1",
-        },
-        "8b": {
-          start: "Feb 1",
-          end: "Jun 20",
-          harvest: "Mar 20 - Jul 30",
-          fall: "Sep 15 - Nov 15",
-        },
-        "9a": {
-          start: "Jan 15",
-          end: "Mar 15",
-          harvest: "Mar 1 - May 15",
-          fall: "Oct 1 - Dec 1",
-        },
-        "9b": {
-          start: "Jan 1",
-          end: "Mar 1",
-          harvest: "Feb 15 - Apr 30",
-          fall: "Oct 15 - Dec 30",
-        },
-      },
-      careInstructions: {
-        pruning: "Harvest outer leaves for leaf varieties to extend harvest",
-        pests: "Watch for aphids, slugs, and snails",
-        diseases:
-          "Susceptible to downy mildew and bottom rot in humid conditions",
-        tips: "Plant in succession every 2-3 weeks for continuous harvest",
-      },
-      harvestStorage: {
-        whenToHarvest: "When leaves are tender and before bolting",
-        howToHarvest: "Cut whole head or harvest outer leaves",
-        storage: "Refrigerate unwashed in plastic bag for up to 1 week",
-        preservation: "Best fresh, not suitable for freezing or canning",
-      },
-      varieties: [
-        "Butterhead (Boston, Bibb)",
-        "Romaine (Cos)",
-        "Loose-leaf",
-        "Iceberg (Crisphead)",
-        "Batavian (Summer Crisp)",
-      ],
-    },
-    {
-      id: 3,
-      name: "Carrot",
-      category: "Root Vegetables",
-      image: "🥕",
-      basics: {
-        latinName: "Daucus carota",
-        growthHabit: "Biennial grown as annual",
-        height: "8-12 inches above ground",
-        spacing: "2-3 inches between plants",
-        yield: "8-10 carrots per foot of row",
-      },
-      growingInfo: {
-        sunlight: "Full sun to partial shade",
-        soil: "Deep, loose, well-draining soil, pH 6.0-6.8",
-        waterNeeds: "Consistent moisture, 1 inch per week",
-        fertilizer: "Low nitrogen, higher potassium and phosphorus",
-        companions: "Tomatoes, onions, leeks, rosemary, sage",
-        avoid: "Dill, parsnips, and other root vegetables",
-      },
-      plantingDates: {
-        "5a": {
-          start: "Apr 15",
-          end: "Jun 15",
-          harvest: "Jul 1 - Oct 15",
-          fall: "Jul 15 - Aug 1",
-        },
-        "5b": {
-          start: "Apr 10",
-          end: "Jun 20",
-          harvest: "Jun 25 - Oct 20",
-          fall: "Jul 15 - Aug 10",
-        },
-        "6a": {
-          start: "Apr 1",
-          end: "Jun 30",
-          harvest: "Jun 15 - Oct 30",
-          fall: "Jul 20 - Aug 15",
-        },
-        "6b": {
-          start: "Mar 25",
-          end: "Jul 10",
-          harvest: "Jun 10 - Nov 10",
-          fall: "Jul 25 - Aug 20",
-        },
-        "7a": {
-          start: "Mar 15",
-          end: "Jul 20",
-          harvest: "Jun 1 - Nov 20",
-          fall: "Aug 1 - Sep 1",
-        },
-        "7b": {
-          start: "Mar 1",
-          end: "Aug 1",
-          harvest: "May 25 - Nov 30",
-          fall: "Aug 15 - Sep 15",
-        },
-        "8a": {
-          start: "Feb 20",
-          end: "Aug 15",
-          harvest: "May 15 - Dec 1",
-          fall: "Aug 25 - Sep 30",
-        },
-        "8b": {
-          start: "Feb 10",
-          end: "Aug 25",
-          harvest: "May 1 - Dec 5",
-          fall: "Sep 1 - Oct 1",
-        },
-        "9a": {
-          start: "Feb 1",
-          end: "Sep 1",
-          harvest: "Apr 15 - Dec 10",
-          fall: "Sep 10 - Oct 10",
-        },
-        "9b": {
-          start: "Jan 15",
-          end: "Sep 15",
-          harvest: "Apr 1 - Dec 20",
-          fall: "Sep 15 - Oct 15",
-        },
-      },
-      careInstructions: {
-        pruning: "Thin plants to prevent crowding and ensure root growth",
-        pests: "Watch for carrot flies, aphids, and root maggots",
-        diseases: "Root rot in waterlogged soil, fungal infections",
-        tips: "Plant in deep, loose soil; avoid stony ground",
-      },
-      harvestStorage: {
-        whenToHarvest:
-          "When the roots reach the desired size, generally 6-8 inches",
-        howToHarvest: "Pull gently or use a fork to loosen soil",
-        storage: "Store in a cool, dry place, or refrigerate",
-        preservation: "Can be frozen or stored in root cellar for months",
-      },
-      varieties: ["Nantes", "Danvers", "Imperator", "Chantenay", "Purple Haze"],
-    },
-    {
-      id: 4,
-      name: "Wheat",
-      category: "Cereal Grains",
-      image: "🌾",
-      basics: {
-        latinName: "Triticum aestivum",
-        growthHabit: "Annual grass",
-        height: "2-4 feet",
-        spacing: "6-8 inches between rows",
-        yield: "50-100 bushels per acre",
-      },
-      growingInfo: {
-        sunlight: "Full sun",
-        soil: "Well-draining soil, pH 6.0-7.0",
-        waterNeeds: "Moderate, 1 inch per week",
-        fertilizer: "Balanced nitrogen, phosphorus, and potassium",
-        companions: "Peas, beans, mustard",
-        avoid: "Corn, barley",
-      },
-      plantingDates: {
-        "5a": { start: "Apr 1", end: "Apr 15", harvest: "Jul 15 - Aug 15" },
-        "5b": { start: "Mar 25", end: "Apr 5", harvest: "Jul 10 - Aug 10" },
-        "6a": { start: "Mar 15", end: "Mar 30", harvest: "Jul 1 - Aug 1" },
-        "6b": { start: "Mar 10", end: "Mar 25", harvest: "Jun 20 - Jul 20" },
-        "7a": { start: "Mar 1", end: "Mar 15", harvest: "Jun 10 - Jul 10" },
-        "7b": { start: "Feb 20", end: "Mar 10", harvest: "Jun 1 - Jul 1" },
-      },
-      careInstructions: {
-        pests: "Watch for aphids, wheat rust, and armyworms",
-        diseases: "Powdery mildew, wheat blight",
-        tips: "Avoid heavy watering, ensure soil is well-drained",
-      },
-      harvestStorage: {
-        whenToHarvest: "When heads are golden-brown and grains are hard",
-        howToHarvest: "Cut with a sickle or harvest mechanically",
-        storage: "Store in a cool, dry place, or use silos",
-        preservation: "Can be stored for months if kept dry",
-      },
-      varieties: ["Hard Red Winter", "Soft White", "Durum"],
-    },
-    {
-      id: 5,
-      name: "Rice",
-      category: "Cereal Grains",
+      name: "Rice (Chawal/Dhan)",
+      category: "Cereal Grain",
       image: "🍚",
       basics: {
         latinName: "Oryza sativa",
         growthHabit: "Annual grass",
         height: "2-3 feet",
-        spacing: "6-12 inches between plants",
-        yield: "6-8 tons per hectare",
+        spacing: "20 cm between plants in rows 20 cm apart",
+        yield: "4-6 tonnes per hectare",
       },
       growingInfo: {
         sunlight: "Full sun",
-        soil: "Well-drained, fertile soil with pH 5.5-6.5",
-        waterNeeds: "Consistent water, can tolerate wet conditions",
-        fertilizer: "High nitrogen",
-        companions: "Water-loving plants like taro, lotus",
-        avoid: "Plants with deep roots, like trees",
+        soil: "Clayey soil that retains water well",
+        waterNeeds: "High - standing water for most of growing period",
+        fertilizer: "NPK with emphasis on nitrogen during vegetative growth",
+        companions: "Azolla (water fern), fish in paddy fields",
+        avoid: "Plants that require well-drained soil",
       },
       plantingDates: {
-        "5a": { start: "Apr 15", end: "May 15", harvest: "Sep 15 - Oct 15" },
-        "5b": { start: "Apr 5", end: "May 10", harvest: "Sep 5 - Oct 5" },
-        "6a": { start: "Mar 20", end: "May 1", harvest: "Aug 20 - Sep 20" },
-        "6b": { start: "Mar 10", end: "Apr 20", harvest: "Aug 10 - Sep 10" },
-        "7a": { start: "Mar 1", end: "Apr 10", harvest: "Aug 1 - Sep 1" },
-        "7b": { start: "Feb 20", end: "Apr 1", harvest: "Jul 25 - Aug 25" },
+        "Kharif (Monsoon)": {
+          start: "June",
+          end: "July",
+          harvest: "October - November",
+        },
+        "Rabi (Winter)": {
+          start: "November",
+          end: "December",
+          harvest: "March - April",
+        },
+        "Summer (Zaid)": {
+          start: "February",
+          end: "March",
+          harvest: "June - July",
+        },
       },
       careInstructions: {
-        pests: "Watch for rice stem borers, brown planthoppers",
-        diseases: "Rice blast, sheath blight",
-        tips: "Plant in flooded paddies or wet conditions",
+        pruning: "Not required",
+        pests: "Stem borers, leaf folders, gall midge, brown planthoppers",
+        diseases: "Blast, bacterial leaf blight, sheath blight",
+        tips: "Maintain 2-5 cm water level in field during growth, drain before harvest",
       },
       harvestStorage: {
-        whenToHarvest: "When grains are firm and the plant turns golden",
+        whenToHarvest: "When 80-85% of grains turn golden yellow",
         howToHarvest: "Cut using sickle or mechanical harvester",
-        storage: "Store in cool, dry, and well-ventilated area",
-        preservation: "Can be stored for long periods in airtight containers",
+        storage: "Dry properly to 12-14% moisture before storing in jute bags",
+        preservation:
+          "Keep in dry place free from rodents, use neem leaves to repel insects",
       },
-      varieties: ["Indica", "Japonica", "Basmati"],
+      varieties: [
+        "Basmati (aromatic)",
+        "IR-36 (high yield)",
+        "Swarna (disease resistant)",
+        "Pusa Basmati (premium quality)",
+        "MTU-7029 (popular in eastern India)",
+      ],
+    },
+    {
+      id: 3,
+      name: "Gram (Chana)",
+      category: "Pulse/Legume",
+      image: "🌱",
+      basics: {
+        latinName: "Cicer arietinum",
+        growthHabit: "Annual bush",
+        height: "1-2 feet",
+        spacing: "30 cm between rows, 10 cm between plants",
+        yield: "1-2 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Sandy loam to medium black soil, well-drained",
+        waterNeeds: "Low to moderate, 2-3 irrigations during entire season",
+        fertilizer:
+          "Low nitrogen, higher phosphorus. Often inoculated with rhizobium bacteria",
+        companions: "Wheat, mustard, coriander",
+        avoid: "Other pulses, onion, garlic",
+      },
+      plantingDates: {
+        "North India": {
+          start: "Mid October",
+          end: "Mid November",
+          harvest: "March - April",
+        },
+        "Central India": {
+          start: "Late October",
+          end: "Late November",
+          harvest: "February - March",
+        },
+        "South India": {
+          start: "November",
+          end: "Early December",
+          harvest: "February - March",
+        },
+      },
+      careInstructions: {
+        pruning: "Not required",
+        pests: "Pod borer, aphids, cutworm",
+        diseases: "Wilt, root rot, Ascochyta blight",
+        tips: "Avoid overwatering as it promotes diseases, best grown in residual moisture",
+      },
+      harvestStorage: {
+        whenToHarvest: "When plants turn yellowish-brown and pods are dry",
+        howToHarvest: "Uproot entire plants or cut at base with sickle",
+        storage:
+          "Dry properly in sun before storing in gunny bags or clay/metal containers",
+        preservation: "Mix with neem leaves or ash to prevent pest infestation",
+      },
+      varieties: [
+        "Desi (small, dark)",
+        "Kabuli (large, light colored)",
+        "JG-11 (drought resistant)",
+        "Vijay (wilt resistant)",
+        "JAKI-9218 (high yielding)",
+      ],
+    },
+    {
+      id: 4,
+      name: "Mustard (Sarson)",
+      category: "Oilseed",
+      image: "🌼",
+      basics: {
+        latinName: "Brassica juncea",
+        growthHabit: "Annual erect herb",
+        height: "3-5 feet",
+        spacing: "30-45 cm between rows, 10-15 cm between plants",
+        yield: "1-1.5 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Loamy soil, well-drained",
+        waterNeeds: "Low to moderate, 2-3 irrigations",
+        fertilizer: "NPK with emphasis on nitrogen and sulfur",
+        companions: "Wheat, gram, coriander",
+        avoid: "Other brassica family crops",
+      },
+      plantingDates: {
+        "North India": {
+          start: "Mid October",
+          end: "Early November",
+          harvest: "February - March",
+        },
+        "Central India": {
+          start: "Late October",
+          end: "Mid November",
+          harvest: "February",
+        },
+        "Eastern India": {
+          start: "Early October",
+          end: "Late October",
+          harvest: "January - February",
+        },
+      },
+      careInstructions: {
+        pruning: "Not required",
+        pests: "Aphids, painted bug, sawfly",
+        diseases: "White rust, downy mildew, Alternaria blight",
+        tips: "First irrigation 30-35 days after sowing, critical for good yield",
+      },
+      harvestStorage: {
+        whenToHarvest: "When 75-80% of pods turn yellow",
+        howToHarvest: "Cut plants at base with sickle",
+        storage:
+          "Dry properly to reduce moisture content before threshing and storing",
+        preservation: "Store in dry gunny bags or traditional containers",
+      },
+      varieties: [
+        "Pusa Bold (high yield)",
+        "Varuna (widely adapted)",
+        "PM-26 (early maturing)",
+        "RH-749 (disease resistant)",
+        "Kranti (drought tolerant)",
+      ],
+    },
+    {
+      id: 5,
+      name: "Cotton (Kapas)",
+      category: "Fiber Crop",
+      image: "🧶",
+      basics: {
+        latinName: "Gossypium hirsutum",
+        growthHabit: "Annual shrub",
+        height: "3-5 feet",
+        spacing: "60-75 cm between rows, 30-45 cm between plants",
+        yield: "15-20 quintals per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Black cotton soil or deep loamy soil",
+        waterNeeds: "Moderate, 5-6 irrigations during growing season",
+        fertilizer: "NPK with higher nitrogen during vegetative phase",
+        companions: "Pulses, coriander, marigold",
+        avoid: "Other cotton fields (to reduce pest pressure)",
+      },
+      plantingDates: {
+        "North India": {
+          start: "April",
+          end: "May",
+          harvest: "October - December",
+        },
+        "Central India": {
+          start: "June",
+          end: "July",
+          harvest: "November - February",
+        },
+        "South India": {
+          start: "July",
+          end: "August",
+          harvest: "January - March",
+        },
+      },
+      careInstructions: {
+        pruning:
+          "Topping may be required to control height and promote branching",
+        pests: "Bollworms, whitefly, jassids, aphids",
+        diseases: "Bacterial blight, root rot, leaf curl virus",
+        tips: "Proper spacing important, remove weeds early, practice integrated pest management",
+      },
+      harvestStorage: {
+        whenToHarvest: "When bolls crack open exposing white cotton",
+        howToHarvest: "Hand picking in 3-4 rounds as bolls mature",
+        storage: "Store in clean, dry place away from moisture",
+        preservation: "Avoid storing wet cotton to prevent yellowing",
+      },
+      varieties: [
+        "Bt Cotton hybrids (pest resistant)",
+        "Desi Cotton (indigenous)",
+        "DCH-32 (long staple)",
+        "MCU-5 (medium staple)",
+        "LRA-5166 (disease resistant)",
+      ],
+    },
+    {
+      id: 6,
+      name: "Sugarcane (Ganna)",
+      category: "Cash Crop",
+      image: "🍯",
+      basics: {
+        latinName: "Saccharum officinarum",
+        growthHabit: "Perennial tall grass",
+        height: "8-15 feet",
+        spacing: "75-90 cm between rows",
+        yield: "70-100 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Deep, rich loamy soil with good drainage",
+        waterNeeds: "High, regular irrigation every 10-15 days",
+        fertilizer: "High nitrogen with balanced phosphorus and potassium",
+        companions: "Potato, onion, garlic (as intercrops in early stage)",
+        avoid: "Tall crops that would shade sugarcane",
+      },
+      plantingDates: {
+        "North India": {
+          start: "February",
+          end: "March",
+          harvest: "December - March (after 10-12 months)",
+        },
+        "Central India": {
+          start: "October",
+          end: "November",
+          harvest: "November - February (after 12-14 months)",
+        },
+        "South India": {
+          start: "December",
+          end: "January",
+          harvest: "December - March (after 12 months)",
+        },
+      },
+      careInstructions: {
+        pruning: "Detrashing (removing dry leaves) may be beneficial",
+        pests: "Borers, pyrilla, termites, whitefly",
+        diseases: "Red rot, smut, wilt, ratoon stunting",
+        tips: "Trench planting recommended, practice earthing up after 5-6 months",
+      },
+      harvestStorage: {
+        whenToHarvest:
+          "When canes are mature and sugar content is high (brix reading)",
+        howToHarvest: "Cut at base with sharp knife or sickle",
+        storage: "Process quickly after harvesting, can't be stored long",
+        preservation:
+          "Transport to sugar mill within 24-48 hours of harvesting",
+      },
+      varieties: [
+        "Co-0238 (high sugar content)",
+        "CoJ-64 (early maturing)",
+        "Co-86032 (high yield)",
+        "CoC-671 (drought resistant)",
+        "BO-130 (disease resistant)",
+      ],
+    },
+    {
+      id: 7,
+      name: "Potato (Aloo)",
+      category: "Root Vegetable",
+      image: "🥔",
+      basics: {
+        latinName: "Solanum tuberosum",
+        growthHabit: "Herbaceous annual",
+        height: "1.5-2 feet above ground",
+        spacing: "60 cm between rows, 20 cm between plants",
+        yield: "20-25 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Sandy loam to loamy soil, well-drained",
+        waterNeeds: "Moderate, consistent moisture important",
+        fertilizer: "Balanced NPK with higher phosphorus and potassium",
+        companions: "Marigold, beans, corn, cabbage",
+        avoid: "Tomato, eggplant (same family, share diseases)",
+      },
+      plantingDates: {
+        "North India": {
+          start: "October",
+          end: "November",
+          harvest: "January - February",
+        },
+        Hills: {
+          start: "March",
+          end: "April",
+          harvest: "August - September",
+        },
+        "Plateau Region": {
+          start: "September",
+          end: "October",
+          harvest: "December - January",
+        },
+      },
+      careInstructions: {
+        pruning: "Not required",
+        pests: "Potato tuber moth, aphids, whitefly",
+        diseases: "Late blight, early blight, bacterial wilt",
+        tips: "Earth up soil around plants when they reach 6 inches tall, repeat after 2-3 weeks",
+      },
+      harvestStorage: {
+        whenToHarvest: "When plant tops begin to yellow and die back",
+        howToHarvest: "Dig carefully with spade or khurpi (trowel)",
+        storage: "Store in cool, dark place with good ventilation",
+        preservation:
+          "Can be stored 2-4 months in well-ventilated cool storage",
+      },
+      varieties: [
+        "Kufri Jyoti (widely adapted)",
+        "Kufri Sindhuri (red skin)",
+        "Kufri Chandramukhi (early harvest)",
+        "Kufri Lauvkar (short duration)",
+        "Kufri Bahar (heat tolerant)",
+      ],
+    },
+    {
+      id: 8,
+      name: "Turmeric (Haldi)",
+      category: "Spice Crop",
+      image: "🧡",
+      basics: {
+        latinName: "Curcuma longa",
+        growthHabit: "Herbaceous perennial",
+        height: "2-3 feet",
+        spacing: "30 cm between rows, 15-20 cm between plants",
+        yield: "20-25 tonnes per hectare (fresh rhizomes)",
+      },
+      growingInfo: {
+        sunlight: "Partial shade to full sun",
+        soil: "Loamy soil rich in organic matter",
+        waterNeeds: "Moderate to high, well-distributed rainfall/irrigation",
+        fertilizer: "Organic manure and balanced NPK",
+        companions: "Chili, onion, marigold",
+        avoid: "Root crops that compete for space",
+      },
+      plantingDates: {
+        Plains: {
+          start: "April",
+          end: "June",
+          harvest: "January - March (after 9 months)",
+        },
+        Hills: {
+          start: "February",
+          end: "March",
+          harvest: "December - January (after 9-10 months)",
+        },
+        "South India": {
+          start: "May",
+          end: "June",
+          harvest: "February - April (after 9 months)",
+        },
+      },
+      careInstructions: {
+        pruning: "Not required",
+        pests: "Shoot borer, rhizome scale, thrips",
+        diseases: "Rhizome rot, leaf spot, leaf blotch",
+        tips: "Mulch after planting, maintain soil moisture but avoid waterlogging",
+      },
+      harvestStorage: {
+        whenToHarvest:
+          "When leaves turn yellow and start drying (8-9 months after planting)",
+        howToHarvest: "Dig carefully with spade to avoid damage to rhizomes",
+        storage: "Clean, boil, and dry rhizomes before storage",
+        preservation: "Store dried turmeric in airtight containers",
+      },
+      varieties: [
+        "Salem (high curcumin)",
+        "Alleppey (deep yellow)",
+        "Roma (disease resistant)",
+        "Krishna (high yield)",
+        "Suguna (early maturing)",
+      ],
+    },
+    {
+      id: 9,
+      name: "Tomato (Tamatar)",
+      category: "Fruit Vegetable",
+      image: "🍅",
+      basics: {
+        latinName: "Solanum lycopersicum",
+        growthHabit: "Annual vine/bush",
+        height: "2-6 feet depending on variety",
+        spacing: "60 cm between rows, 45 cm between plants",
+        yield: "20-25 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun (6-8 hours)",
+        soil: "Well-draining loamy soil",
+        waterNeeds: "Consistent moisture, avoid wetting foliage",
+        fertilizer: "Balanced fertilizer with higher phosphorus when fruiting",
+        companions: "Basil, marigold, onion, garlic",
+        avoid: "Potato, fennel, cabbage family",
+      },
+      plantingDates: {
+        "North India": {
+          start: "October",
+          end: "November",
+          harvest: "February - April",
+        },
+        "Central India": {
+          start: "July",
+          end: "August",
+          harvest: "November - January",
+        },
+        "South India": {
+          start: "June",
+          end: "July",
+          harvest: "October - December",
+        },
+      },
+      careInstructions: {
+        pruning: "Remove suckers for indeterminate varieties",
+        pests: "Fruit borer, whitefly, leaf miner, aphids",
+        diseases: "Early blight, late blight, leaf curl virus",
+        tips: "Stake or cage plants, mulch soil to retain moisture",
+      },
+      harvestStorage: {
+        whenToHarvest: "When fully colored but still firm",
+        howToHarvest: "Twist gently or cut with scissors",
+        storage: "Room temperature for best flavor, up to 5 days",
+        preservation: "Can be sun-dried or made into puree for longer storage",
+      },
+      varieties: [
+        "Pusa Ruby (common variety)",
+        "Arka Vikas (high yield)",
+        "Pusa Hybrid-8 (disease resistant)",
+        "Punjab Chhuhara (processing type)",
+        "Arka Saurabh (suited for rainy season)",
+      ],
+    },
+    {
+      id: 10,
+      name: "Onion (Pyaaz)",
+      category: "Bulb Vegetable",
+      image: "🧅",
+      basics: {
+        latinName: "Allium cepa",
+        growthHabit: "Biennial grown as annual",
+        height: "1-2 feet",
+        spacing: "15 cm between plants in rows 20 cm apart",
+        yield: "25-30 tonnes per hectare",
+      },
+      growingInfo: {
+        sunlight: "Full sun",
+        soil: "Sandy loam to loamy soil, well-drained",
+        waterNeeds: "Moderate, regular but not excessive",
+        fertilizer: "NPK with higher potassium during bulb formation",
+        companions: "Carrots, tomatoes, marigold",
+        avoid: "Beans, peas, asparagus",
+      },
+      plantingDates: {
+        "Kharif (Monsoon)": {
+          start: "May",
+          end: "June",
+          harvest: "November - December",
+        },
+        "Rabi (Winter)": {
+          start: "October",
+          end: "November",
+          harvest: "March - April",
+        },
+        Summer: {
+          start: "January",
+          end: "February",
+          harvest: "May - June",
+        },
+      },
+      careInstructions: {
+        pruning: "Not required",
+        pests: "Thrips, onion fly, mites",
+        diseases: "Purple blotch, downy mildew, basal rot",
+        tips: "Stop watering when tops begin to fall over near maturity",
+      },
+      harvestStorage: {
+        whenToHarvest:
+          "When tops fall over and begin to dry (70-80% tops down)",
+        howToHarvest:
+          "Pull or dig carefully, leave in field to dry for 2-3 days",
+        storage: "Cure properly by drying tops and outer skins",
+        preservation:
+          "Store in mesh bags in cool, dry place with good ventilation",
+      },
+      varieties: [
+        "Nasik Red (common red variety)",
+        "Pusa Red (good storage)",
+        "Agrifound Light Red (high yield)",
+        "Pusa White Round (white variety)",
+        "N-53 (suited for kharif season)",
+      ],
     },
   ];
 
@@ -1090,16 +1338,17 @@ export default function CropDatabaseAndPlantingCalculator({ section }) {
                     value={zone}
                     onChange={(e) => setZone(e.target.value)}
                   >
-                    <option value="5a">Zone 5a</option>
-                    <option value="5b">Zone 5b</option>
-                    <option value="6a">Zone 6a</option>
-                    <option value="6b">Zone 6b</option>
-                    <option value="7a">Zone 7a</option>
-                    <option value="7b">Zone 7b</option>
-                    <option value="8a">Zone 8a</option>
-                    <option value="8b">Zone 8b</option>
-                    <option value="9a">Zone 9a</option>
-                    <option value="9b">Zone 9b</option>
+                    {[
+                      ...new Set(
+                        cropDatabase
+                          .map((t) => Object.keys(t.plantingDates || {}))
+                          .flat()
+                      ),
+                    ].map((zone) => (
+                      <option key={zone} value={zone}>
+                        {zone}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

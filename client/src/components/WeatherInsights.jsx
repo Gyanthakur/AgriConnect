@@ -17,11 +17,14 @@ import {
   RefreshCw,
   ChevronLeft,
   ChevronRight,
+  Tractor,
+  Leaf,
 } from "lucide-react";
 
 const WeatherInsights = () => {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [monthlyForecast, setMonthlyForecast] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [city, setCity] = useState(""); // User input for city
@@ -30,6 +33,7 @@ const WeatherInsights = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
   // Get weather condition icon
   const getWeatherIcon = (condition) => {
     const code = condition.toLowerCase();
@@ -48,12 +52,14 @@ const WeatherInsights = () => {
     return <Cloud size={36} />;
   };
 
-  const generateFarmingTips = (weatherData) => {
+  const generateFarmingTips = (weatherData, monthlyData) => {
     const { temp } = weatherData.main;
     const condition = weatherData.weather[0].main.toLowerCase();
     const windSpeed = weatherData.wind.speed;
     const humidity = weatherData.main.humidity;
     let tips = [];
+
+    // Current weather tips
     if (temp > 30) {
       tips.push(
         "High temperature alert. Ensure crops have adequate irrigation."
@@ -62,6 +68,7 @@ const WeatherInsights = () => {
     } else if (temp < 10) {
       tips.push("Low temperature alert. Protect frost-sensitive crops.");
     }
+
     if (condition.includes("rain") || condition.includes("drizzle")) {
       tips.push("Rainfall expected. Delay pesticide application.");
       if (windSpeed > 5) {
@@ -70,18 +77,120 @@ const WeatherInsights = () => {
         );
       }
     }
+
     if (humidity > 80) {
       tips.push("High humidity. Watch for fungal diseases in crops.");
     }
+
     if (windSpeed > 7) {
       tips.push("Strong winds alert. Secure any loose farming equipment.");
     }
-    if (condition.includes("clear")) {
-      tips.push("Good weather for harvesting dry crops.");
+
+    // Monthly forecast tips
+    if (monthlyData) {
+      const rainyDays = monthlyData.filter(
+        (day) =>
+          day.weather.toLowerCase().includes("rain") ||
+          day.weather.toLowerCase().includes("drizzle")
+      ).length;
+
+      const hotDays = monthlyData.filter((day) => day.maxTemp > 30).length;
+      const coldDays = monthlyData.filter((day) => day.minTemp < 10).length;
+
+      if (rainyDays > 10) {
+        tips.push(
+          `Heavy rainfall expected this month (${rainyDays} days). Plan drainage systems and consider delayed sowing.`
+        );
+      } else if (rainyDays < 5) {
+        tips.push(
+          "Low rainfall expected this month. Plan irrigation accordingly."
+        );
+      }
+
+      if (hotDays > 15) {
+        tips.push(
+          `Hot weather expected (${hotDays} days above 30°C). Choose heat-resistant varieties.`
+        );
+      }
+
+      if (coldDays > 10) {
+        tips.push(
+          `Cold spell expected (${coldDays} days below 10°C). Protect sensitive crops.`
+        );
+      }
     }
+
     return tips.length > 0
       ? tips
       : ["Weather conditions are generally favorable for farming activities."];
+  };
+
+  // Simulated monthly forecast data (since OpenWeatherMap free API doesn't provide long-term forecasts)
+  const generateMonthlyForecast = (location) => {
+    const today = new Date();
+    const forecast = [];
+
+    // Generate forecast for next 60 days (2 months)
+    for (let i = 0; i < 60; i++) {
+      const forecastDate = new Date();
+      forecastDate.setDate(today.getDate() + i);
+
+      // Create seasonal variations based on month
+      const month = forecastDate.getMonth();
+      let baseTemp, rainProbability, windSpeed;
+
+      // Adjust conditions based on month (Northern Hemisphere seasons)
+      if (month >= 2 && month <= 4) {
+        // Spring (Mar-May)
+        baseTemp = 18 + Math.random() * 8;
+        rainProbability = 0.3 + Math.random() * 0.2;
+        windSpeed = 2 + Math.random() * 4;
+      } else if (month >= 5 && month <= 7) {
+        // Summer (Jun-Aug)
+        baseTemp = 25 + Math.random() * 10;
+        rainProbability = 0.2 + Math.random() * 0.3;
+        windSpeed = 1 + Math.random() * 3;
+      } else if (month >= 8 && month <= 10) {
+        // Fall (Sep-Nov)
+        baseTemp = 15 + Math.random() * 8;
+        rainProbability = 0.4 + Math.random() * 0.2;
+        windSpeed = 2 + Math.random() * 5;
+      } else {
+        // Winter (Dec-Feb)
+        baseTemp = 5 + Math.random() * 8;
+        rainProbability = 0.3 + Math.random() * 0.4;
+        windSpeed = 3 + Math.random() * 6;
+      }
+
+      // Daily variation
+      const dailyVariation = Math.random() * 6 - 3;
+      const tempVariation = Math.random() * 8 - 4;
+
+      // Determine weather condition
+      let weather;
+      const randomCondition = Math.random();
+      if (randomCondition < rainProbability) {
+        weather = "Rain";
+      } else if (randomCondition < rainProbability + 0.1) {
+        weather = "Cloudy";
+      } else if (randomCondition < rainProbability + 0.2 && baseTemp < 5) {
+        weather = "Snow";
+      } else {
+        weather = "Clear";
+      }
+
+      forecast.push({
+        date: forecastDate,
+        weather: weather,
+        maxTemp: baseTemp + tempVariation,
+        minTemp: baseTemp - tempVariation - 5,
+        humidity: 40 + Math.random() * 50,
+        windSpeed: windSpeed,
+        rainChance: rainProbability * 100,
+      });
+    }
+
+    return forecast;
   };
 
   const fetchWeather = async (query) => {
@@ -106,10 +215,17 @@ const WeatherInsights = () => {
       setLoading(true);
       const weatherResponse = await axios.get(url);
       const forecastResponse = await axios.get(forecastUrl);
+
+      // Get current weather and 5-day forecast
       setWeather(weatherResponse.data);
-      // Get all forecast data instead of just filtering
       setForecast(forecastResponse.data.list);
-      setFarmingTips(generateFarmingTips(weatherResponse.data));
+
+      // Generate 2-month forecast (simulated)
+      const monthlyData = generateMonthlyForecast(weatherResponse.data.name);
+      setMonthlyForecast(monthlyData);
+
+      // Generate farming tips based on current weather and monthly forecast
+      setFarmingTips(generateFarmingTips(weatherResponse.data, monthlyData));
       setError(null);
     } catch (error) {
       setError(
@@ -160,8 +276,7 @@ const WeatherInsights = () => {
     });
   };
 
-  const formatDate = (dt_txt) => {
-    const date = new Date(dt_txt);
+  const formatDate = (date) => {
     return date.toLocaleDateString(undefined, {
       weekday: "short",
       month: "short",
@@ -169,35 +284,59 @@ const WeatherInsights = () => {
     });
   };
 
-  const formatForecastTime = (dt_txt) => {
-    const date = new Date(dt_txt);
-    return date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
   const slideRight = () => {
-    if (forecast && currentSlide < forecast.length - 3) {
-      setCurrentSlide(currentSlide + 1);
+    if (monthlyForecast && currentSlide < monthlyForecast.length - 7) {
+      setCurrentSlide(currentSlide + 7);
     }
   };
 
   const slideLeft = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
+    if (currentSlide >= 7) {
+      setCurrentSlide(currentSlide - 7);
     }
+  };
+
+  // Group forecast data by week
+  const getWeeklyGroups = () => {
+    if (!monthlyForecast) return [];
+
+    const weeks = [];
+    for (let i = 0; i < monthlyForecast.length; i += 7) {
+      const weekData = monthlyForecast.slice(i, i + 7);
+      weeks.push(weekData);
+    }
+    return weeks;
+  };
+
+  // Get current week data
+  const getCurrentWeekData = () => {
+    const weeklyGroups = getWeeklyGroups();
+    const currentWeekIndex = Math.floor(currentSlide / 7);
+    return weeklyGroups[currentWeekIndex] || [];
+  };
+
+  const getWeatherIconForForecast = (condition) => {
+    const code = condition.toLowerCase();
+    if (code.includes("clear"))
+      return <Sun className="text-yellow-500" size={24} />;
+    if (code.includes("cloud"))
+      return <Cloud className="text-gray-500" size={24} />;
+    if (code.includes("rain"))
+      return <CloudRain className="text-blue-500" size={24} />;
+    if (code.includes("snow"))
+      return <CloudSnow className="text-blue-200" size={24} />;
+    return <Cloud size={24} />;
   };
 
   return (
     <div className="w-full p-4 py-12 mx-auto text-gray-800 dark:bg-zinc-900 dark:text-white">
       <div className="mb-6 text-center">
         <h1 className="flex items-center justify-center gap-2 text-2xl font-bold">
-          <CloudRain className="text-blue-600 dark:text-blue-400" />
-          Farm Weather Insights
+          <Tractor className="text-green-600 dark:text-green-400" />
+          Agricultural Weather Insights
         </h1>
         <p className="mt-2 text-gray-600 dark:text-gray-300">
-          Real-time weather information to help plan your farming activities
+          Long-term weather forecasts for better agricultural planning
         </p>
       </div>
 
@@ -212,7 +351,7 @@ const WeatherInsights = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 font-medium text-white transition-colors bg-blue-500 rounded-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+            className="px-4 py-2 font-medium text-white transition-colors bg-green-500 rounded-lg hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
             disabled={searching}
           >
             {searching ? (
@@ -228,7 +367,7 @@ const WeatherInsights = () => {
         {loading || searching ? (
           <div className="flex flex-col items-center justify-center py-10">
             <RefreshCw
-              className="mb-4 text-blue-600 animate-spin dark:text-blue-400"
+              className="mb-4 text-green-600 animate-spin dark:text-green-400"
               size={40}
             />
             <p>Loading weather data...</p>
@@ -241,7 +380,7 @@ const WeatherInsights = () => {
           <div>
             {/* Current Weather */}
             <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
-              <div className="p-4 bg-white border rounded-lg dark:border-zinc-700 dark:bg-gray-900">
+              <div className="p-4 bg-white border rounded-lg shadow-sm dark:border-zinc-700 dark:bg-gray-900">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-semibold">Current Weather</h2>
                   <span className="text-sm text-gray-500 dark:text-gray-300">
@@ -312,12 +451,15 @@ const WeatherInsights = () => {
               </div>
 
               {/* Farming Tips Section */}
-              <div className="p-4 bg-white border rounded-lg dark:border-zinc-700 dark:bg-gray-900">
-                <h2 className="mb-4 text-xl font-semibold">Farming Tips</h2>
+              <div className="p-4 bg-white border rounded-lg shadow-sm dark:border-zinc-700 dark:bg-gray-900">
+                <h2 className="flex items-center mb-4 text-xl font-semibold">
+                  <Leaf className="mr-2 text-green-600" size={24} />
+                  Farming Tips
+                </h2>
                 <ul className="space-y-2">
                   {farmingTips.map((tip, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mr-2">•</span>
+                      <span className="mr-2 text-green-600">•</span>
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -325,17 +467,17 @@ const WeatherInsights = () => {
               </div>
             </div>
 
-            {/* Forecast Slider */}
-            {forecast && (
-              <div className="p-4 mt-6 bg-white border rounded-lg dark:border-zinc-700 dark:bg-gray-900">
+            {/* Monthly Forecast */}
+            {monthlyForecast && (
+              <div className="p-4 mt-6 bg-white border rounded-lg shadow-sm dark:border-zinc-700 dark:bg-gray-900">
                 <h2 className="flex items-center mb-4 text-xl font-semibold">
-                  <Calendar className="mr-2" size={20} />
-                  Weather Forecast
+                  <Calendar className="mr-2 text-green-600" size={20} />
+                  2-Month Weather Forecast
                 </h2>
 
                 <div className="relative">
                   {/* Slider Navigation */}
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between mb-4">
                     <button
                       onClick={slideLeft}
                       disabled={currentSlide === 0}
@@ -343,66 +485,275 @@ const WeatherInsights = () => {
                     >
                       <ChevronLeft size={20} />
                     </button>
-                    <span className="text-sm text-gray-500 dark:text-gray-300">
-                      {forecast.length > 0
-                        ? `${currentSlide + 1}-${Math.min(
-                            currentSlide + 3,
-                            forecast.length
-                          )} of ${forecast.length}`
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {monthlyForecast.length > 0
+                        ? `Week ${
+                            Math.floor(currentSlide / 7) + 1
+                          } of ${Math.ceil(monthlyForecast.length / 7)}`
                         : ""}
                     </span>
                     <button
                       onClick={slideRight}
-                      disabled={currentSlide >= forecast.length - 3}
+                      disabled={currentSlide >= monthlyForecast.length - 7}
                       className="p-2 bg-gray-200 rounded-full dark:bg-gray-600 disabled:opacity-50"
                     >
                       <ChevronRight size={20} />
                     </button>
                   </div>
 
-                  {/* Slider Content */}
-                  <div ref={sliderRef} className="overflow-hidden">
-                    <div
-                      className="flex transition-transform duration-300 ease-in-out"
-                      style={{
-                        transform: `translateX(-${currentSlide * 33.33}%)`,
-                      }}
-                    >
-                      {forecast.map((item, index) => (
-                        <div key={index} className="w-full min-w-[33.33%] px-2">
-                          <div className="h-full p-3 text-center bg-gray-100 rounded-lg dark:bg-gray-900">
-                            <h3 className="font-medium">
-                              {formatDate(item.dt_txt)}
-                            </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                              {formatForecastTime(item.dt_txt)}
-                            </p>
-                            <div className="flex justify-center my-2">
-                              {getWeatherIcon(item.weather[0].description)}
-                            </div>
-                            <p className="mb-2 text-sm capitalize">
-                              {item.weather[0].description}
-                            </p>
-                            <div className="flex justify-between text-sm">
-                              <span>{item.main.temp_min.toFixed(1)}°C</span>
-                              <span>{item.main.temp_max.toFixed(1)}°C</span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
-                              <div className="flex items-center">
-                                <Droplets
-                                  size={12}
-                                  className="mr-1 text-blue-500"
+                  {/* Weekly Overview */}
+                  <div className="mb-6 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-800">
+                    <div className="p-4">
+                      <h3 className="mb-2 text-lg font-medium">
+                        Weekly Overview
+                      </h3>
+                      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                        {getCurrentWeekData().length > 0 && (
+                          <>
+                            <div className="p-3 bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-sm font-medium">
+                                  Avg Temperature
+                                </h4>
+                                <ThermometerSun
+                                  className="text-red-500"
+                                  size={16}
                                 />
-                                <span>{item.main.humidity}%</span>
                               </div>
-                              <div className="flex items-center">
-                                <Wind size={12} className="mr-1" />
-                                <span>{item.wind.speed} m/s</span>
-                              </div>
+                              <p className="mt-2 text-xl font-semibold">
+                                {(
+                                  getCurrentWeekData().reduce(
+                                    (acc, day) =>
+                                      acc + (day.maxTemp + day.minTemp) / 2,
+                                    0
+                                  ) / getCurrentWeekData().length
+                                ).toFixed(1)}
+                                °C
+                              </p>
                             </div>
-                          </div>
-                        </div>
-                      ))}
+
+                            <div className="p-3 bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-sm font-medium">
+                                  Rainy Days
+                                </h4>
+                                <CloudRain
+                                  className="text-blue-500"
+                                  size={16}
+                                />
+                              </div>
+                              <p className="mt-2 text-xl font-semibold">
+                                {
+                                  getCurrentWeekData().filter((day) =>
+                                    day.weather.toLowerCase().includes("rain")
+                                  ).length
+                                }
+                              </p>
+                            </div>
+
+                            <div className="p-3 bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-sm font-medium">
+                                  Avg Humidity
+                                </h4>
+                                <Droplets className="text-blue-500" size={16} />
+                              </div>
+                              <p className="mt-2 text-xl font-semibold">
+                                {(
+                                  getCurrentWeekData().reduce(
+                                    (acc, day) => acc + day.humidity,
+                                    0
+                                  ) / getCurrentWeekData().length
+                                ).toFixed(0)}
+                                %
+                              </p>
+                            </div>
+
+                            <div className="p-3 bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-sm font-medium">
+                                  Avg Wind
+                                </h4>
+                                <Wind className="text-gray-500" size={16} />
+                              </div>
+                              <p className="mt-2 text-xl font-semibold">
+                                {(
+                                  getCurrentWeekData().reduce(
+                                    (acc, day) => acc + day.windSpeed,
+                                    0
+                                  ) / getCurrentWeekData().length
+                                ).toFixed(1)}{" "}
+                                m/s
+                              </p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Daily Forecast Table */}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                      <thead className="text-xs font-medium text-gray-700 uppercase bg-gray-100 dark:bg-gray-800 dark:text-gray-300">
+                        <tr>
+                          <th className="px-4 py-3">Date</th>
+                          <th className="px-4 py-3">Weather</th>
+                          <th className="px-4 py-3">Temp (°C)</th>
+                          <th className="px-4 py-3">Humidity</th>
+                          <th className="px-4 py-3">Wind</th>
+                          <th className="px-4 py-3">Rain Chance</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                        {monthlyForecast
+                          .slice(currentSlide, currentSlide + 7)
+                          .map((day, index) => (
+                            <tr
+                              key={index}
+                              className="transition-colors hover:bg-gray-50 dark:hover:bg-gray-800"
+                            >
+                              <td className="px-4 py-3 font-medium">
+                                {formatDate(day.date)}
+                              </td>
+                              <td className="px-4 py-3">
+                                <div className="flex items-center">
+                                  {getWeatherIconForForecast(day.weather)}
+                                  <span className="ml-2">{day.weather}</span>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3">
+                                <span className="text-red-500">
+                                  {day.maxTemp.toFixed(1)}°
+                                </span>{" "}
+                                /{" "}
+                                <span className="text-blue-500">
+                                  {day.minTemp.toFixed(1)}°
+                                </span>
+                              </td>
+                              <td className="px-4 py-3">
+                                {day.humidity.toFixed(0)}%
+                              </td>
+                              <td className="px-4 py-3">
+                                {day.windSpeed.toFixed(1)} m/s
+                              </td>
+                              <td className="px-4 py-3">
+                                {day.rainChance.toFixed(0)}%
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Monthly Summary */}
+            {monthlyForecast && (
+              <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+                <div className="p-4 bg-white border rounded-lg shadow-sm dark:border-zinc-700 dark:bg-gray-900">
+                  <h2 className="mb-4 text-xl font-semibold">
+                    First Month Summary
+                  </h2>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Temperature Range
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {Math.min(
+                          ...monthlyForecast
+                            .slice(0, 30)
+                            .map((day) => day.minTemp)
+                        ).toFixed(1)}
+                        °C -{" "}
+                        {Math.max(
+                          ...monthlyForecast
+                            .slice(0, 30)
+                            .map((day) => day.maxTemp)
+                        ).toFixed(1)}
+                        °C
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Rainy Days
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {
+                          monthlyForecast
+                            .slice(0, 30)
+                            .filter((day) =>
+                              day.weather.toLowerCase().includes("rain")
+                            ).length
+                        }{" "}
+                        days
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Average Humidity
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {(
+                          monthlyForecast
+                            .slice(0, 30)
+                            .reduce((acc, day) => acc + day.humidity, 0) / 30
+                        ).toFixed(0)}
+                        %
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-white border rounded-lg shadow-sm dark:border-zinc-700 dark:bg-gray-900">
+                  <h2 className="mb-4 text-xl font-semibold">
+                    Second Month Summary
+                  </h2>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Temperature Range
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {Math.min(
+                          ...monthlyForecast.slice(30).map((day) => day.minTemp)
+                        ).toFixed(1)}
+                        °C -{" "}
+                        {Math.max(
+                          ...monthlyForecast.slice(30).map((day) => day.maxTemp)
+                        ).toFixed(1)}
+                        °C
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Rainy Days
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {
+                          monthlyForecast
+                            .slice(30)
+                            .filter((day) =>
+                              day.weather.toLowerCase().includes("rain")
+                            ).length
+                        }{" "}
+                        days
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        Average Humidity
+                      </h3>
+                      <p className="mt-1 text-lg">
+                        {(
+                          monthlyForecast
+                            .slice(30)
+                            .reduce((acc, day) => acc + day.humidity, 0) / 30
+                        ).toFixed(0)}
+                        %
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -412,10 +763,17 @@ const WeatherInsights = () => {
         )}
       </div>
 
-      {/* Footer with Additional Info */}
-      <div className="mt-6 text-sm text-center text-gray-500 dark:text-gray-400">
-        <p>Data provided by OpenWeatherMap</p>
-        <p className="mt-1">Last updated: {new Date().toLocaleTimeString()}</p>
+      {/* Disclaimer */}
+      <div className="p-4 mt-6 text-sm text-center text-gray-500 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-400">
+        <p className="mb-2">
+          <strong>Note:</strong> Long-term weather predictions are simulated and
+          meant for agricultural planning purposes only.
+        </p>
+        <p>
+          These forecasts are based on historical weather patterns and should be
+          used as general guidance.
+        </p>
+        <p className="mt-2">Last updated: {new Date().toLocaleString()}</p>
       </div>
     </div>
   );
