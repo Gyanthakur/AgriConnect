@@ -109,7 +109,6 @@ export const getRentalDetails = async (req, res) => {
             .populate("owner", "firstName lastName email phone image")
             .populate("equipment", "name images pricePerDay category");
 
-        if (!order) return res.status(404).json({ message: "Rental not found" });
 
         res.status(200).json({ message: "Rental details fetched successfully", order });
     } catch (error) {
@@ -127,8 +126,6 @@ export const getUserRentals = async (req, res) => {
             .populate("renter", "firstName lastName email phone")
             .populate("owner", "firstName lastName email phone")
             .populate("equipment", "name category pricePerDay images");
-
-        if (!rentals.length) return res.status(404).json({ message: "No rentals found" });
 
         res.status(200).json({ message: "User rentals fetched successfully", rentals });
     } catch (error) {
