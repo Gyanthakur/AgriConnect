@@ -167,11 +167,6 @@ export const getUserOrders = async (req, res) => {
             .populate("buyer", "firstName lastName email phone image") // Get buyer details
             .populate("seller", "firstName lastName email phone image") // Get seller details
             .populate("items.crop", "name category price images"); // Get crop details for items
-
-        if (orders.length === 0) {
-            return res.status(404).json({ message: "No orders found" });
-        }
-
         return res.status(200).json({
             message: "User orders fetched successfully",
             orders,
@@ -194,9 +189,6 @@ export const getSellerOrders = async (req, res) => {
             .populate("seller", "firstName lastName email phone image") // Get seller details
             .populate("items.crop", "name category price images"); // Get crop details for items
 
-        if (orders.length === 0) {
-            return res.status(404).json({ message: "No orders found" });
-        }
 
         return res.status(200).json({
             message: "Seller's orders fetched successfully",
