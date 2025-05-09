@@ -140,7 +140,7 @@ export default function AddEquipment() {
           autoClose: 2000,
         });
         utils.reset();
-        window.location.href = "/equipment/" + result.data?._id;
+        window.location.href = "/rental/" + result.data?._id;
       } catch (error) {
         console.error("Error submitting form:", error);
         setError(error.message || "Failed to submit form.");
