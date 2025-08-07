@@ -13,8 +13,8 @@ export default function Logger({isDarkMode}) {
 					"content-type": "application/json",
 				},
 				body: JSON.stringify({
-					clientSecret: "ec9fcc25-1a94-463d-a36e-57bc39c7ec9e",
-					applicationId: "f1c1f49f-67a2-4d67-afe5-b229cd4c265e",
+					clientSecret: "3e8d6e30-e320-406e-831e-538899ab7b66",
+					applicationId: "b2ce46b8-a0c5-491c-bf7f-1542c839a563",
 				}),
 			};
 			const res = await fetch(
